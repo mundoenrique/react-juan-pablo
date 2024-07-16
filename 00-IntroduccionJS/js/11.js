@@ -5,4 +5,5 @@ const react = tecnologias[3];
 // Destructuring arrays
 const [, , , reactjs] = tecnologias;
 
+console.log(react);
 console.log(reactjs);
