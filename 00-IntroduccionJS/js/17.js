@@ -1,8 +1,11 @@
 const tecnologias = ['HTML', 'CSS', 'JavaScript', 'React.js', 'Node.js'];
 const numeros = [10, 20, 30];
+console.log({ tecnologias, numeros });
 
 // Filter
 const nuevoArray = tecnologias.filter((tech) => tech !== 'HTML');
+console.log({ nuevoArray });
+
 const resultado1 = numeros.filter((numero) => numero > 15);
 console.log(resultado1);
 
