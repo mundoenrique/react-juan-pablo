@@ -2,15 +2,24 @@ import Header from './components/Header';
 import Guitar from './components/Guitar';
 import Footer from './components/Footer';
 import { db } from './data/db';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 export default function App() {
+  const initialCart = () => {
+    const localStorageCart = localStorage.getItem('cart');
+
+    return localStorageCart ? JSON.parse(localStorageCart) : [];
+  };
   const [data, setData] = useState(db);
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(initialCart);
   const MIN_ITEMS = 1;
   const MAX_ITEMS = 5;
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const addTocart = (item) => {
     const ItemExists = cart.findIndex((guitar) => item.id === guitar.id);
