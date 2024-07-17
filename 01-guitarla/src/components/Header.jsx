@@ -1,9 +1,9 @@
-import { useMemo } from 'react';
-
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-export default function Header({ cart, removeFromCart, increaseQuantity, decreaseQuantity, clearCart }) {
-  // state derivado
+import { useMemo } from 'react';
+
+export default function Header({ cart, removeFromCart, decreaseQuantity, increaseQuantity, clearCart }) {
+  // State Derivado
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
 
@@ -61,11 +61,13 @@ export default function Header({ cart, removeFromCart, increaseQuantity, decreas
                         ))}
                       </tbody>
                     </table>
+
+                    <p className="text-end">
+                      Total pagar: <span className="fw-bold">${cartTotal}</span>
+                    </p>
                   </>
                 )}
-                <p className="text-end">
-                  Total pagar: <span className="fw-bold">${cartTotal}</span>
-                </p>
+
                 <button className="btn btn-dark w-100 mt-3 p-2" onClick={clearCart}>
                   Vaciar Carrito
                 </button>

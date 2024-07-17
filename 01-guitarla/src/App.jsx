@@ -1,11 +1,10 @@
-import Header from './components/Header';
-import Guitar from './components/Guitar';
-import Footer from './components/Footer';
-import { db } from './data/db';
-import { useEffect, useState } from 'react';
-
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
+import { useState, useEffect } from 'react';
+import Guitar from './components/Guitar';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import { db } from './data/db';
 export default function App() {
   const initialCart = () => {
     const localStorageCart = localStorage.getItem('cart');
@@ -21,7 +20,7 @@ export default function App() {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const addTocart = (item) => {
+  const addToCart = (item) => {
     const ItemExists = cart.findIndex((guitar) => item.id === guitar.id);
     if (ItemExists === -1) {
       item.quantity = 1;
@@ -76,16 +75,17 @@ export default function App() {
       <Header
         cart={cart}
         removeFromCart={removeFromCart}
-        increaseQuantity={increaseQuantity}
         decreaseQuantity={decreaseQuantity}
+        increaseQuantity={increaseQuantity}
         clearCart={clearCart}
       />
+
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
           {data.map((guitar) => (
-            <Guitar key={guitar.id} guitar={guitar} addTocart={addTocart} setCart={setCart} />
+            <Guitar key={guitar.id} guitar={guitar} addToCart={addToCart} />
           ))}
         </div>
       </main>
