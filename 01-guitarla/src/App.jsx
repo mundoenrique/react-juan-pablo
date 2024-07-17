@@ -4,10 +4,12 @@ import Footer from './components/Footer';
 import { db } from './data/db';
 import { useState } from 'react';
 
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 export default function App() {
   const [data, setData] = useState(db);
   const [cart, setCart] = useState([]);
+  const MIN_ITEMS = 1;
   const MAX_ITEMS = 5;
 
   const addTocart = (item) => {
@@ -41,9 +43,29 @@ export default function App() {
     setCart(updatedCart);
   };
 
+  const decreaseQuantity = (id) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === id && item.quantity > MIN_ITEMS) {
+        return {
+          ...item,
+          quantity: item.quantity - 1,
+        };
+      }
+
+      return item;
+    });
+
+    setCart(updatedCart);
+  };
+
   return (
     <>
-      <Header cart={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} />
+      <Header
+        cart={cart}
+        removeFromCart={removeFromCart}
+        increaseQuantity={increaseQuantity}
+        decreaseQuantity={decreaseQuantity}
+      />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
