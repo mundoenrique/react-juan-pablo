@@ -19,7 +19,7 @@ export default function App() {
       setCart([...cart, item]);
     } else {
       const updatedCart = [...cart];
-      updatedCart[ItemExists].quantity++;
+      updatedCart[ItemExists].quantity < MAX_ITEMS && updatedCart[ItemExists].quantity++;
       setCart(updatedCart);
     }
   };
