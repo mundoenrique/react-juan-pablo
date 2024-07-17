@@ -7,4 +7,4 @@ heading.textContent = 'Un nuevo heading...';
 const inputNombre = document.querySelector('#nombre');
 inputNombre.value = 'Un nuevo valor...';
 
-enlaces.forEach((enlace, index) => (enlace.textContent = 'Nuevo Enlace' + index));
+enlaces.forEach((enlace, index) => (enlace.textContent = 'Nuevo Enlace ' + index));
