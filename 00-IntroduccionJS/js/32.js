@@ -11,7 +11,7 @@ formulario.addEventListener('submit', (e) => {
   const alertaPrevia = document.querySelector('.alerta');
   alertaPrevia?.remove();
 
-  const alerta = document.createElement('DIV');
+  const alerta = document.createElement('div');
   alerta.classList.add('alerta', 'text-white', 'uppercase', 'text-sm', 'text-center', 'p-2', 'font-black');
 
   if (nombre === '' || password === '') {
