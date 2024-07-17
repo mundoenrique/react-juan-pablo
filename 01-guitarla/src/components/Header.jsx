@@ -2,10 +2,11 @@ import { useMemo } from 'react';
 
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-export default function Header({ cart, removeFromCart }) {
+export default function Header({ cart, removeFromCart, increaseQuantity }) {
   // state derivado
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
+
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -47,7 +48,7 @@ export default function Header({ cart, removeFromCart }) {
                                 -
                               </button>
                               {quantity}
-                              <button type="button" className="btn btn-dark">
+                              <button type="button" className="btn btn-dark" onClick={() => increaseQuantity(id)}>
                                 +
                               </button>
                             </td>

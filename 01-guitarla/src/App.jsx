@@ -8,6 +8,7 @@ import { useState } from 'react';
 export default function App() {
   const [data, setData] = useState(db);
   const [cart, setCart] = useState([]);
+  const MAX_ITEMS = 5;
 
   const addTocart = (item) => {
     const ItemExists = cart.findIndex((guitar) => item.id === guitar.id);
@@ -25,9 +26,24 @@ export default function App() {
     setCart((prevCart) => prevCart.filter((guitar) => guitar.id !== id));
   };
 
+  const increaseQuantity = (id) => {
+    const updatedCart = cart.map((item) => {
+      if (item.id === id && item.quantity < MAX_ITEMS) {
+        return {
+          ...item,
+          quantity: item.quantity + 1,
+        };
+      }
+
+      return item;
+    });
+
+    setCart(updatedCart);
+  };
+
   return (
     <>
-      <Header cart={cart} removeFromCart={removeFromCart} />
+      <Header cart={cart} removeFromCart={removeFromCart} increaseQuantity={increaseQuantity} />
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
