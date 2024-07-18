@@ -1,6 +1,6 @@
 import { type ChangeEvent, useState } from 'react';
 import { categories } from '../data';
-import type { Tactivity } from '../types';
+import type { Tactivity, TsubmitText } from '../types';
 
 export default function Form() {
   const [activityForm, setActivityForm] = useState<Tactivity>({
@@ -9,6 +9,11 @@ export default function Form() {
     category: 0,
   });
   const { activity, calories, category } = activityForm;
+  const submitText: TsubmitText = {
+    0: 'Guardar',
+    1: 'Guardar Comida',
+    2: 'Guarda Ejercicio',
+  };
 
   const handleActivityForm = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const isNumberField = ['calories', 'category'].includes(e.target.id);
@@ -74,9 +79,9 @@ export default function Form() {
         />
       </div>
       <input
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 uppercase text-white cursor-pointer disabled:opacity-10"
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 uppercase text-white cursor-pointer disabled:opacity-45"
         type="submit"
-        value="Guardar Comida o Guardar Ejercicio"
+        value={submitText[category]}
         disabled={!validActivityForm()}
       />
     </form>

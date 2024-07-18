@@ -8,3 +8,7 @@ export type Tactivity = {
   calories: number;
   category: number;
 };
+
+export type TsubmitText = {
+  [key: number]: string;
+};
