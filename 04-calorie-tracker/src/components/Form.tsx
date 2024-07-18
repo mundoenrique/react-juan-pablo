@@ -1,6 +1,7 @@
-import { type ChangeEvent, useState } from 'react';
-import { categories } from '../data';
-import type { Tactivity, TsubmitText } from '../types';
+import { useState } from 'react';
+import type { ChangeEvent, FormEvent } from 'react';
+import { categories, submitText } from '../data';
+import type { Tactivity } from '../types';
 
 export default function Form() {
   const [activityForm, setActivityForm] = useState<Tactivity>({
@@ -9,13 +10,8 @@ export default function Form() {
     category: 0,
   });
   const { activity, calories, category } = activityForm;
-  const submitText: TsubmitText = {
-    0: 'Guardar',
-    1: 'Guardar Comida',
-    2: 'Guarda Ejercicio',
-  };
 
-  const handleActivityForm = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+  const handleChangeActivity = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const isNumberField = ['calories', 'category'].includes(e.target.id);
     const value = isNumberField ? +e.target.value : e.target.value;
 
@@ -29,8 +25,12 @@ export default function Form() {
     return activity.trim() !== '' && calories > 0 && category > 0;
   };
 
+  const handleSubmitActivity = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className="space-y-5 bg-white shadow p-10 rounded-lg">
+    <form className="space-y-5 bg-white shadow p-10 rounded-lg" onSubmit={handleSubmitActivity}>
       <div className="grid grid-cols-1 gap-3">
         <label className="font-bold" htmlFor="category">
           Categorias:
@@ -39,7 +39,7 @@ export default function Form() {
           className="border border-slate-300 p-2 rounded-lg w-full bg-white"
           id="category"
           value={category}
-          onChange={handleActivityForm}
+          onChange={handleChangeActivity}
         >
           <option value={0} disabled>
             Selecciona una opción
@@ -62,7 +62,7 @@ export default function Form() {
           placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"
           autoComplete="off"
           value={activity}
-          onChange={handleActivityForm}
+          onChange={handleChangeActivity}
         />
       </div>
       <div className="grid grid-cols-1 gap-3">
@@ -75,7 +75,7 @@ export default function Form() {
           id="calories"
           placeholder="Calorias Ej. 300 o 500"
           value={calories}
-          onChange={handleActivityForm}
+          onChange={handleChangeActivity}
         />
       </div>
       <input
