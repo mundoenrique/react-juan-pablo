@@ -4,6 +4,11 @@ export type MenuItem = {
   price: number;
 };
 
+export type OrderItem = MenuItem & {
+  quantity: number;
+};
+
 export type MenuItemProps = {
   item: MenuItem;
+  addItem: (item: MenuItem) => void;
 };
