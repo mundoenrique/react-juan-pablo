@@ -12,3 +12,7 @@ export type MenuItemProps = {
   item: MenuItem;
   addItem: (item: MenuItem) => void;
 };
+
+export type OrderContentsProps = {
+  order: OrderItem[];
+};
