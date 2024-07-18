@@ -27,11 +27,18 @@ export default function useOrder() {
     setOrder(updatedOrder);
   };
 
+  const placeOrder = (order: OrderItem[]) => {
+    console.log(order);
+    setOrder([]);
+    setTip(0);
+  };
+
   return {
     order,
     tip,
     setTip,
     addItem,
     removeItem,
+    placeOrder,
   };
 }

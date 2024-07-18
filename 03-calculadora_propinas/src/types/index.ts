@@ -29,8 +29,10 @@ export type OrderContentsProps = {
 export type OrderTotalsProps = {
   order: OrderItem[];
   tip: number;
+  placeOrder: (order: OrderItem[]) => void;
 };
 
 export type TipPercentageFormProps = {
+  tip: number;
   setTip: Dispatch<SetStateAction<number>>;
 };

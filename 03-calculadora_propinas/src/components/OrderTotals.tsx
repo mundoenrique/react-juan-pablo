@@ -2,7 +2,7 @@ import { /* useCallback */ useMemo } from 'react';
 import type { OrderTotalsProps } from '../types';
 import { formatCurrency } from '../helpers';
 
-export default function OrderTotals({ order, tip }: OrderTotalsProps) {
+export default function OrderTotals({ order, tip, placeOrder }: OrderTotalsProps) {
   const subtotalAmount = useMemo(() => order.reduce((total, item) => total + item.quantity * item.price, 0), [order]);
   const tipAmount = useMemo(() => subtotalAmount * tip, [subtotalAmount, tip]);
   const TotalAmount = useMemo(() => subtotalAmount + tipAmount, [subtotalAmount, tipAmount]);
@@ -40,7 +40,14 @@ export default function OrderTotals({ order, tip }: OrderTotalsProps) {
           {/* <span className="font-bold">{formatCurrency(TotalAmount())}</span> */}
         </p>
       </div>
-      <button></button>
+      <button
+        className="w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled:opacity-10"
+        /* useMemo */ disabled={TotalAmount === 0}
+        /* UseCallback  disabled={TotalAmount() === 0} */
+        onClick={() => placeOrder(order)}
+      >
+        Guradar Orden
+      </button>
     </>
   );
 }
