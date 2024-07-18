@@ -1,7 +1,15 @@
+import type { Dispatch, SetStateAction } from 'react';
+
 export type MenuItem = {
   id: number;
   name: string;
   price: number;
+};
+
+export type tipOption = {
+  id: string;
+  value: number;
+  label: string;
 };
 
 export type OrderItem = MenuItem & {
@@ -20,4 +28,9 @@ export type OrderContentsProps = {
 
 export type OrderTotalsProps = {
   order: OrderItem[];
+  tip: number;
+};
+
+export type TipPercentageFormProps = {
+  setTip: Dispatch<SetStateAction<number>>;
 };
