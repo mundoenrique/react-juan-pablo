@@ -1,4 +1,7 @@
+import { menuItems } from './data/db';
+
 export default function App() {
+  console.log(menuItems);
   return (
     <>
       <header className="bg-teal-400 py-5">
