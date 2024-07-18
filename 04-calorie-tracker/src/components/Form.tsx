@@ -10,7 +10,7 @@ export default function Form() {
   });
   const { activity, calories, category } = activityForm;
 
-  const handleChangeActivityForm = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+  const handleActivityForm = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const isNumberField = ['calories', 'category'].includes(e.target.id);
     const value = isNumberField ? +e.target.value : e.target.value;
 
@@ -18,6 +18,10 @@ export default function Form() {
       ...activityForm,
       [e.target.id]: value,
     });
+  };
+
+  const validActivityForm = () => {
+    return activity.trim() !== '' && calories > 0 && category > 0;
   };
 
   return (
@@ -30,7 +34,7 @@ export default function Form() {
           className="border border-slate-300 p-2 rounded-lg w-full bg-white"
           id="category"
           value={category}
-          onChange={handleChangeActivityForm}
+          onChange={handleActivityForm}
         >
           <option value={0} disabled>
             Selecciona una opción
@@ -51,8 +55,9 @@ export default function Form() {
           type="text"
           id="activity"
           placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"
+          autoComplete="off"
           value={activity}
-          onChange={handleChangeActivityForm}
+          onChange={handleActivityForm}
         />
       </div>
       <div className="grid grid-cols-1 gap-3">
@@ -65,13 +70,14 @@ export default function Form() {
           id="calories"
           placeholder="Calorias Ej. 300 o 500"
           value={calories}
-          onChange={handleChangeActivityForm}
+          onChange={handleActivityForm}
         />
       </div>
       <input
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 uppercase text-white cursor-pointer"
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 uppercase text-white cursor-pointer disabled:opacity-10"
         type="submit"
         value="Guardar Comida o Guardar Ejercicio"
+        disabled={!validActivityForm()}
       />
     </form>
   );
