@@ -1,14 +1,38 @@
+import { type ChangeEvent, useState } from 'react';
 import { categories } from '../data';
+import type { Tactivity } from '../types';
 
 export default function Form() {
+  const [activityForm, setActivityForm] = useState<Tactivity>({
+    activity: '',
+    calories: 0,
+    category: 0,
+  });
+  const { activity, calories, category } = activityForm;
+
+  const handleChangeActivityForm = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
+    const isNumberField = ['calories', 'category'].includes(e.target.id);
+    const value = isNumberField ? +e.target.value : e.target.value;
+
+    setActivityForm({
+      ...activityForm,
+      [e.target.id]: value,
+    });
+  };
+
   return (
     <form className="space-y-5 bg-white shadow p-10 rounded-lg">
       <div className="grid grid-cols-1 gap-3">
         <label className="font-bold" htmlFor="category">
           Categorias:
         </label>
-        <select className="border border-slate-300 p-2 rounded-lg w-full bg-white" id="category">
-          <option disabled selected>
+        <select
+          className="border border-slate-300 p-2 rounded-lg w-full bg-white"
+          id="category"
+          value={category}
+          onChange={handleChangeActivityForm}
+        >
+          <option value={0} disabled>
             Selecciona una opción
           </option>
           {categories.map(({ id, name }) => (
@@ -27,6 +51,8 @@ export default function Form() {
           type="text"
           id="activity"
           placeholder="Ej. Comida, Jugo de Naranja, Ensalada, Ejercicio, Pesas, Bicicleta"
+          value={activity}
+          onChange={handleChangeActivityForm}
         />
       </div>
       <div className="grid grid-cols-1 gap-3">
@@ -38,6 +64,8 @@ export default function Form() {
           type="number"
           id="calories"
           placeholder="Calorias Ej. 300 o 500"
+          value={calories}
+          onChange={handleChangeActivityForm}
         />
       </div>
       <input
