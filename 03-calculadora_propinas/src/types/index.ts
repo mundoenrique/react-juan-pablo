@@ -17,3 +17,7 @@ export type OrderContentsProps = {
   order: OrderItem[];
   removeItem: (id: MenuItem['id']) => void;
 };
+
+export type OrderTotalsProps = {
+  order: OrderItem[];
+};
