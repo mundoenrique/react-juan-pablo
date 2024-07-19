@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { TheaderProps } from '../types';
 
-export default function Header({ cart, decreaseQuantity, increaseQuantity, clearCart, dispatch }: TheaderProps) {
+export default function Header({ cart, decreaseQuantity, clearCart, dispatch }: TheaderProps) {
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
 
@@ -46,7 +46,11 @@ export default function Header({ cart, decreaseQuantity, increaseQuantity, clear
                                 -
                               </button>
                               {quantity}
-                              <button type="button" className="btn btn-dark" onClick={() => increaseQuantity(id)}>
+                              <button
+                                type="button"
+                                className="btn btn-dark"
+                                onClick={() => dispatch({ type: 'increase-quantity', payload: { id } })}
+                              >
                                 +
                               </button>
                             </td>

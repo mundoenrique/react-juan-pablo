@@ -34,7 +34,6 @@ export type TguitarProps = {
 export type TheaderProps = {
   cart: TcartItem[];
   decreaseQuantity: (id: Tguitar['id']) => void;
-  increaseQuantity: (id: Tguitar['id']) => void;
   clearCart: () => void;
   dispatch: Dispatch<TcartActions>;
 };
