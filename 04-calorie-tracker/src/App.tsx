@@ -11,7 +11,7 @@ export default function App() {
     localStorage.setItem('activities', JSON.stringify(state.activities));
   }, [state.activities]);
 
-  const canRestarApp = useMemo(() => state.activities.length > 0, [state.activities]);
+  const canRestartApp = useMemo(() => state.activities.length, [state.activities]);
 
   return (
     <>
@@ -20,8 +20,8 @@ export default function App() {
           <h1 className="text-center text-lg font-bold text-white uppercase">Contador de Calorias</h1>
           <button
             className="bg-gray-800 hover:bg-gray-900 p-2 font-bold uppercase text-white cursor-pointer rounded-lg text-sm disabled:opacity-45"
-            disabled={!canRestarApp}
-            onClick={() => dispatch({ type: 'restar-app' })}
+            disabled={!canRestartApp}
+            onClick={() => dispatch({ type: 'restart-app' })}
           >
             Reiniciar App
           </button>
@@ -32,8 +32,8 @@ export default function App() {
           <Form dispatch={dispatch} state={state} />
         </div>
       </section>
-      <section className="bg-gray-800 p-10">
-        <div className="nax-w4-xl mx-auto">
+      <section className="bg-gray-800 py-10">
+        <div className="max-w-4xl mx-auto">
           <CalorieTracker activities={state.activities} />
         </div>
       </section>

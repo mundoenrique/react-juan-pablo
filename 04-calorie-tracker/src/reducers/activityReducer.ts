@@ -32,14 +32,14 @@ export const activityReducer = (state: TactivityState = initialState, action: Ta
     };
   }
 
-  if (action.type === 'delete-activeId') {
+  if (action.type === 'delete-activity') {
     return {
       ...state,
       activities: state.activities.filter((activity) => activity.id !== action.payload.id),
     };
   }
 
-  if (action.type === 'restar-app') {
+  if (action.type === 'restart-app') {
     return {
       activities: [],
       activeId: '',

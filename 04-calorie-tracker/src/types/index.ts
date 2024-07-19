@@ -19,8 +19,8 @@ export type TsubmitText = {
 export type TactivityActions =
   | { type: 'save-activity'; payload: { newActivity: Tactivity } }
   | { type: 'set-activeId'; payload: { id: Tactivity['id'] } }
-  | { type: 'delete-activeId'; payload: { id: Tactivity['id'] } }
-  | { type: 'restar-app' };
+  | { type: 'delete-activity'; payload: { id: Tactivity['id'] } }
+  | { type: 'restart-app' };
 
 export type TactivityState = {
   activities: Tactivity[];
@@ -37,7 +37,7 @@ export type TactivityListProps = {
   dispatch: Dispatch<TactivityActions>;
 };
 
-export type TcalorieTracker = {
+export type TcalorieTrackerProps = {
   activities: Tactivity[];
 };
 
