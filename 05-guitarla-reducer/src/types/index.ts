@@ -1,5 +1,7 @@
 // https://www.typescriptlang.org/docs/handbook/utility-types.html
 
+import { Dispatch } from 'react';
+
 export type Tguitar = {
   id: number;
   name: string;
@@ -12,21 +14,21 @@ export type TcartItem = Tguitar & {
   quantity: number;
 };
 
-// export type TcartItem = Pick<Tguitar, 'id'> & {
-//   quantity: number;
-// };
+export type TcartState = {
+  data: Tguitar[];
+  cart: TcartItem[];
+};
 
-// export type TcartItem = Omit<Tguitar, 'id'> & {
-//   quantity: number;
-// };
-
-// export interface TcartItem extends Tguitar {
-//   quantity: number;
-// }
+export type TcartActions =
+  | { type: 'add-to-cart'; payload: { item: Tguitar } }
+  | { type: 'remove-from-cart'; payload: { id: Tguitar['id'] } }
+  | { type: 'decrease-quantity'; payload: { id: Tguitar['id'] } }
+  | { type: 'increase-quantity'; payload: { id: Tguitar['id'] } }
+  | { type: 'clear-cart' };
 
 export type TguitarProps = {
   guitar: Tguitar;
-  addToCart: (item: Tguitar) => void;
+  dispatch: Dispatch<TcartActions>;
 };
 
 export type TheaderProps = {
