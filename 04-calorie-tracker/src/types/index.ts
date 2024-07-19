@@ -36,3 +36,12 @@ export type TactivityListProps = {
   activities: Tactivity[];
   dispatch: Dispatch<TactivityActions>;
 };
+
+export type TcalorieTracker = {
+  activities: Tactivity[];
+};
+
+export type TcalorieDisplay = {
+  calories: Tactivity['calories'];
+  text: string;
+};
