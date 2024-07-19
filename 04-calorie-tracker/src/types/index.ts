@@ -28,3 +28,7 @@ export type TactivityState = {
 export type TformProps = {
   dispatch: Dispatch<TactivityActions>;
 };
+
+export type TactivityListProps = {
+  activities: Tactivity[];
+};
