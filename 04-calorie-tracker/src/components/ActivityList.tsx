@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { Tactivity, TactivityListProps } from '../types';
 import { categories } from '../data';
+import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 export default function ActivityList({ activities }: TactivityListProps) {
   const categoryName = useMemo(
@@ -27,7 +28,11 @@ export default function ActivityList({ activities }: TactivityListProps) {
               <span>Calorias</span>
             </p>
           </div>
-          <div></div>
+          <div className="flex gap-5 items-center">
+            <button>
+              <PencilSquareIcon className="h-8 w-8 text-gray-800" />
+            </button>
+          </div>
         </div>
       ))}
     </>
