@@ -1,6 +1,6 @@
-import type { GuitarProps } from '../types';
+import type { TguitarProps } from '../types';
 
-export default function Guitar({ guitar, addToCart }: GuitarProps) {
+export default function Guitar({ guitar, addToCart }: TguitarProps) {
   const { name, image, description, price } = guitar;
 
   return (

@@ -1,4 +1,4 @@
-import type { headerProps } from '../types';
+import type { TheaderProps } from '../types';
 
 export default function Header({
   cart,
@@ -8,7 +8,7 @@ export default function Header({
   clearCart,
   isEmpty,
   cartTotal,
-}: headerProps) {
+}: TheaderProps) {
   return (
     <header className="py-5 header">
       <div className="container-xl">
