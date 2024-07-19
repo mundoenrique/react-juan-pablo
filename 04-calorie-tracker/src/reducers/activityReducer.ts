@@ -2,6 +2,7 @@ import type { TactivityActions, TactivityState } from '../types';
 
 export const initialState: TactivityState = {
   activities: [],
+  activeId: '',
 };
 
 export const activityReducer = (state: TactivityState = initialState, action: TactivityActions) => {
@@ -9,6 +10,13 @@ export const activityReducer = (state: TactivityState = initialState, action: Ta
     return {
       ...state,
       activities: [...state.activities, action.payload.newActivity],
+    };
+  }
+
+  if (action.type === 'set-activeId') {
+    return {
+      ...state,
+      activeId: action.payload.id,
     };
   }
 

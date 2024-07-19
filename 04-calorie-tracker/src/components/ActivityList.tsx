@@ -3,7 +3,7 @@ import { Tactivity, TactivityListProps } from '../types';
 import { categories } from '../data';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
-export default function ActivityList({ activities }: TactivityListProps) {
+export default function ActivityList({ activities, dispatch }: TactivityListProps) {
   const categoryName = useMemo(
     () => (category: Tactivity['category']) => categories.map((cat) => (cat.id === category ? cat.name : '')),
     []
@@ -29,7 +29,7 @@ export default function ActivityList({ activities }: TactivityListProps) {
             </p>
           </div>
           <div className="flex gap-5 items-center">
-            <button>
+            <button onClick={() => dispatch({ type: 'set-activeId', payload: { id: activity.id } })}>
               <PencilSquareIcon className="h-8 w-8 text-gray-800" />
             </button>
           </div>

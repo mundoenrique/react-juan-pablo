@@ -16,13 +16,14 @@ export type TsubmitText = {
   [key: number]: string;
 };
 
-export type TactivityActions = {
-  type: 'save-activity';
-  payload: { newActivity: Tactivity };
-};
+export type TactivityActions =
+  | { type: 'save-activity'; payload: { newActivity: Tactivity } }
+  | { type: 'edit-activity'; payload: { updatedActivity: Tactivity } }
+  | { type: 'set-activeId'; payload: { id: Tactivity['id'] } };
 
 export type TactivityState = {
   activities: Tactivity[];
+  activeId: Tactivity['id'];
 };
 
 export type TformProps = {
@@ -31,4 +32,5 @@ export type TformProps = {
 
 export type TactivityListProps = {
   activities: Tactivity[];
+  dispatch: Dispatch<TactivityActions>;
 };
