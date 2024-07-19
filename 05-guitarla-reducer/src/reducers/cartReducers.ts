@@ -36,8 +36,11 @@ export const cartReducer = (state: TcartState = initGuitarList, action: TcartAct
   }
 
   if (action.type === 'remove-from-cart') {
+    const updatedCart = state.cart.filter((guitar) => guitar.id !== action.payload.id);
+
     return {
       ...state,
+      cart: updatedCart,
     };
   }
 
