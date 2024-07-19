@@ -18,7 +18,6 @@ export type TsubmitText = {
 
 export type TactivityActions =
   | { type: 'save-activity'; payload: { newActivity: Tactivity } }
-  | { type: 'edit-activity'; payload: { updatedActivity: Tactivity } }
   | { type: 'set-activeId'; payload: { id: Tactivity['id'] } };
 
 export type TactivityState = {
@@ -28,6 +27,7 @@ export type TactivityState = {
 
 export type TformProps = {
   dispatch: Dispatch<TactivityActions>;
+  state: TactivityState;
 };
 
 export type TactivityListProps = {

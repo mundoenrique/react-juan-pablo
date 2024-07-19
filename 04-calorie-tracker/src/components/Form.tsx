@@ -1,13 +1,20 @@
 import uuid4 from 'uuid4';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 
 import { categories, initActivityForm, submitText } from '../data';
 import type { Tactivity, TformProps } from '../types';
 
-export default function Form({ dispatch }: TformProps) {
+export default function Form({ dispatch, state }: TformProps) {
   const [activityForm, setActivityForm] = useState<Tactivity>(initActivityForm);
   const { activity, calories, category } = activityForm;
+
+  useEffect(() => {
+    if (state.activeId) {
+      const selectedActivity = state.activities.filter((stateActivity) => stateActivity.id === state.activeId)[0];
+      setActivityForm(selectedActivity);
+    }
+  }, [state.activeId, state.activities]);
 
   const handleChangeActivity = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const isNumberField = ['calories', 'category'].includes(e.target.id);

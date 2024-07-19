@@ -1,4 +1,4 @@
-import type { TactivityActions, TactivityState } from '../types';
+import type { Tactivity, TactivityActions, TactivityState } from '../types';
 
 export const initialState: TactivityState = {
   activities: [],
@@ -7,9 +7,20 @@ export const initialState: TactivityState = {
 
 export const activityReducer = (state: TactivityState = initialState, action: TactivityActions) => {
   if (action.type === 'save-activity') {
+    let updatedActivities: Tactivity[] = [];
+
+    if (state.activeId) {
+      updatedActivities = state.activities.map((activity) =>
+        activity.id === state.activeId ? action.payload.newActivity : activity
+      );
+    } else {
+      updatedActivities = [...state.activities, action.payload.newActivity];
+    }
+
     return {
       ...state,
-      activities: [...state.activities, action.payload.newActivity],
+      activities: updatedActivities,
+      activeId: '',
     };
   }
 
