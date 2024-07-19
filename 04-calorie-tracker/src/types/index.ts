@@ -6,6 +6,7 @@ export type Tcategory = {
 };
 
 export type Tactivity = {
+  id: string;
   activity: string;
   calories: number;
   category: number;

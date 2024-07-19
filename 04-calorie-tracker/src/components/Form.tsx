@@ -1,5 +1,7 @@
+import uuid4 from 'uuid4';
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
+
 import { categories, initActivityForm, submitText } from '../data';
 import type { Tactivity, TformProps } from '../types';
 
@@ -23,7 +25,7 @@ export default function Form({ dispatch }: TformProps) {
 
   const handleSubmitActivity = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch({ type: 'save-activity', payload: { newActivity: activityForm } });
+    dispatch({ type: 'save-activity', payload: { newActivity: { ...activityForm, id: uuid4() } } });
     setActivityForm(initActivityForm);
   };
 

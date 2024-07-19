@@ -6,6 +6,7 @@ export const categories: Tcategory[] = [
 ];
 
 export const initActivityForm: Tactivity = {
+  id: '',
   activity: '',
   calories: 0,
   category: 0,
