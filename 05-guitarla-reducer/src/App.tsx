@@ -6,14 +6,14 @@ import { useReducer } from 'react';
 import { cartReducer, initGuitarList } from './reducers/cartReducers';
 
 export default function App() {
-  const { decreaseQuantity, clearCart } = useCart();
+  const { clearCart } = useCart();
 
   const [state, dispatch] = useReducer(cartReducer, initGuitarList);
   const { data, cart } = state;
 
   return (
     <>
-      <Header cart={cart} decreaseQuantity={decreaseQuantity} clearCart={clearCart} dispatch={dispatch} />
+      <Header cart={cart} clearCart={clearCart} dispatch={dispatch} />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
