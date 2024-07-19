@@ -19,7 +19,8 @@ export type TsubmitText = {
 export type TactivityActions =
   | { type: 'save-activity'; payload: { newActivity: Tactivity } }
   | { type: 'set-activeId'; payload: { id: Tactivity['id'] } }
-  | { type: 'delete-activeId'; payload: { id: Tactivity['id'] } };
+  | { type: 'delete-activeId'; payload: { id: Tactivity['id'] } }
+  | { type: 'restar-app' };
 
 export type TactivityState = {
   activities: Tactivity[];

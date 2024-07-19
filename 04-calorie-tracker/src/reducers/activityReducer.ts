@@ -39,5 +39,12 @@ export const activityReducer = (state: TactivityState = initialState, action: Ta
     };
   }
 
+  if (action.type === 'restar-app') {
+    return {
+      activities: [],
+      activeId: '',
+    };
+  }
+
   return state;
 };
