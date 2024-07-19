@@ -33,7 +33,7 @@ export default function Form({ dispatch }: TformProps) {
     <form className="space-y-5 bg-white shadow p-10 rounded-lg" onSubmit={handleSubmitActivity}>
       <div className="grid grid-cols-1 gap-3">
         <label className="font-bold" htmlFor="category">
-          Categorias:
+          Categoría:
         </label>
         <select
           className="border border-slate-300 p-2 rounded-lg w-full bg-white"
@@ -73,13 +73,13 @@ export default function Form({ dispatch }: TformProps) {
           className="border border-slate-300 p-2 rounded-lg"
           type="number"
           id="calories"
-          placeholder="Calorias Ej. 300 o 500"
+          placeholder="Calorias. Ej. 300 o 500"
           value={calories}
           onChange={handleChangeActivity}
         />
       </div>
       <input
-        className="bg-gray-800 hover:bg-gray-900 w-full p-2 uppercase text-white cursor-pointer disabled:opacity-45"
+        className="bg-gray-800 hover:bg-gray-900 w-full p-2 font-bold uppercase text-white cursor-pointer disabled:opacity-45"
         type="submit"
         value={submitText[category]}
         disabled={!validActivityForm()}
