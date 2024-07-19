@@ -31,5 +31,12 @@ export const activityReducer = (state: TactivityState = initialState, action: Ta
     };
   }
 
+  if (action.type === 'delete-activeId') {
+    return {
+      ...state,
+      activities: state.activities.filter((activity) => activity.id !== action.payload.id),
+    };
+  }
+
   return state;
 };
