@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
-import { categories, submitText } from '../data';
-import type { Tactivity } from '../types';
+import { categories, initActivityForm, submitText } from '../data';
+import type { Tactivity, TformProps } from '../types';
 
-export default function Form() {
-  const [activityForm, setActivityForm] = useState<Tactivity>({
-    activity: '',
-    calories: 0,
-    category: 0,
-  });
+export default function Form({ dispatch }: TformProps) {
+  const [activityForm, setActivityForm] = useState<Tactivity>(initActivityForm);
   const { activity, calories, category } = activityForm;
 
   const handleChangeActivity = (e: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
@@ -27,6 +23,8 @@ export default function Form() {
 
   const handleSubmitActivity = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch({ type: 'save-activity', payload: { newActivity: activityForm } });
+    setActivityForm(initActivityForm);
   };
 
   return (
