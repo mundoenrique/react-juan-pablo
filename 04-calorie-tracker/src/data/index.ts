@@ -17,3 +17,9 @@ export const submitText: TsubmitText = {
   1: 'Guardar Comida',
   2: 'Guarda Ejercicio',
 };
+
+export const localStorageActivities = (): Tactivity[] => {
+  const activities = localStorage.getItem('activities');
+
+  return activities ? JSON.parse(activities) : [];
+};

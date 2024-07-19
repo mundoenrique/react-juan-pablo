@@ -1,7 +1,8 @@
+import { localStorageActivities } from '../data';
 import type { Tactivity, TactivityActions, TactivityState } from '../types';
 
 export const initialState: TactivityState = {
-  activities: [],
+  activities: localStorageActivities(),
   activeId: '',
 };
 
