@@ -1,12 +1,16 @@
+import { useEffect, useReducer } from 'react';
 import Guitar from './components/Guitar';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { useReducer } from 'react';
 import { cartReducer, initGuitarList } from './reducers/cartReducers';
 
 export default function App() {
   const [state, dispatch] = useReducer(cartReducer, initGuitarList);
   const { data, cart } = state;
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(state.cart));
+  }, [state.cart]);
 
   return (
     <>

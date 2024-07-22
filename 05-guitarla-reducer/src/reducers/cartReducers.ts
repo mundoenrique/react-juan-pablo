@@ -1,9 +1,15 @@
 import { db } from '../data/db';
 import type { TcartActions, TcartItem, TcartState } from '../types';
 
+const initialCart = (): TcartItem[] => {
+  const localStorageCart = localStorage.getItem('cart');
+
+  return localStorageCart ? JSON.parse(localStorageCart) : [];
+};
+
 export const initGuitarList: TcartState = {
   data: db,
-  cart: [],
+  cart: initialCart(),
 };
 
 const MIN_ITEMS = 1;
@@ -83,7 +89,7 @@ export const cartReducer = (state: TcartState = initGuitarList, action: TcartAct
   if (action.type === 'clear-cart') {
     return {
       ...state,
-      cart: initGuitarList.cart,
+      cart: [],
     };
   }
 
