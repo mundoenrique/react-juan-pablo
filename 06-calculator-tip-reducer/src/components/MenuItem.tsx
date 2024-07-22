@@ -1,6 +1,6 @@
-import type { MenuItemProps } from '../types';
+import type { TmenuItemProps } from '../types';
 
-export default function MenuItem({ item, addItem }: MenuItemProps) {
+export default function MenuItem({ item, addItem }: TmenuItemProps) {
   return (
     <>
       <button

@@ -1,38 +1,38 @@
 import type { Dispatch, SetStateAction } from 'react';
 
-export type MenuItem = {
+export type TmenuItem = {
   id: number;
   name: string;
   price: number;
 };
 
-export type tipOption = {
+export type TtipOption = {
   id: string;
   value: number;
   label: string;
 };
 
-export type OrderItem = MenuItem & {
+export type TorderItem = TmenuItem & {
   quantity: number;
 };
 
-export type MenuItemProps = {
-  item: MenuItem;
-  addItem: (item: MenuItem) => void;
+export type TmenuItemProps = {
+  item: TmenuItem;
+  addItem: (item: TmenuItem) => void;
 };
 
-export type OrderContentsProps = {
-  order: OrderItem[];
-  removeItem: (id: MenuItem['id']) => void;
+export type TorderContentsProps = {
+  order: TorderItem[];
+  removeItem: (id: TmenuItem['id']) => void;
 };
 
-export type OrderTotalsProps = {
-  order: OrderItem[];
+export type TorderTotalsProps = {
+  order: TorderItem[];
   tip: number;
-  placeOrder: (order: OrderItem[]) => void;
+  placeOrder: (order: TorderItem[]) => void;
 };
 
-export type TipPercentageFormProps = {
+export type TtipPercentageFormProps = {
   tip: number;
   setTip: Dispatch<SetStateAction<number>>;
 };

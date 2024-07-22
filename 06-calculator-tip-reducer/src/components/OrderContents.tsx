@@ -1,7 +1,7 @@
 import { formatCurrency } from '../helpers';
-import { OrderContentsProps } from '../types';
+import type { TorderContentsProps } from '../types';
 
-export default function OrderContents({ order, removeItem }: OrderContentsProps) {
+export default function OrderContents({ order, removeItem }: TorderContentsProps) {
   return (
     <div>
       <h2 className="font-black text-4xl">Consumo</h2>

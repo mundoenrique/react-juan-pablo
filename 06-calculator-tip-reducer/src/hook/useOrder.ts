@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { MenuItem, OrderItem } from '../types';
+import type { TmenuItem, TorderItem } from '../types';
 
 export default function useOrder() {
-  const [order, setOrder] = useState<OrderItem[]>([]);
+  const [order, setOrder] = useState<TorderItem[]>([]);
   const [tip, setTip] = useState(0);
 
-  const addItem = (item: MenuItem) => {
+  const addItem = (item: TmenuItem) => {
     const itemExists = order.find((orderItem) => orderItem.id === item.id);
 
     if (itemExists) {
@@ -21,13 +21,13 @@ export default function useOrder() {
     }
   };
 
-  const removeItem = (id: MenuItem['id']) => {
+  const removeItem = (id: TmenuItem['id']) => {
     const updatedOrder = order.filter((leavingItem) => leavingItem.id !== id);
 
     setOrder(updatedOrder);
   };
 
-  const placeOrder = (order: OrderItem[]) => {
+  const placeOrder = (order: TorderItem[]) => {
     console.log(order);
     setOrder([]);
     setTip(0);

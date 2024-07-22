@@ -1,8 +1,8 @@
 import { /* useCallback */ useMemo } from 'react';
-import type { OrderTotalsProps } from '../types';
+import type { TorderTotalsProps } from '../types';
 import { formatCurrency } from '../helpers';
 
-export default function OrderTotals({ order, tip, placeOrder }: OrderTotalsProps) {
+export default function OrderTotals({ order, tip, placeOrder }: TorderTotalsProps) {
   const subtotalAmount = useMemo(() => order.reduce((total, item) => total + item.quantity * item.price, 0), [order]);
   const tipAmount = useMemo(() => subtotalAmount * tip, [subtotalAmount, tip]);
   const TotalAmount = useMemo(() => subtotalAmount + tipAmount, [subtotalAmount, tipAmount]);

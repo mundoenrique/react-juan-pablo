@@ -1,6 +1,6 @@
-import type { tipOption } from '../types';
+import type { TtipOption } from '../types';
 
-export const tipOptions: tipOption[] = [
+export const tipOptions: TtipOption[] = [
   {
     id: 'tip-10',
     value: 0.1,

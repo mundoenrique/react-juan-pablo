@@ -1,7 +1,7 @@
 import { tipOptions } from '../data/tipOptions';
-import { TipPercentageFormProps } from '../types';
+import type { TtipPercentageFormProps } from '../types';
 
-export default function TipPercentageForm({ tip, setTip }: TipPercentageFormProps) {
+export default function TipPercentageForm({ tip, setTip }: TtipPercentageFormProps) {
   return (
     <div>
       <h3 className="font-black text-2xl">Propina:</h3>
