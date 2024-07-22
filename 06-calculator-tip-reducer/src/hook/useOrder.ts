@@ -1,15 +1,9 @@
 import { useState } from 'react';
-import type { TmenuItem, TorderItem } from '../types';
+import type { TorderItem } from '../types';
 
 export default function useOrder() {
-  const [order, setOrder] = useState<TorderItem[]>([]);
+  const [, setOrder] = useState<TorderItem[]>([]);
   const [tip, setTip] = useState(0);
-
-  const removeItem = (id: TmenuItem['id']) => {
-    const updatedOrder = order.filter((leavingItem) => leavingItem.id !== id);
-
-    setOrder(updatedOrder);
-  };
 
   const placeOrder = (order: TorderItem[]) => {
     console.log(order);
@@ -20,7 +14,7 @@ export default function useOrder() {
   return {
     tip,
     setTip,
-    removeItem,
+
     placeOrder,
   };
 }

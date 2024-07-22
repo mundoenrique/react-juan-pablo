@@ -28,8 +28,11 @@ export default function orderReducer(state: TorderState = initOrderState, action
   }
 
   if (type === 'remove-item') {
+    const updatedOrder = state.order.filter((leavingItem) => leavingItem.id !== payload.id);
+
     return {
       ...state,
+      order: updatedOrder,
     };
   }
 

@@ -23,7 +23,7 @@ export type TmenuItemProps = {
 
 export type TorderContentsProps = {
   order: TorderItem[];
-  removeItem: (id: TmenuItem['id']) => void;
+  dispatch: Dispatch<TorderActions>;
 };
 
 export type TorderTotalsProps = {
