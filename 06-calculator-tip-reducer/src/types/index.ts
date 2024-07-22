@@ -18,7 +18,7 @@ export type TorderItem = TmenuItem & {
 
 export type TmenuItemProps = {
   item: TmenuItem;
-  addItem: (item: TmenuItem) => void;
+  dispatch: Dispatch<TorderActions>;
 };
 
 export type TorderContentsProps = {
@@ -36,3 +36,14 @@ export type TtipPercentageFormProps = {
   tip: number;
   setTip: Dispatch<SetStateAction<number>>;
 };
+
+export type TorderState = {
+  order: TorderItem[];
+  tip: number;
+};
+
+export type TorderActions =
+  | { type: 'add-item'; payload: { item: TmenuItem } }
+  | { type: 'remove-item'; payload: { id: TmenuItem['id'] } }
+  // | { type: 'place-order' }
+  | { type: 'add-tip'; payload: { value: TorderState['tip'] } };
