@@ -8,9 +8,9 @@ import useOrder from './hook/useOrder';
 import orderReducer, { initOrderState } from './reducers/orderReducer';
 
 export default function App() {
-  const { tip, setTip, placeOrder } = useOrder();
+  const { placeOrder } = useOrder();
   const [state, dispatch] = useReducer(orderReducer, initOrderState);
-  const { order } = state;
+  const { order, tip } = state;
   return (
     <>
       <header className="bg-teal-400 py-5">
@@ -29,7 +29,7 @@ export default function App() {
           {order.length > 0 ? (
             <>
               <OrderContents order={order} dispatch={dispatch} />
-              <TipPercentageForm tip={tip} setTip={setTip} />
+              <TipPercentageForm tip={tip} dispatch={dispatch} />
               <OrderTotals order={order} tip={tip} placeOrder={placeOrder} />
             </>
           ) : (

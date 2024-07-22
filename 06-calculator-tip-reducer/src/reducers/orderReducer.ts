@@ -43,8 +43,10 @@ export default function orderReducer(state: TorderState = initOrderState, action
   // }
 
   if (type === 'add-tip') {
+    const tip = payload.value;
     return {
       ...state,
+      tip,
     };
   }
 

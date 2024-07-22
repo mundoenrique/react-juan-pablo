@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from 'react';
+import type { Dispatch } from 'react';
 
 export type TmenuItem = {
   id: number;
@@ -34,7 +34,7 @@ export type TorderTotalsProps = {
 
 export type TtipPercentageFormProps = {
   tip: number;
-  setTip: Dispatch<SetStateAction<number>>;
+  dispatch: Dispatch<TorderActions>;
 };
 
 export type TorderState = {

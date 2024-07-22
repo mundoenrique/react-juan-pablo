@@ -1,7 +1,7 @@
 import { tipOptions } from '../data/tipOptions';
 import type { TtipPercentageFormProps } from '../types';
 
-export default function TipPercentageForm({ tip, setTip }: TtipPercentageFormProps) {
+export default function TipPercentageForm({ tip, dispatch }: TtipPercentageFormProps) {
   return (
     <div>
       <h3 className="font-black text-2xl">Propina:</h3>
@@ -14,7 +14,7 @@ export default function TipPercentageForm({ tip, setTip }: TtipPercentageFormPro
               id={id}
               name="tip"
               value={value}
-              onChange={(e) => setTip(+e.target.value)}
+              onChange={(e) => dispatch({ type: 'add-tip', payload: { value: +e.target.value } })}
               checked={value === tip}
             />
           </div>
