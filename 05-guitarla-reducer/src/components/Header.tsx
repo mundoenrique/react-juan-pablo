@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import type { TheaderProps } from '../types';
 
-export default function Header({ cart, clearCart, dispatch }: TheaderProps) {
+export default function Header({ cart, dispatch }: TheaderProps) {
   const isEmpty = useMemo(() => cart.length === 0, [cart]);
   const cartTotal = useMemo(() => cart.reduce((total, item) => total + item.quantity * item.price, 0), [cart]);
 
@@ -78,7 +78,7 @@ export default function Header({ cart, clearCart, dispatch }: TheaderProps) {
                   </>
                 )}
 
-                <button className="btn btn-dark w-100 mt-3 p-2" onClick={clearCart}>
+                <button className="btn btn-dark w-100 mt-3 p-2" onClick={() => dispatch({ type: 'clear-cart' })}>
                   Vaciar Carrito
                 </button>
               </div>

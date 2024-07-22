@@ -33,6 +33,5 @@ export type TguitarProps = {
 
 export type TheaderProps = {
   cart: TcartItem[];
-  clearCart: () => void;
   dispatch: Dispatch<TcartActions>;
 };

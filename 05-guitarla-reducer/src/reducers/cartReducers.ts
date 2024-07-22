@@ -83,6 +83,7 @@ export const cartReducer = (state: TcartState = initGuitarList, action: TcartAct
   if (action.type === 'clear-cart') {
     return {
       ...state,
+      cart: initGuitarList.cart,
     };
   }
 
