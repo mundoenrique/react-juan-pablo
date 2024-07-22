@@ -2,7 +2,7 @@ import { /* useCallback */ useMemo } from 'react';
 import type { TorderTotalsProps } from '../types';
 import { formatCurrency } from '../helpers';
 
-export default function OrderTotals({ order, tip, placeOrder }: TorderTotalsProps) {
+export default function OrderTotals({ order, tip, dispatch }: TorderTotalsProps) {
   const subtotalAmount = useMemo(() => order.reduce((total, item) => total + item.quantity * item.price, 0), [order]);
   const tipAmount = useMemo(() => subtotalAmount * tip, [subtotalAmount, tip]);
   const TotalAmount = useMemo(() => subtotalAmount + tipAmount, [subtotalAmount, tipAmount]);
@@ -44,7 +44,7 @@ export default function OrderTotals({ order, tip, placeOrder }: TorderTotalsProp
         className="w-full bg-black p-3 uppercase text-white font-bold mt-10 disabled:opacity-10"
         /* useMemo */ disabled={TotalAmount === 0}
         /* UseCallback  disabled={TotalAmount() === 0} */
-        onClick={() => placeOrder(order)}
+        onClick={() => dispatch({ type: 'place-order', payload: { order } })}
       >
         Guradar Orden
       </button>

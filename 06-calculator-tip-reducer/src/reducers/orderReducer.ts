@@ -36,11 +36,10 @@ export default function orderReducer(state: TorderState = initOrderState, action
     };
   }
 
-  // if (type === 'place-order') {
-  //   return {
-  //     ...state,
-  //   };
-  // }
+  if (type === 'place-order') {
+    console.log(payload.order);
+    return initOrderState;
+  }
 
   if (type === 'add-tip') {
     const tip = payload.value;

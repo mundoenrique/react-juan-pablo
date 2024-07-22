@@ -29,7 +29,7 @@ export type TorderContentsProps = {
 export type TorderTotalsProps = {
   order: TorderItem[];
   tip: number;
-  placeOrder: (order: TorderItem[]) => void;
+  dispatch: Dispatch<TorderActions>;
 };
 
 export type TtipPercentageFormProps = {
@@ -45,5 +45,5 @@ export type TorderState = {
 export type TorderActions =
   | { type: 'add-item'; payload: { item: TmenuItem } }
   | { type: 'remove-item'; payload: { id: TmenuItem['id'] } }
-  // | { type: 'place-order' }
+  | { type: 'place-order'; payload: { order: TorderItem[] } }
   | { type: 'add-tip'; payload: { value: TorderState['tip'] } };
