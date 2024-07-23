@@ -9,3 +9,8 @@ export type TbudgetProps = {
 export type TbudgetProviderProps = {
   children: ReactNode;
 };
+
+export type TamountDisplayProps = {
+  label: string;
+  amount: number;
+};
