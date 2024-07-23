@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useMemo, useState } from 'react';
 
 export default function BudgetForm() {
   const [budget, setBudget] = useState(0);
@@ -6,6 +6,10 @@ export default function BudgetForm() {
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setBudget(e.target.valueAsNumber);
   };
+
+  const isValidForm = useMemo(() => {
+    return isNaN(budget) || budget <= 0;
+  }, [budget]);
 
   return (
     <>
@@ -28,7 +32,8 @@ export default function BudgetForm() {
         <input
           type="submit"
           value="Definir presupuesto"
-          className="bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase"
+          className="bg-blue-600 hover:bg-blue-700 cursor-pointer w-full p-2 text-white font-black uppercase disabled:opacity-40"
+          disabled={isValidForm}
         />
       </form>
     </>
