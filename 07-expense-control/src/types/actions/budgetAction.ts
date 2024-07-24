@@ -1,7 +1,9 @@
 export type TbudgetState = {
   budget: number;
+  modal: boolean;
 };
 
 export type TbudgetAction =
   | { type: 'add-budget'; payload: { budget: TbudgetState['budget'] } }
-  | { type: 'add-budget'; payload: { budget: number } };
+  | { type: 'show-modal'; payload?: undefined }
+  | { type: 'close-modal'; payload?: undefined };

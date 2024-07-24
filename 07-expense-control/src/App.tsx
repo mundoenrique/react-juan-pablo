@@ -2,6 +2,7 @@ import { useMemo } from 'react';
 import { useBudget } from './hooks/useBudget';
 import BudgetForm from './components/BudgetForm';
 import BudgetTraker from './components/BudgetTraker';
+import ExpenseModal from './components/ExpenseModal';
 
 export default function App() {
   const {
@@ -18,6 +19,11 @@ export default function App() {
       <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-lgmt-10 p-10">
         {isValidBudget ? <BudgetTraker /> : <BudgetForm />}
       </div>
+      {isValidBudget && (
+        <main className="max-w-3xl mx-auto py-10">
+          <ExpenseModal />
+        </main>
+      )}
     </>
   );
 }
