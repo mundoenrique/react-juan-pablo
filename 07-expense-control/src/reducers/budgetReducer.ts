@@ -1,10 +1,11 @@
+import { initBudget, initExpenses } from '../data';
 import { createExpense } from '../helpers';
 import type { TbudgetAction, TbudgetState } from '../types';
 
 export const initBudgetstate: TbudgetState = {
-  budget: 0,
+  budget: initBudget(),
   modal: false,
-  expenses: [],
+  expenses: initExpenses(),
   editingId: '',
 };
 

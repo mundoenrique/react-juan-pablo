@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useBudget } from './hooks/useBudget';
 import BudgetForm from './components/BudgetForm';
 import BudgetTraker from './components/BudgetTraker';
@@ -6,11 +6,13 @@ import ExpenseModal from './components/ExpenseModal';
 import ExpenseList from './components/ExpenseList';
 
 export default function App() {
-  const {
-    state: { budget },
-  } = useBudget();
+  const { state } = useBudget();
+  const isValidBudget = useMemo(() => state.budget > 0, [state.budget]);
 
-  const isValidBudget = useMemo(() => budget > 0, [budget]);
+  useEffect(() => {
+    localStorage.setItem('budget', state.budget.toString());
+    localStorage.setItem('expenses', JSON.stringify(state.expenses));
+  }, [state]);
 
   return (
     <>
