@@ -1,4 +1,4 @@
-import type { Dispatch } from 'react';
+import type { Dispatch, ReactNode } from 'react';
 
 export type Tcategory = {
   id: number;
@@ -44,4 +44,13 @@ export type TcalorieTrackerProps = {
 export type TcalorieDisplay = {
   calories: Tactivity['calories'];
   text: string;
+};
+
+export type TactivityProviderProps = {
+  children: ReactNode;
+};
+
+export type TactivityContex = {
+  state: TactivityState;
+  disptach: Dispatch<TactivityActions>;
 };
