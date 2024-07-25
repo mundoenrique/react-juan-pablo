@@ -29,6 +29,7 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
     return {
       ...budgetState,
       modal: false,
+      editingId: '',
     };
   }
 
@@ -56,6 +57,19 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
       ...budgetState,
       editingId: payload.id,
       modal: true,
+    };
+  }
+
+  if (type === 'update-expense') {
+    const updateExpenses = budgetState.expenses.map((expense) =>
+      expense.id === budgetState.editingId ? payload.expense : expense
+    );
+
+    return {
+      ...budgetState,
+      expenses: updateExpenses,
+      modal: false,
+      editingId: '',
     };
   }
 
