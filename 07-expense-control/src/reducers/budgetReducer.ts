@@ -1,8 +1,10 @@
+import { createExpense } from '../helpers';
 import type { TbudgetAction, TbudgetState } from '../types';
 
 export const initBudgetstate: TbudgetState = {
   budget: 0,
   modal: false,
+  expenses: [],
 };
 
 export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAction) => {
@@ -25,6 +27,16 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
   if (type === 'close-modal') {
     return {
       ...budgetState,
+      modal: false,
+    };
+  }
+
+  if (type === 'add-expense') {
+    const expense = createExpense(payload.expense);
+
+    return {
+      ...budgetState,
+      expenses: [...budgetState.expenses, expense],
       modal: false,
     };
   }

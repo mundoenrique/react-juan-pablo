@@ -2,19 +2,16 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import DatePicker from 'react-date-picker';
 
 import { TdraftExpense, Tvalue } from '../types';
-import { categories } from '../data';
+import { categories, initExpenseState } from '../data';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import ErrorMessage from './ErrorMessage';
+import { useBudget } from '../hooks/useBudget';
 
 export default function ExpenseForm() {
-  const [expense, setExpense] = useState<TdraftExpense>({
-    expenseAmount: 0,
-    expenseName: '',
-    expenseCategory: '',
-    expenseDate: new Date(),
-  });
+  const [expense, setExpense] = useState<TdraftExpense>(initExpenseState);
   const [error, setError] = useState('');
+  const { dispatch } = useBudget();
 
   const handleChangeForm = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -31,11 +28,14 @@ export default function ExpenseForm() {
 
   const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     if (Object.values(expense).includes('')) {
       setError('Todos los campos son necesarios');
+      return;
     }
 
-    console.log('Todo bien');
+    dispatch({ type: 'add-expense', payload: { expense } });
+    setExpense(initExpenseState);
   };
 
   return (
@@ -96,9 +96,7 @@ export default function ExpenseForm() {
           </select>
         </div>
         <div className="flex flex-col gap-2">
-          <label htmlFor="expenseDate" className="text-xl">
-            Fecha gasto:
-          </label>
+          <label className="text-xl">Fecha gasto:</label>
           <DatePicker className="bg-slate-100 p-2 border-0" value={expense.expenseDate} onChange={handleChangeDate} />
         </div>
         <input
