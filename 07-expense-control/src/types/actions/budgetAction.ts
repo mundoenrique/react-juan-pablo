@@ -1,10 +1,11 @@
-import { TdraftExpense, Texpense } from '../lists';
+import { Tcategory, TdraftExpense, Texpense } from '../lists';
 
 export type TbudgetState = {
   budget: number;
   modal: boolean;
   expenses: Texpense[];
   editingId: Texpense['id'];
+  currenCategory: Tcategory['id'];
 };
 
 export type TbudgetAction =
@@ -15,4 +16,5 @@ export type TbudgetAction =
   | { type: 'remove-expense'; payload: { id: Texpense['id'] } }
   | { type: 'get-expense-by-id'; payload: { id: Texpense['id'] } }
   | { type: 'update-expense'; payload: { expense: Texpense } }
-  | { type: 'reset-app'; payload?: undefined };
+  | { type: 'reset-app'; payload?: undefined }
+  | { type: 'add-filter-category'; payload: { id: Tcategory['id'] } };

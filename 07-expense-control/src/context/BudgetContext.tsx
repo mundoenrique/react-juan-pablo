@@ -1,6 +1,7 @@
 import { createContext, useMemo, useReducer } from 'react';
 import { TbudgetProps, TbudgetProviderProps } from '../types';
-import { budgetReducer, initBudgetstate } from '../reducers/budgetReducer';
+import { budgetReducer } from '../reducers/budgetReducer';
+import { initBudgetstate } from '../data';
 
 export const Budgetcontext = createContext<TbudgetProps>(null!);
 

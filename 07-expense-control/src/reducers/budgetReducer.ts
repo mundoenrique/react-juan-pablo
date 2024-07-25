@@ -1,13 +1,6 @@
-import { initBudget, initExpenses } from '../data';
+import { initBudgetstate } from '../data';
 import { createExpense } from '../helpers';
 import type { TbudgetAction, TbudgetState } from '../types';
-
-export const initBudgetstate: TbudgetState = {
-  budget: initBudget(),
-  modal: false,
-  expenses: initExpenses(),
-  editingId: '',
-};
 
 export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAction) => {
   const { type, payload } = budgetAction;
@@ -79,6 +72,13 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
       ...initBudgetstate,
       budget: 0,
       expenses: [],
+    };
+  }
+
+  if (type === 'add-filter-category') {
+    return {
+      ...budgetState,
+      currenCategory: payload.id,
     };
   }
 
