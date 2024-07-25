@@ -13,7 +13,9 @@ export default function ExpenseDetail({ expense }: TexpenseDetailProps) {
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => console.info('swipe action triggered')}>Action name</SwipeAction>
+      <SwipeAction onClick={() => dispatch({ type: 'get-expense-by-id', payload: { id: expense.id } })}>
+        Action name
+      </SwipeAction>
     </LeadingActions>
   );
 

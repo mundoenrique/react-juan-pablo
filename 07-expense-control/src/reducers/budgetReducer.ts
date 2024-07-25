@@ -5,6 +5,7 @@ export const initBudgetstate: TbudgetState = {
   budget: 0,
   modal: false,
   expenses: [],
+  editingId: '',
 };
 
 export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAction) => {
@@ -47,6 +48,14 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
     return {
       ...budgetState,
       expenses: updatedExpense,
+    };
+  }
+
+  if (type === 'get-expense-by-id') {
+    return {
+      ...budgetState,
+      editingId: payload.id,
+      modal: true,
     };
   }
 

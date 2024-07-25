@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import DatePicker from 'react-date-picker';
 
 import { TdraftExpense, Tvalue } from '../types';
@@ -11,7 +11,15 @@ import { useBudget } from '../hooks/useBudget';
 export default function ExpenseForm() {
   const [expense, setExpense] = useState<TdraftExpense>(initExpenseState);
   const [error, setError] = useState('');
-  const { dispatch } = useBudget();
+  const { dispatch, state } = useBudget();
+
+  useEffect(() => {
+    if (state.editingId) {
+      const editingExpense = state.expenses.filter((expense) => expense.id === state.editingId)[0];
+
+      setExpense(editingExpense);
+    }
+  }, [state]);
 
   const handleChangeForm = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
