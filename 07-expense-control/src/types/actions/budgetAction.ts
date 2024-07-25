@@ -14,4 +14,5 @@ export type TbudgetAction =
   | { type: 'add-expense'; payload: { expense: TdraftExpense } }
   | { type: 'remove-expense'; payload: { id: Texpense['id'] } }
   | { type: 'get-expense-by-id'; payload: { id: Texpense['id'] } }
-  | { type: 'update-expense'; payload: { expense: Texpense } };
+  | { type: 'update-expense'; payload: { expense: Texpense } }
+  | { type: 'reset-app'; payload?: undefined };

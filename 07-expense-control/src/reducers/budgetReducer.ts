@@ -74,5 +74,13 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
     };
   }
 
+  if (type === 'reset-app') {
+    return {
+      ...initBudgetstate,
+      budget: 0,
+      expenses: [],
+    };
+  }
+
   return budgetState;
 };
