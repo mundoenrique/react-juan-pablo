@@ -37,10 +37,6 @@ export type TactivityListProps = {
   dispatch: Dispatch<TactivityActions>;
 };
 
-export type TcalorieTrackerProps = {
-  activities: Tactivity[];
-};
-
 export type TcalorieDisplay = {
   calories: Tactivity['calories'];
   text: string;
@@ -53,4 +49,7 @@ export type TactivityProviderProps = {
 export type TactivityContex = {
   state: TactivityState;
   dispatch: Dispatch<TactivityActions>;
+  caloriesConsumed: number;
+  caloriesBurned: number;
+  netCalories: number;
 };
