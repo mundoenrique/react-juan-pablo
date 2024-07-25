@@ -10,4 +10,5 @@ export type TbudgetAction =
   | { type: 'add-budget'; payload: { budget: TbudgetState['budget'] } }
   | { type: 'show-modal'; payload?: undefined }
   | { type: 'close-modal'; payload?: undefined }
-  | { type: 'add-expense'; payload: { expense: TdraftExpense } };
+  | { type: 'add-expense'; payload: { expense: TdraftExpense } }
+  | { type: 'remove-expense'; payload: { id: Texpense['id'] } };

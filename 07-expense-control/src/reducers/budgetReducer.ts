@@ -41,5 +41,14 @@ export const budgetReducer = (budgetState: TbudgetState, budgetAction: TbudgetAc
     };
   }
 
+  if (type === 'remove-expense') {
+    const updatedExpense = budgetState.expenses.filter((expense) => expense.id !== payload.id);
+
+    return {
+      ...budgetState,
+      expenses: updatedExpense,
+    };
+  }
+
   return budgetState;
 };

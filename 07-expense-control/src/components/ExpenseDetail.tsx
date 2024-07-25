@@ -5,9 +5,11 @@ import { TexpenseDetailProps } from '../types';
 import AmountDisplay from './AmountDisplay';
 import { categories } from '../data';
 import 'react-swipeable-list/dist/styles.css';
+import { useBudget } from '../hooks/useBudget';
 
 export default function ExpenseDetail({ expense }: TexpenseDetailProps) {
   const categoryInfo = useMemo(() => categories.filter((cat) => cat.id === expense.expenseCategory)[0], [expense]);
+  const { dispatch } = useBudget();
 
   const leadingActions = () => (
     <LeadingActions>
@@ -17,7 +19,7 @@ export default function ExpenseDetail({ expense }: TexpenseDetailProps) {
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction destructive={true} onClick={() => console.info('swipe action triggered')}>
+      <SwipeAction destructive={true} onClick={() => dispatch({ type: 'remove-expense', payload: { id: expense.id } })}>
         Delete
       </SwipeAction>
     </TrailingActions>
