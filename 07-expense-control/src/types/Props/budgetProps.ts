@@ -1,5 +1,6 @@
 import { Dispatch, ReactNode } from 'react';
 import type { TbudgetAction, TbudgetState } from '../actions/budgetAction';
+import { Texpense } from '../lists';
 
 export type TbudgetProps = {
   state: TbudgetState;
@@ -11,6 +12,10 @@ export type TbudgetProviderProps = {
 };
 
 export type TamountDisplayProps = {
-  label: string;
+  label?: string;
   amount: number;
+};
+
+export type TexpenseDetailProps = {
+  expense: Texpense;
 };
