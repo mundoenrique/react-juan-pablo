@@ -1,6 +1,6 @@
-import { Tcategories } from '../types';
+import { Tcategory } from '../types';
 
-export const categories: Tcategories[] = [
+export const categories: Tcategory[] = [
   { id: '1', name: 'Ahorro', icon: 'ahorro' },
   { id: '2', name: 'Comida', icon: 'comida' },
   { id: '3', name: 'Casa', icon: 'casa' },

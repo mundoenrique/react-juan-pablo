@@ -1,19 +1,50 @@
+import { ChangeEvent, FormEvent, useState } from 'react';
 import DatePicker from 'react-date-picker';
+
+import { TdraftExpense, Tvalue } from '../types';
 import { categories } from '../data';
-import { useState } from 'react';
-import { Tvalue } from '../types';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
+import ErrorMessage from './ErrorMessage';
 
 export default function ExpenseForm() {
-  const [value, onChange] = useState<Tvalue>(new Date());
+  const [expense, setExpense] = useState<TdraftExpense>({
+    expenseAmount: 0,
+    expenseName: '',
+    expenseCategory: '',
+    expenseDate: new Date(),
+  });
+  const [error, setError] = useState('');
+
+  const handleChangeForm = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    const isAmountField = ['expenseAmount'].includes(name);
+    setExpense({
+      ...expense,
+      [name]: isAmountField ? +value : value,
+    });
+  };
+
+  const handleChangeDate = (value: Tvalue) => {
+    setExpense({ ...expense, expenseDate: value });
+  };
+
+  const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (Object.values(expense).includes('')) {
+      setError('Todos los campos son necesarios');
+    }
+
+    console.log('Todo bien');
+  };
 
   return (
     <>
-      <form className="space-y-5">
+      <form className="space-y-5" onSubmit={handleSubmitForm}>
         <legend className="uppercase text-center text-2xl font-black border-b-4 border-blue-500 py-2">
           Nuevo gasto
         </legend>
+        {error && <ErrorMessage>{error} </ErrorMessage>}
         <div className="flex flex-col gap-2">
           <label htmlFor="expenseName" className="text-xl">
             Nombre del gasto:
@@ -24,6 +55,8 @@ export default function ExpenseForm() {
             placeholder="Añade el nombre del gasto"
             className="bg-slate-100 p-2"
             name="expenseName"
+            value={expense.expenseName}
+            onChange={handleChangeForm}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -37,13 +70,21 @@ export default function ExpenseForm() {
             className="bg-slate-100 p-2"
             name="expenseAmount"
             min={0}
+            value={expense.expenseAmount}
+            onChange={handleChangeForm}
           />
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor="expenseCategory" className="text-xl">
             Cantidad:
           </label>
-          <select id="expenseCategory" className="bg-slate-100 p-2" name="expenseCategory" value="">
+          <select
+            id="expenseCategory"
+            className="bg-slate-100 p-2"
+            name="expenseCategory"
+            value={expense.expenseCategory}
+            onChange={handleChangeForm}
+          >
             <option value="" disabled>
               -- Seleccione
             </option>
@@ -58,7 +99,7 @@ export default function ExpenseForm() {
           <label htmlFor="expenseDate" className="text-xl">
             Fecha gasto:
           </label>
-          <DatePicker className="bg-slate-100 p-2 border-0" onChange={onChange} value={value} />
+          <DatePicker className="bg-slate-100 p-2 border-0" value={expense.expenseDate} onChange={handleChangeDate} />
         </div>
         <input
           type="submit"
