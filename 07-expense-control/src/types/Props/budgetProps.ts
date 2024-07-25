@@ -5,6 +5,8 @@ import { Texpense } from '../lists';
 export type TbudgetProps = {
   state: TbudgetState;
   dispatch: Dispatch<TbudgetAction>;
+  totalExpenses: number;
+  remainingBudget: number;
 };
 
 export type TbudgetProviderProps = {

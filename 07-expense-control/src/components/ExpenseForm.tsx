@@ -11,13 +11,15 @@ import { useBudget } from '../hooks/useBudget';
 export default function ExpenseForm() {
   const [expense, setExpense] = useState<TdraftExpense>(initExpenseState);
   const [error, setError] = useState('');
-  const { dispatch, state } = useBudget();
+  const [previosAmount, setPreviosAmount] = useState(0);
+  const { dispatch, state, remainingBudget } = useBudget();
 
   useEffect(() => {
     if (state.editingId) {
       const editingExpense = state.expenses.filter((expense) => expense.id === state.editingId)[0];
 
       setExpense(editingExpense);
+      setPreviosAmount(editingExpense.expenseAmount);
     }
   }, [state]);
 
@@ -42,6 +44,11 @@ export default function ExpenseForm() {
       return;
     }
 
+    if (expense.expenseAmount - previosAmount > remainingBudget) {
+      setError('Ese gasto se sale dle presupuesto');
+      return;
+    }
+
     if (state.editingId) {
       dispatch({ type: 'update-expense', payload: { expense: { id: state.editingId, ...expense } } });
     } else {
@@ -49,6 +56,7 @@ export default function ExpenseForm() {
     }
 
     setExpense(initExpenseState);
+    setPreviosAmount(0);
   };
 
   return (
