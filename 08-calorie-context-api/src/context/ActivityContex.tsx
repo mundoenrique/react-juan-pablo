@@ -5,7 +5,7 @@ import { activityReducer, initialState } from '../reducers/activityReducer';
 export const ActivityContex = createContext<TactivityContex>(null!);
 
 export const ActivityProvider = ({ children }: TactivityProviderProps) => {
-  const [state, disptach] = useReducer(activityReducer, initialState);
+  const [state, dispatch] = useReducer(activityReducer, initialState);
 
-  return <ActivityContex.Provider value={{ state, disptach }}>{children}</ActivityContex.Provider>;
+  return <ActivityContex.Provider value={{ state, dispatch }}>{children}</ActivityContex.Provider>;
 };

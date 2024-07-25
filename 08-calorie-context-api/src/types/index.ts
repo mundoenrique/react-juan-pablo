@@ -52,5 +52,5 @@ export type TactivityProviderProps = {
 
 export type TactivityContex = {
   state: TactivityState;
-  disptach: Dispatch<TactivityActions>;
+  dispatch: Dispatch<TactivityActions>;
 };
