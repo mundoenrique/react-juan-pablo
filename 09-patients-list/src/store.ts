@@ -11,6 +11,7 @@ const createPatient = (drafPatient: TdrafPatient): Tpatient => {
 
 export const usePatientStorage = create<TpatientState>((set) => ({
   patients: [],
+  activeId: '',
   addPatient: (data) => {
     const NewPatient = createPatient(data);
 
@@ -21,6 +22,11 @@ export const usePatientStorage = create<TpatientState>((set) => ({
   deletePatient: (id) => {
     set((state) => ({
       patients: state.patients.filter((patient) => patient.id !== id),
+    }));
+  },
+  getPatientById: (id: Tpatient['id']) => {
+    set(() => ({
+      activeId: id,
     }));
   },
 }));
