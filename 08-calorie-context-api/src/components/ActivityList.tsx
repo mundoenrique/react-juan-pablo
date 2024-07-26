@@ -1,15 +1,13 @@
-import { useMemo } from 'react';
-import { Tactivity, TactivityListProps } from '../types';
-import { categories } from '../data';
 import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline';
+import { useActivity } from '../hook/useActivity';
 
-export default function ActivityList({ activities, dispatch }: TactivityListProps) {
-  const categoryName = useMemo(
-    () => (category: Tactivity['category']) => categories.map((cat) => (cat.id === category ? cat.name : '')),
-    []
-  );
-
-  const isEmptyActivities = useMemo(() => activities.length === 0, [activities]);
+export default function ActivityList() {
+  const {
+    state: { activities },
+    dispatch,
+    categoryName,
+    isEmptyActivities,
+  } = useActivity();
 
   return (
     <>

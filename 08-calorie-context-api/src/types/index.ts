@@ -32,11 +32,6 @@ export type TformProps = {
   state: TactivityState;
 };
 
-export type TactivityListProps = {
-  activities: Tactivity[];
-  dispatch: Dispatch<TactivityActions>;
-};
-
 export type TcalorieDisplay = {
   calories: Tactivity['calories'];
   text: string;
@@ -52,4 +47,6 @@ export type TactivityContex = {
   caloriesConsumed: number;
   caloriesBurned: number;
   netCalories: number;
+  categoryName: (category: Tactivity['category']) => string[];
+  isEmptyActivities: boolean;
 };
