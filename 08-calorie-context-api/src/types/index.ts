@@ -27,11 +27,6 @@ export type TactivityState = {
   activeId: Tactivity['id'];
 };
 
-export type TformProps = {
-  dispatch: Dispatch<TactivityActions>;
-  state: TactivityState;
-};
-
 export type TcalorieDisplay = {
   calories: Tactivity['calories'];
   text: string;

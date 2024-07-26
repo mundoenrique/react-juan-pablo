@@ -2,10 +2,12 @@ import uuid4 from 'uuid4';
 import { useEffect, useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
 
+import type { Tactivity } from '../types';
+import { useActivity } from '../hook/useActivity';
 import { categories, initActivityForm, submitText } from '../data';
-import type { Tactivity, TformProps } from '../types';
 
-export default function Form({ dispatch, state }: TformProps) {
+export default function Form() {
+  const { state, dispatch } = useActivity();
   const [activityForm, setActivityForm] = useState<Tactivity>(initActivityForm);
   const { activity, calories, category } = activityForm;
 
