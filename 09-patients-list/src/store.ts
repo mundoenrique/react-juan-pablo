@@ -18,4 +18,9 @@ export const usePatientStorage = create<TpatientState>((set) => ({
       patients: [...state.patients, NewPatient],
     }));
   },
+  deletePatient: (id) => {
+    set((state) => ({
+      patients: state.patients.filter((patient) => patient.id !== id),
+    }));
+  },
 }));
