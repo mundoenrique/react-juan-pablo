@@ -2,8 +2,10 @@ import { useForm } from 'react-hook-form';
 
 import ErrorForm from './ErrorForm';
 import type { TdrafPatient } from '../types';
+import { usePatientStorage } from '../store';
 
 export default function PatientForm() {
+  const addPatient = usePatientStorage((state) => state.addPatient);
   const {
     register,
     handleSubmit,
@@ -11,7 +13,7 @@ export default function PatientForm() {
   } = useForm<TdrafPatient>();
 
   const registerPatient = (data: TdrafPatient) => {
-    console.log(JSON.stringify(data));
+    addPatient(data);
   };
 
   return (

@@ -1,7 +1,10 @@
 import { create } from 'zustand';
 
-import { TpatientState } from './types';
+import type { TpatientState } from './types';
 
 export const usePatientStorage = create<TpatientState>(() => ({
   patients: [],
+  addPatient: (data) => {
+    console.log(data);
+  },
 }));
