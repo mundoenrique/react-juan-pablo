@@ -1,9 +1,10 @@
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 
 import ErrorForm from './ErrorForm';
 import type { TdrafPatient } from '../types';
 import { usePatientStorage } from '../store';
-import { useEffect } from 'react';
 
 export default function PatientForm() {
   const addPatient = usePatientStorage((state) => state.addPatient);
@@ -33,8 +34,12 @@ export default function PatientForm() {
   const registerPatient = (data: TdrafPatient) => {
     if (activeId) {
       updatePatient(data);
+      toast('Paciente actulizado correctamente', {
+        type: 'success',
+      });
     } else {
       addPatient(data);
+      toast.success('Paciente registrado correctamente');
     }
     reset();
   };
