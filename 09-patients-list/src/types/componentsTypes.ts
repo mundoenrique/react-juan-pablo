@@ -8,3 +8,14 @@ export type Tpatient = {
 };
 
 export type TdrafPatient = Omit<Tpatient, 'id'>;
+
+export type TpatientsListItems = Partial<Tpatient>;
+
+export type TpatientDetailsProps = {
+  patient: Tpatient;
+};
+
+export type TpatientDetailItemProps = {
+  label: string;
+  data: string;
+};
