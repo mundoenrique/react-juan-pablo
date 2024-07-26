@@ -1,10 +1,2 @@
-export type Tpatient = {
-  id: string;
-  name: string;
-  caretaker: string;
-  email: string;
-  date: Date;
-  symptoms: string;
-};
-
-export type TdrafPatient = Omit<Tpatient, 'id'>;
+export type { TdrafPatient, Tpatient } from './componentsTypes';
+export type { TpatientState } from './storageTypes';
