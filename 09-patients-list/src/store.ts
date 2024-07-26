@@ -31,5 +31,13 @@ export const usePatientStorage = create<TpatientState>()(
         activeId: id,
       }));
     },
+    updatePatient: (data) => {
+      set((state) => ({
+        patients: state.patients.map((patient) =>
+          patient.id === state.activeId ? { id: state.activeId, ...data } : patient
+        ),
+        activeId: '',
+      }));
+    },
   }))
 );

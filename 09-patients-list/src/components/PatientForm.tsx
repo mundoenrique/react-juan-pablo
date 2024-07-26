@@ -3,18 +3,39 @@ import { useForm } from 'react-hook-form';
 import ErrorForm from './ErrorForm';
 import type { TdrafPatient } from '../types';
 import { usePatientStorage } from '../store';
+import { useEffect } from 'react';
 
 export default function PatientForm() {
   const addPatient = usePatientStorage((state) => state.addPatient);
+  const updatePatient = usePatientStorage((state) => state.updatePatient);
+  const activeId = usePatientStorage((state) => state.activeId);
+  const patients = usePatientStorage((state) => state.patients);
+
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
     reset,
   } = useForm<TdrafPatient>();
 
+  useEffect(() => {
+    if (activeId) {
+      const activePatient = patients.filter((patient) => patient.id === activeId)[0];
+      setValue('name', activePatient.name);
+      setValue('caretaker', activePatient.caretaker);
+      setValue('email', activePatient.email);
+      setValue('date', activePatient.date);
+      setValue('symptoms', activePatient.symptoms);
+    }
+  }, [activeId, patients, setValue]);
+
   const registerPatient = (data: TdrafPatient) => {
-    addPatient(data);
+    if (activeId) {
+      updatePatient(data);
+    } else {
+      addPatient(data);
+    }
     reset();
   };
 

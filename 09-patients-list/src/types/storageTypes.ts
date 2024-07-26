@@ -6,4 +6,5 @@ export type TpatientState = {
   addPatient: (data: TdrafPatient) => void;
   deletePatient: (id: Tpatient['id']) => void;
   getPatientById: (id: Tpatient['id']) => void;
+  updatePatient: (data: TdrafPatient) => void;
 };
