@@ -4,7 +4,11 @@ import styles from './Form.module.css';
 import Alert from './Alert/Alert';
 import type { TsearchType } from '../../types';
 
-export default function Form() {
+type tFormProps = {
+  fetchWeather: () => void;
+};
+
+export default function Form({ fetchWeather }: tFormProps) {
   const [search, setSearch] = useState<TsearchType>({
     city: '',
     country: '',
@@ -22,6 +26,8 @@ export default function Form() {
       setAlert('Todos los campos son obligatorios');
       return;
     }
+
+    fetchWeather();
   };
 
   return (
