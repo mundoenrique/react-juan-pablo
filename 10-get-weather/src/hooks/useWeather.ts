@@ -1,20 +1,19 @@
 import axios from 'axios';
-import { TsearchType, TweatherZod } from '../types';
-import { WeatherSchemaZod } from '../helpers';
 import { useMemo, useState } from 'react';
 
+import { WeatherSchemaZod } from '../helpers';
+import { TsearchType, TweatherZod } from '../types';
+import { weatherInitState } from '../data/countries';
+
 export default function useWeather() {
-  const [weather, setWeather] = useState<TweatherZod>({
-    name: '',
-    main: {
-      temp: 0,
-      temp_max: 0,
-      temp_min: 0,
-    },
-  });
+  const [weather, setWeather] = useState<TweatherZod>(weatherInitState);
+
+  const [loading, setLoading] = useState(false);
 
   const fetchWeather = async (search: TsearchType) => {
     const appId = import.meta.env.VITE_API_KEY;
+    setWeather(weatherInitState);
+    setLoading(true);
 
     try {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`;
@@ -50,6 +49,8 @@ export default function useWeather() {
       // }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -57,6 +58,7 @@ export default function useWeather() {
 
   return {
     weather,
+    loading,
     fetchWeather,
     hasWeatherData,
   };

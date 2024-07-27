@@ -1,4 +1,4 @@
-import type { Tcountries } from '../types';
+import type { Tcountries, TweatherZod } from '../types';
 
 export const countries: Tcountries[] = [
   { code: 'US', name: 'Estados Unidos' },
@@ -10,3 +10,12 @@ export const countries: Tcountries[] = [
   { code: 'PE', name: 'Perú' },
   { code: 'VE', name: 'Venezuela' },
 ];
+
+export const weatherInitState: TweatherZod = {
+  name: '',
+  main: {
+    temp: 0,
+    temp_max: 0,
+    temp_min: 0,
+  },
+};
