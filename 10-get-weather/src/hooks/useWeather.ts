@@ -1,7 +1,18 @@
 import axios from 'axios';
-import { TsearchType } from '../types';
+import { TsearchType, TweatherZod } from '../types';
+import { WeatherSchemaZod } from '../helpers';
+import { useState } from 'react';
 
 export default function useWeather() {
+  const [weather, setWeather] = useState<TweatherZod>({
+    name: '',
+    main: {
+      temp: 0,
+      temp_max: 0,
+      temp_min: 0,
+    },
+  });
+
   const fetchWeather = async (search: TsearchType) => {
     const appId = import.meta.env.VITE_API_KEY;
 
@@ -14,13 +25,36 @@ export default function useWeather() {
 
       const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`;
 
-      const { data: dataWeather } = await axios(weatherUrl);
+      // Castear el type
+      // const { data: dataWeather } = await axios<Tweather>(weatherUrl);
+      // console.log(dataWeather.name)
 
-      console.log(dataWeather);
+      // type guards o assertion
+      // const { data: dataWeather } = await axios(weatherUrl);
+      // const result = isWeatherResponse(dataWeather);
+      // result && console.log(dataWeather.name);
+
+      // Zod
+      const { data: dataWeather } = await axios(weatherUrl);
+      const result = WeatherSchemaZod.safeParse(dataWeather);
+
+      if (result.success) {
+        setWeather(result.data);
+      }
+
+      // Valibot
+      // const { data: dataWeather } = await axios(weatherUrl);
+      // const result = parse(WeatherSchemaValibot, dataWeather);
+      // if (result) {
+      //   console.log(result.name);
+      // }
     } catch (error) {
       console.error(error);
     }
   };
 
-  return { fetchWeather };
+  return {
+    weather,
+    fetchWeather,
+  };
 }
