@@ -5,7 +5,7 @@ import Alert from './Alert/Alert';
 import type { TsearchType } from '../../types';
 
 type tFormProps = {
-  fetchWeather: () => void;
+  fetchWeather: (search: TsearchType) => Promise<void>;
 };
 
 export default function Form({ fetchWeather }: tFormProps) {
@@ -27,7 +27,7 @@ export default function Form({ fetchWeather }: tFormProps) {
       return;
     }
 
-    fetchWeather();
+    fetchWeather(search);
   };
 
   return (
