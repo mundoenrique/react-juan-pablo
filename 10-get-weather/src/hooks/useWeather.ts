@@ -3,7 +3,7 @@ import { TsearchType } from '../types';
 
 export default function useWeather() {
   const fetchWeather = async (search: TsearchType) => {
-    const appId = 'e9a63352b455e2547738c0a3943ccdcf';
+    const appId = import.meta.env.VITE_API_KEY;
 
     try {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`;
