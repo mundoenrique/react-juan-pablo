@@ -1,4 +1,6 @@
-export const countries = [
+import type { Tcountries } from '../types';
+
+export const countries: Tcountries[] = [
   { code: 'US', name: 'Estados Unidos' },
   { code: 'MX', name: 'México' },
   { code: 'AR', name: 'Argentina' },
