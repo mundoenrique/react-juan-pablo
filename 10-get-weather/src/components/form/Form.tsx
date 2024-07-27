@@ -1,4 +1,4 @@
-import { countries } from '../data/countries';
+import { countries } from '../../data/countries';
 import styles from './Form.module.css';
 
 export default function Form() {
