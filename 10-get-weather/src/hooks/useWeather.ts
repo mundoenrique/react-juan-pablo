@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { TsearchType, TweatherZod } from '../types';
 import { WeatherSchemaZod } from '../helpers';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 export default function useWeather() {
   const [weather, setWeather] = useState<TweatherZod>({
@@ -53,8 +53,11 @@ export default function useWeather() {
     }
   };
 
+  const hasWeatherData = useMemo(() => weather.name !== '', [weather]);
+
   return {
     weather,
     fetchWeather,
+    hasWeatherData,
   };
 }
