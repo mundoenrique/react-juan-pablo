@@ -7,8 +7,8 @@ import { weatherInitState } from '../data/countries';
 
 export default function useWeather() {
   const [weather, setWeather] = useState<TweatherZod>(weatherInitState);
-
   const [loading, setLoading] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const fetchWeather = async (search: TsearchType) => {
     const appId = import.meta.env.VITE_API_KEY;
@@ -19,6 +19,11 @@ export default function useWeather() {
       const geoUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${search.city},${search.country}&appid=${appId}`;
 
       const { data: dataGeo } = await axios(geoUrl);
+
+      if (!dataGeo[0]) {
+        setNotFound(true);
+        return;
+      }
       const lat = dataGeo[0].lat;
       const lon = dataGeo[0].lon;
 
@@ -59,6 +64,7 @@ export default function useWeather() {
   return {
     weather,
     loading,
+    notFound,
     fetchWeather,
     hasWeatherData,
   };
