@@ -1,3 +1,20 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+:root {
+  --white: #fff;
+  --primary: #f59e08;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-image: url('/bg_clima.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  color: var(--white);
+}
