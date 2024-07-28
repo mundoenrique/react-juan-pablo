@@ -1,0 +1,1 @@
+export { getCrypto } from './cryptoService';
