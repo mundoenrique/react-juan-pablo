@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { string, z } from 'zod';
 
 export const CurrencySchema = z.object({
   code: z.string(),
@@ -17,4 +17,13 @@ export const CryptosResponseSchema = z.array(CryptoResponseSchema);
 export const PairSchema = z.object({
   currency: z.string(),
   crypto: z.string(),
+});
+
+export const PriceSchema = z.object({
+  IMAGEURL: string(),
+  PRICE: string(),
+  HIGHDAY: string(),
+  LOWDAY: string(),
+  CHANGEPCT24HOUR: string(),
+  LASTUPDATE: string(),
 });

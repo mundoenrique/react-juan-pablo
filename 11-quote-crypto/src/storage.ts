@@ -6,6 +6,14 @@ import { fetchCryptoPrice, getCrypto } from './services';
 export const useCryptoStore = create<TCryptoStorage>()(
   devtools((set) => ({
     cryptoCurrencies: [],
+    priceData: {
+      IMAGEURL: '',
+      PRICE: '',
+      HIGHDAY: '',
+      LOWDAY: '',
+      CHANGEPCT24HOUR: '',
+      LASTUPDATE: '',
+    },
 
     fetchCryptos: async () => {
       const cryptoCurrencies = await getCrypto();
@@ -14,7 +22,11 @@ export const useCryptoStore = create<TCryptoStorage>()(
       }));
     },
     fetchData: async (pair) => {
-      await fetchCryptoPrice(pair);
+      const priceData = await fetchCryptoPrice(pair);
+
+      set(() => ({
+        priceData,
+      }));
     },
   }))
 );
