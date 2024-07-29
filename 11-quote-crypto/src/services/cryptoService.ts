@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CryptoCurrenciesResponseSchema } from '../schema';
+import { CryptosResponseSchema } from '../schema';
 
 export async function getCrypto() {
   const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD`;
@@ -7,7 +7,7 @@ export async function getCrypto() {
     data: { Data },
   } = await axios(url);
 
-  const { success, data } = CryptoCurrenciesResponseSchema.safeParse(Data);
+  const { success, data } = CryptosResponseSchema.safeParse(Data);
 
   if (success) {
     return data;

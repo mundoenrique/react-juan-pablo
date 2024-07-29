@@ -1,6 +1,6 @@
-import { TCryptoCurrency } from './listsType';
+import { TCrypto } from './listsType';
 
 export type TCryptoStorage = {
-  cryptoCurrencies: TCryptoCurrency[];
+  cryptoCurrencies: TCrypto[];
   fetchCryptos: () => Promise<void>;
 };

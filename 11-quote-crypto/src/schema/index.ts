@@ -1,1 +1,1 @@
-export { CurrencySchema, CryptoCurrencyResponseSchema, CryptoCurrenciesResponseSchema } from './crypto-schema';
+export { CurrencySchema, CryptoResponseSchema, CryptosResponseSchema, PairSchema } from './crypto-schema';

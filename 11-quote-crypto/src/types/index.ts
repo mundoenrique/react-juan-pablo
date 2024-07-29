@@ -1,2 +1,2 @@
 export type { TCryptoStorage } from './storageType';
-export type { TCurrency, TCryptoCurrency } from './listsType';
+export type { TCurrency, TCrypto, TPair } from './listsType';
