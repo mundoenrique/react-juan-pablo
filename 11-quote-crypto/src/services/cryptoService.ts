@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { CryptosResponseSchema } from '../schema';
+import { TPair } from '../types';
 
 export async function getCrypto() {
   const url = `https://min-api.cryptocompare.com/data/top/mktcapfull?limit=20&tsym=USD`;
@@ -12,4 +13,8 @@ export async function getCrypto() {
   if (success) {
     return data;
   }
+}
+
+export async function fetchCryptoPrice(pair: TPair) {
+  console.log(pair);
 }

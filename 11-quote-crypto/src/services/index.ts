@@ -1,1 +1,1 @@
-export { getCrypto } from './cryptoService';
+export { getCrypto, fetchCryptoPrice } from './cryptoService';

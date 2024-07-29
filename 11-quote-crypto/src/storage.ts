@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { TCryptoStorage } from './types';
-import { getCrypto } from './services';
+import { fetchCryptoPrice, getCrypto } from './services';
 
 export const useCryptoStore = create<TCryptoStorage>()(
   devtools((set) => ({
@@ -12,6 +12,9 @@ export const useCryptoStore = create<TCryptoStorage>()(
       set(() => ({
         cryptoCurrencies,
       }));
+    },
+    fetchData: async (pair) => {
+      await fetchCryptoPrice(pair);
     },
   }))
 );
