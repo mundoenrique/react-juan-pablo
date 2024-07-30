@@ -14,6 +14,7 @@ export const useCryptoStore = create<TCryptoStorage>()(
       CHANGEPCT24HOUR: '',
       LASTUPDATE: '',
     },
+    loading: false,
 
     fetchCryptos: async () => {
       const cryptoCurrencies = await getCrypto();
@@ -22,10 +23,15 @@ export const useCryptoStore = create<TCryptoStorage>()(
       }));
     },
     fetchData: async (pair) => {
+      set(() => ({
+        loading: true,
+      }));
+
       const priceData = await fetchCryptoPrice(pair);
 
       set(() => ({
         priceData,
+        loading: false,
       }));
     },
   }))
