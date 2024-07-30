@@ -1,4 +1,4 @@
-export type Tcategory = {
-  id: string;
-  name: string;
-};
+import { z } from 'zod';
+import { CategoriesAPISchema } from '../schemas/recipesSchema';
+
+export type Tcategory = z.infer<typeof CategoriesAPISchema>;

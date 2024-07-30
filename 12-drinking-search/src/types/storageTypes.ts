@@ -1,5 +1,7 @@
 import { Tcategory } from './listTypes';
 
 export type TRecipesSlice = {
-  categories: Tcategory[];
+  categories: Tcategory;
+
+  fetchCategories: () => Promise<void>;
 };
