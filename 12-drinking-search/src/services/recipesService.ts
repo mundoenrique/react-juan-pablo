@@ -13,7 +13,6 @@ export async function getCategories() {
 }
 
 export async function getRecipies(filters: TSearchFilter) {
-  console.log(filters);
   const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filters.category}&i=${filters.ingredient}`;
   const { data: responseAPI } = await axios(url);
   const { success, data } = DrinksAPISchema.safeParse(responseAPI);
@@ -22,3 +21,5 @@ export async function getRecipies(filters: TSearchFilter) {
     return data;
   }
 }
+
+// https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=552
