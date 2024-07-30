@@ -4,6 +4,7 @@ import { useAppStore } from '../stores/useStore';
 
 export default function Header() {
   const fetchCategories = useAppStore((state) => state.fetchCategories);
+  const categories = useAppStore((state) => state.categories);
   const { pathname } = useLocation();
   const isHome = useMemo(() => pathname === '/', [pathname]);
 
@@ -51,7 +52,14 @@ export default function Header() {
                 Categoría
               </label>
               <select id="category" name="category" className="p-3 w-full rounded-lg focus:outline-none">
-                <option value="">-- Seleccione</option>
+                <option value="" disabled>
+                  -- Seleccione
+                </option>
+                {categories.drinks.map((drink) => (
+                  <option key={drink.strCategory} value={drink.strCategory}>
+                    {drink.strCategory}{' '}
+                  </option>
+                ))}
               </select>
             </div>
             <input
