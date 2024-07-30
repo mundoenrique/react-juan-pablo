@@ -1,8 +1,12 @@
-import { useEffect, useMemo } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useAppStore } from '../stores/useStore';
 
 export default function Header() {
+  const [searcFilters, setSearcFilters] = useState({
+    ingredient: '',
+    category: '',
+  });
   const fetchCategories = useAppStore((state) => state.fetchCategories);
   const categories = useAppStore((state) => state.categories);
   const { pathname } = useLocation();
@@ -11,6 +15,22 @@ export default function Header() {
   useEffect(() => {
     fetchCategories();
   }, [fetchCategories]);
+
+  const handleChangeForm = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setSearcFilters({
+      ...searcFilters,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmitForm = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (Object.values(searcFilters).includes('')) {
+      console.log('Todos los campos son necesarios');
+      return;
+    }
+  };
 
   return (
     <header className={isHome ? 'bg-header bg-center bg-cover' : 'bg-slate-800'}>
@@ -34,7 +54,10 @@ export default function Header() {
           </nav>
         </div>
         {isHome && (
-          <form className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6">
+          <form
+            className="md:w-1/2 2xl:w-1/3 bg-orange-400 my-32 p-10 rounded-lg shadow space-y-6"
+            onSubmit={handleSubmitForm}
+          >
             <div className="space-y-4">
               <label htmlFor="ingredient" className="block text-white uppercase font-extrabold text-lg">
                 Nombre o ingredientes
@@ -45,13 +68,21 @@ export default function Header() {
                 type="text"
                 className="p-3 w-full rounded-lg focus:outline-none"
                 placeholder="Nombre o ingrediente"
+                onChange={handleChangeForm}
+                value={searcFilters.ingredient}
               />
             </div>
             <div className="space-y-4">
               <label htmlFor="category" className="block text-white uppercase font-extrabold text-lg">
                 Categoría
               </label>
-              <select id="category" name="category" className="p-3 w-full rounded-lg focus:outline-none">
+              <select
+                id="category"
+                name="category"
+                className="p-3 w-full rounded-lg focus:outline-none"
+                onChange={handleChangeForm}
+                value={searcFilters.category}
+              >
                 <option value="" disabled>
                   -- Seleccione
                 </option>
