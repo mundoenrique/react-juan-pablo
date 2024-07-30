@@ -1,2 +1,2 @@
 export type { TRecipesSlice } from './storageTypes';
-export type { Tcategory } from './listTypes';
+export type { TCategory } from './listTypes';

@@ -14,4 +14,7 @@ export const createRecipeSlice: StateCreator<TRecipesSlice> = (set) => ({
       categories,
     });
   },
+  searchRecipes: async () => {
+    console.log('buscando recetas');
+  },
 });

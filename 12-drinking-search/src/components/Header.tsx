@@ -9,6 +9,7 @@ export default function Header() {
   });
   const fetchCategories = useAppStore((state) => state.fetchCategories);
   const categories = useAppStore((state) => state.categories);
+  const searchRecipes = useAppStore((state) => state.searchRecipes);
   const { pathname } = useLocation();
   const isHome = useMemo(() => pathname === '/', [pathname]);
 
@@ -30,6 +31,8 @@ export default function Header() {
       console.log('Todos los campos son necesarios');
       return;
     }
+
+    searchRecipes();
   };
 
   return (

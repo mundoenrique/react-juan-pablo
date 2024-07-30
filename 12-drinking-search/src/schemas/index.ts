@@ -1,0 +1,1 @@
+export { CategoriesAPISchema } from './recipesSchema';

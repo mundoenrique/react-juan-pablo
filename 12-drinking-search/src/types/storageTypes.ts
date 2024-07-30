@@ -1,7 +1,8 @@
-import { Tcategory } from './listTypes';
+import { TCategory } from './listTypes';
 
 export type TRecipesSlice = {
-  categories: Tcategory;
+  categories: TCategory;
 
   fetchCategories: () => Promise<void>;
+  searchRecipes: () => Promise<void>;
 };
