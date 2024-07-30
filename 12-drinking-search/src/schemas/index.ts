@@ -1,1 +1,7 @@
-export { CategoriesAPISchema } from './recipesSchema';
+export {
+  CategoriesAPISchema,
+  SearchFilterSchema,
+  RecipesAPISchema,
+  DrinkAPISchema,
+  DrinksAPISchema,
+} from './recipesSchema';

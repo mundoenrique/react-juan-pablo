@@ -1,9 +1,10 @@
 import { ChangeEvent, FormEvent, useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useAppStore } from '../stores/useStore';
+import { TSearchFilter } from '../types';
 
 export default function Header() {
-  const [searcFilters, setSearcFilters] = useState({
+  const [searcFilters, setSearcFilters] = useState<TSearchFilter>({
     ingredient: '',
     category: '',
   });
@@ -32,7 +33,7 @@ export default function Header() {
       return;
     }
 
-    searchRecipes();
+    searchRecipes(searcFilters);
   };
 
   return (

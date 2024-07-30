@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { CategoriesAPISchema } from '../schemas';
+import { CategoriesAPISchema, DrinksAPISchema } from '../schemas';
+import { TSearchFilter } from '../types';
 
 export async function getCategories() {
   const url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
@@ -11,10 +12,11 @@ export async function getCategories() {
   }
 }
 
-export async function getRecipies() {
-  const url = `https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
+export async function getRecipies(filters: TSearchFilter) {
+  console.log(filters);
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${filters.category}&i=${filters.ingredient}`;
   const { data: responseAPI } = await axios(url);
-  const { success, data } = CategoriesAPISchema.safeParse(responseAPI);
+  const { success, data } = DrinksAPISchema.safeParse(responseAPI);
 
   if (success) {
     return data;
