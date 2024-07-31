@@ -1,7 +1,7 @@
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useAppStore } from '../stores/useStore';
-import { TRecipe } from '../types';
+import type { TRecipe } from '../types';
 
 export default function Modal() {
   const modal = useAppStore((state) => state.modal);
@@ -64,7 +64,21 @@ export default function Modal() {
                   <DialogTitle as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                     Instrucciones
                   </DialogTitle>
-                  {selectedRecipe.strInstructions}
+                  <p className="text-lg">{selectedRecipe.strInstructions}</p>
+                  <div className="mt-5 flex justify-between gap-4">
+                    <button
+                      type="button"
+                      className="w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
+                    >
+                      Cerrar
+                    </button>
+                    <button
+                      type="button"
+                      className="w-full rounded bg-orange-600 p-3 font-bold uppercase text-white shadow hover:bg-orange-500"
+                    >
+                      Agregar a Favoritos
+                    </button>
+                  </div>
                 </DialogPanel>
               </TransitionChild>
             </div>
