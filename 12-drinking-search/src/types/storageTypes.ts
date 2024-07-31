@@ -11,3 +11,7 @@ export type TRecipesSlice = {
   selectRecipe: (id: TDrink['idDrink']) => Promise<void>;
   closeModal: () => void;
 };
+
+export type TFavoritesSlice = {
+  favorites: TRecipe[];
+};
