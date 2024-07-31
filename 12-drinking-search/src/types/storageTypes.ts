@@ -14,4 +14,5 @@ export type TRecipesSlice = {
 
 export type TFavoritesSlice = {
   favorites: TRecipe[];
+  handleClickFavorite: (recipe: TRecipe) => void;
 };
