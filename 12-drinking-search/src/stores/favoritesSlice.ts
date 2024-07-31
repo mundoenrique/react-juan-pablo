@@ -8,7 +8,7 @@ export const createFavoritesSlice: StateCreator<TFavoritesSlice> = (set, get) =>
     const PrevFavorites = get().favorites;
     let favorites = [] as TRecipe[];
 
-    if (PrevFavorites.some((favorite) => favorite.idDrink === recipe.idDrink)) {
+    if (get().favoriteExists(recipe.idDrink)) {
       favorites = PrevFavorites.filter((favorite) => favorite.idDrink !== recipe.idDrink);
     } else {
       favorites = [recipe, ...PrevFavorites];
@@ -17,5 +17,11 @@ export const createFavoritesSlice: StateCreator<TFavoritesSlice> = (set, get) =>
     set({
       favorites,
     });
+  },
+
+  favoriteExists: (id) => {
+    const isFavorite = get().favorites.some((favorite) => favorite.idDrink === id);
+
+    return isFavorite;
   },
 });
