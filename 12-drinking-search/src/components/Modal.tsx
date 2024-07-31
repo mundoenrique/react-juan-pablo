@@ -69,6 +69,7 @@ export default function Modal() {
                     <button
                       type="button"
                       className="w-full rounded bg-gray-600 p-3 font-bold uppercase text-white shadow hover:bg-gray-500"
+                      onClick={closeModal}
                     >
                       Cerrar
                     </button>
