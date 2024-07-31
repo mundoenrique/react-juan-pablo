@@ -24,11 +24,21 @@ export const createFavoritesSlice: StateCreator<TFavoritesSlice & TRecipesSlice,
     });
 
     createRecipeSlice(set, get, api).closeModal();
+    localStorage.setItem('favorites', JSON.stringify(favorites));
   },
 
   favoriteExists: (id) => {
     const isFavorite = get().favorites.some((favorite) => favorite.idDrink === id);
 
     return isFavorite;
+  },
+  loadFromStorage: () => {
+    const storageFavorites = localStorage.getItem('favorites');
+
+    if (storageFavorites) {
+      set({
+        favorites: JSON.parse(storageFavorites),
+      });
+    }
   },
 });

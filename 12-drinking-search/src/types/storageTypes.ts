@@ -17,4 +17,5 @@ export type TFavoritesSlice = {
 
   handleClickFavorite: (recipe: TRecipe) => void;
   favoriteExists: (id: TRecipe['idDrink']) => boolean;
+  loadFromStorage: () => void;
 };
