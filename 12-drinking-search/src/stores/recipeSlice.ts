@@ -1,8 +1,8 @@
 import { StateCreator } from 'zustand';
-import type { TRecipe, TRecipesSlice } from '../types';
+import type { TFavoritesSlice, TRecipe, TRecipesSlice } from '../types';
 import { getCategories, getRecipeById, getRecipies } from '../services';
 
-export const createRecipeSlice: StateCreator<TRecipesSlice> = (set) => ({
+export const createRecipeSlice: StateCreator<TRecipesSlice & TFavoritesSlice, [], [], TRecipesSlice> = (set) => ({
   categories: {
     drinks: [],
   },

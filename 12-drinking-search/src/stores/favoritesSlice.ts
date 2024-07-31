@@ -1,7 +1,12 @@
 import { StateCreator } from 'zustand';
-import { TFavoritesSlice, TRecipe } from '../types';
+import { TFavoritesSlice, TRecipe, TRecipesSlice } from '../types';
+import { createRecipeSlice } from './recipeSlice';
 
-export const createFavoritesSlice: StateCreator<TFavoritesSlice> = (set, get) => ({
+export const createFavoritesSlice: StateCreator<TFavoritesSlice & TRecipesSlice, [], [], TFavoritesSlice> = (
+  set,
+  get,
+  api
+) => ({
   favorites: [],
 
   handleClickFavorite: (recipe) => {
@@ -17,6 +22,8 @@ export const createFavoritesSlice: StateCreator<TFavoritesSlice> = (set, get) =>
     set({
       favorites,
     });
+
+    createRecipeSlice(set, get, api).closeModal();
   },
 
   favoriteExists: (id) => {
