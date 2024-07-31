@@ -22,4 +22,7 @@ export type TFavoritesSlice = {
 
 export type TNoticationSlice = {
   notification: TNotication;
+
+  showNotification: (payload: Pick<TNotication, 'text' | 'error'>) => void;
+  hideNotification: () => void;
 };

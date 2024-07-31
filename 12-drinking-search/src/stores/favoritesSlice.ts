@@ -1,12 +1,14 @@
 import { StateCreator } from 'zustand';
-import { TFavoritesSlice, TRecipe, TRecipesSlice } from '../types';
+import { TFavoritesSlice, TNoticationSlice, TRecipe, TRecipesSlice } from '../types';
 import { createRecipeSlice } from './recipeSlice';
+import { createNoticationSlice } from './noticationSlice';
 
-export const createFavoritesSlice: StateCreator<TFavoritesSlice & TRecipesSlice, [], [], TFavoritesSlice> = (
-  set,
-  get,
-  api
-) => ({
+export const createFavoritesSlice: StateCreator<
+  TFavoritesSlice & TRecipesSlice & TNoticationSlice,
+  [],
+  [],
+  TFavoritesSlice
+> = (set, get, api) => ({
   favorites: [],
 
   handleClickFavorite: (recipe) => {
@@ -15,8 +17,10 @@ export const createFavoritesSlice: StateCreator<TFavoritesSlice & TRecipesSlice,
 
     if (get().favoriteExists(recipe.idDrink)) {
       favorites = PrevFavorites.filter((favorite) => favorite.idDrink !== recipe.idDrink);
+      createNoticationSlice(set, get, api).showNotification({ text: 'Se eliminó de favoritos', error: false });
     } else {
       favorites = [recipe, ...PrevFavorites];
+      createNoticationSlice(set, get, api).showNotification({ text: 'Se agregó a favoritos', error: false });
     }
 
     set({
