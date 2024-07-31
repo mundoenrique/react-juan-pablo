@@ -11,6 +11,8 @@ export default function Header() {
   const fetchCategories = useAppStore((state) => state.fetchCategories);
   const categories = useAppStore((state) => state.categories);
   const searchRecipes = useAppStore((state) => state.searchRecipes);
+  const showNotification = useAppStore((state) => state.showNotification);
+
   const { pathname } = useLocation();
   const isHome = useMemo(() => pathname === '/', [pathname]);
 
@@ -29,7 +31,7 @@ export default function Header() {
     e.preventDefault();
 
     if (Object.values(searcFilters).includes('')) {
-      console.log('Todos los campos son necesarios');
+      showNotification({ text: 'Todos los campos son oligatorios', error: true });
       return;
     }
 
