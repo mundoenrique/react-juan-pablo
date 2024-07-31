@@ -1,1 +1,1 @@
-export { getCategories } from './recipesService';
+export { getCategories, getRecipies, getRecipeById } from './recipesService';
