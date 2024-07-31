@@ -1,4 +1,4 @@
-import { TCategory, TDrink, TDrinks, TRecipe, TSearchFilter } from './listTypes';
+import { TCategory, TDrink, TDrinks, TNotication, TRecipe, TSearchFilter } from './listTypes';
 
 export type TRecipesSlice = {
   categories: TCategory;
@@ -18,4 +18,8 @@ export type TFavoritesSlice = {
   handleClickFavorite: (recipe: TRecipe) => void;
   favoriteExists: (id: TRecipe['idDrink']) => boolean;
   loadFromStorage: () => void;
+};
+
+export type TNoticationSlice = {
+  notification: TNotication;
 };

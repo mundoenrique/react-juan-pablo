@@ -57,3 +57,9 @@ export const RecipeAPISchema = z.object({
   strMeasure8: z.string().nullable(),
   strMeasure9: z.string().nullable(),
 });
+
+export const NoticationSchema = z.object({
+  text: z.string(),
+  error: z.boolean(),
+  show: z.boolean(),
+});

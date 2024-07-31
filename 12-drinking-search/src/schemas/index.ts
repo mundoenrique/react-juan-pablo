@@ -5,4 +5,5 @@ export {
   DrinkAPISchema,
   DrinksAPISchema,
   RecipeAPISchema,
+  NoticationSchema,
 } from './recipesSchema';
