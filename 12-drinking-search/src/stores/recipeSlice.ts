@@ -10,6 +10,7 @@ export const createRecipeSlice: StateCreator<TRecipesSlice> = (set) => ({
     drinks: [],
   },
   selectedRecipe: {} as TRecipe,
+  modal: false,
 
   fetchCategories: async () => {
     const categories = await getCategories();
@@ -30,6 +31,13 @@ export const createRecipeSlice: StateCreator<TRecipesSlice> = (set) => ({
 
     set({
       selectedRecipe,
+      modal: true,
+    });
+  },
+  closeModal: () => {
+    set({
+      modal: false,
+      selectedRecipe: {} as TRecipe,
     });
   },
 });
