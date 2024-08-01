@@ -50,7 +50,16 @@ router.put(
   updateProduct
 );
 
-router.patch('/:id', updateAvailability);
+router.patch(
+  '/:id',
+  param('id')
+    .isInt()
+    .withMessage('el id del producto debe ser númerico')
+    .custom((value) => value > 0)
+    .withMessage('EL id debe ser mayor a 0'),
+  handleInputErrors,
+  updateAvailability
+);
 
 router.delete('/:id', deleteProduct);
 
