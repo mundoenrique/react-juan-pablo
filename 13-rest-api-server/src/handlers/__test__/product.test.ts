@@ -4,6 +4,7 @@ import server from '../../server';
 describe('POST /api/products', () => {
   test('Should display validation erros', async () => {
     const response = await request(server).post('/api/products').send({});
+
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty('errors');
     expect(response.body.errors).toHaveLength(3);
@@ -100,5 +101,50 @@ describe('GET /api/products/:id', () => {
     expect(response.status).not.toEqual(404);
     expect(response.headers['content-type']).not.toMatch(/text/);
     expect(response.body).not.toHaveProperty('error');
+  });
+});
+
+describe('PUT /api/products/:id', () => {
+  test('Should display validation error messages', async () => {
+    const response = await request(server).put('/api/products/text').send({});
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('errors');
+    expect(response.body.errors).toBeTruthy();
+    expect(response.body.errors).toHaveLength(6);
+
+    expect(response.status).not.toBe(200);
+    expect(response.body).not.toHaveProperty('data');
+    expect(response.body.data).toBeFalsy();
+  });
+
+  it('Should display validation error for no fount product', async () => {
+    const response = await request(server).put('/api/products/2000').send({
+      name: 'Mouse',
+      price: 55,
+      availability: true,
+    });
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.error).toEqual('Producto No Encontrado');
+
+    expect(response.status).not.toBe(200);
+    expect(response.body.data).toBeFalsy();
+  });
+
+  it('Should display json response for product update', async () => {
+    const response = await request(server).put('/api/products/1').send({
+      name: 'Mouse',
+      price: 55,
+      availability: false,
+    });
+
+    expect(response.status).toBe(200);
+    expect(response.body.data).toBeTruthy();
+
+    expect(response.status).not.toBe(400);
+    expect(response.status).not.toBe(404);
+    expect(response.body.error).toBeFalsy();
   });
 });
