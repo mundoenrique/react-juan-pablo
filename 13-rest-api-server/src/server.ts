@@ -13,7 +13,11 @@ import db from './config/db';
   }
 })();
 
+// Instancia de express
 const server = express();
+
+// Leer datos del formulario
+server.use(express.json());
 
 server.use('/api/products', router);
 
