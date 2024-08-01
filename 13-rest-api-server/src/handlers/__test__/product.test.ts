@@ -56,3 +56,17 @@ describe('POST /api/products', () => {
     expect(response.body).not.toHaveProperty('errors');
   });
 });
+
+describe('GET /api/products', () => {
+  test('Should display a JSON response', async () => {
+    const response = await request(server).get('/api/products');
+
+    expect(response.status).toEqual(200);
+    expect(response.headers['content-type']).toMatch(/json/);
+    expect(response.body).toHaveProperty('data');
+
+    expect(response.status).not.toEqual(400);
+    expect(response.headers['content-type']).not.toMatch(/text/);
+    expect(response.body).not.toHaveProperty('errors');
+  });
+});
