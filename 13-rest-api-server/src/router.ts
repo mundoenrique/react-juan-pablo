@@ -6,7 +6,16 @@ import { handleInputErrors } from './middleware';
 const router = Router();
 // Routing
 router.get('/', getProducts);
-router.get('/:id', getProductById);
+router.get(
+  '/:id',
+  param('id')
+    .isInt()
+    .withMessage('el id del producto debe ser númerico')
+    .custom((value) => value > 0)
+    .withMessage('EL id debe ser mayor a 0'),
+  handleInputErrors,
+  getProductById
+);
 
 router.post(
   '/',
