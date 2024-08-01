@@ -37,10 +37,10 @@ router.post(
   createProduct
 );
 
-router.put('/', updateProduct);
+router.put('/:id', updateProduct);
 
-router.patch('/', updateAvailability);
+router.patch('/:id', updateAvailability);
 
-router.delete('/', deleteProduct);
+router.delete('/:id', deleteProduct);
 
 export default router;
