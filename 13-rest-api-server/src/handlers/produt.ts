@@ -15,13 +15,17 @@ export const createProduct = async (req: Request, res: Response) => {
   //   .withMessage('EL precio debe ser mayor a 0')
   //   .run(req);
 
-  let errors = validationResult(req);
+  // let errors = validationResult(req);
 
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
+  // if (!errors.isEmpty()) {
+  //   return res.status(400).json({ errors: errors.array() });
+  // }
+
+  try {
+    const product = await Product.create(req.body);
+
+    res.json({ data: product });
+  } catch (error) {
+    console.log(error);
   }
-
-  const product = await Product.create(req.body);
-
-  res.json({ data: product });
 };
