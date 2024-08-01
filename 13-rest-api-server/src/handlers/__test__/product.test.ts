@@ -58,7 +58,7 @@ describe('POST /api/products', () => {
 });
 
 describe('GET /api/products', () => {
-  test('Should display a JSON response', async () => {
+  test('Should display a JSON response with a prodcut list', async () => {
     const response = await request(server).get('/api/products');
 
     expect(response.status).toEqual(200);
@@ -68,5 +68,37 @@ describe('GET /api/products', () => {
     expect(response.status).not.toEqual(400);
     expect(response.headers['content-type']).not.toMatch(/text/);
     expect(response.body).not.toHaveProperty('errors');
+  });
+});
+
+describe('GET /api/products/:id', () => {
+  it('Should return http code 404', async () => {
+    const productId = 2000;
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual(404);
+    expect(response.body).toHaveProperty('error');
+    expect(response.body.error).toEqual('Producto No Encontrado');
+  });
+
+  it('Should a valid id in the url', async () => {
+    const productId = 'text';
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual(400);
+    expect(response.body).toHaveProperty('errors');
+  });
+
+  test('Should display a JSON response with a pruduct', async () => {
+    const productId = 1;
+    const response = await request(server).get(`/api/products/${productId}`);
+
+    expect(response.status).toEqual(200);
+    expect(response.headers['content-type']).toMatch(/json/);
+    expect(response.body).toHaveProperty('data');
+
+    expect(response.status).not.toEqual(404);
+    expect(response.headers['content-type']).not.toMatch(/text/);
+    expect(response.body).not.toHaveProperty('error');
   });
 });
