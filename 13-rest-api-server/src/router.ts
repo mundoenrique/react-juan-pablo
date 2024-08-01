@@ -39,6 +39,11 @@ router.post(
 
 router.put(
   '/:id',
+  param('id')
+    .isInt()
+    .withMessage('el id del producto debe ser númerico')
+    .custom((value) => value > 0)
+    .withMessage('EL id debe ser mayor a 0'),
   body('name').notEmpty().withMessage('El nombre del producto no debe estar vacio'),
   body('price')
     .isNumeric()
@@ -61,6 +66,15 @@ router.patch(
   updateAvailability
 );
 
-router.delete('/:id', deleteProduct);
+router.delete(
+  '/:id',
+  param('id')
+    .isInt()
+    .withMessage('el id del producto debe ser númerico')
+    .custom((value) => value > 0)
+    .withMessage('EL id debe ser mayor a 0'),
+  handleInputErrors,
+  deleteProduct
+);
 
 export default router;
