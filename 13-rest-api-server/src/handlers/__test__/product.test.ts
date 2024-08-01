@@ -163,12 +163,61 @@ describe('PATCH /api/products/:id', () => {
     expect(response.body.data).toBeFalsy();
   });
 
+  it('Should display validation error for no fount product', async () => {
+    const response = await request(server).patch('/api/products/2000');
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.error).toEqual('Producto No Encontrado');
+
+    expect(response.status).not.toBe(200);
+    expect(response.body.data).toBeFalsy();
+  });
+
   it('Should display json response for product update', async () => {
     const response = await request(server).patch('/api/products/1');
 
     expect(response.status).toBe(200);
     expect(response.body.data).toBeTruthy();
 
+    expect(response.status).not.toBe(404);
+    expect(response.body.error).toBeFalsy();
+  });
+});
+
+describe('DELETE /api/products/:id', () => {
+  test('Should display validation error messages', async () => {
+    const response = await request(server).delete('/api/products/text');
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('errors');
+    expect(response.body.errors).toBeTruthy();
+    expect(response.body.errors).toHaveLength(2);
+
+    expect(response.status).not.toBe(200);
+    expect(response.body).not.toHaveProperty('data');
+    expect(response.body.data).toBeFalsy();
+  });
+
+  it('Should display validation error for no fount product', async () => {
+    const response = await request(server).delete('/api/products/2000');
+
+    expect(response.status).toBe(404);
+    expect(response.body.error).toBeTruthy();
+    expect(response.body.error).toEqual('Producto No Encontrado');
+
+    expect(response.status).not.toBe(200);
+    expect(response.body.data).toBeFalsy();
+  });
+
+  it('Should display json response for product delete', async () => {
+    const response = await request(server).delete('/api/products/1');
+
+    expect(response.status).toBe(200);
+    expect(response.body.data).toBeTruthy();
+    expect(response.body.data).toEqual('Producto Eliminado');
+
+    expect(response.status).not.toBe(400);
     expect(response.status).not.toBe(404);
     expect(response.body.error).toBeFalsy();
   });
