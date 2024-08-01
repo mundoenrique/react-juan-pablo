@@ -21,6 +21,12 @@ export const getProductById = async (req: Request, res: Response) => {
       attributes: { exclude: ['createdAt', 'updatedAt'] },
     });
 
+    if (!product) {
+      return res.status(404).json({
+        error: 'Producto No Encontrado',
+      });
+    }
+
     res.json({ data: product });
   } catch (error) {
     console.log(error);
@@ -56,7 +62,25 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 export const updateProduct = async (req: Request, res: Response) => {
-  res.json({ data: `response from ${req.method}` });
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id, {
+      attributes: { exclude: ['createdAt', 'updatedAt'] },
+    });
+
+    if (!product) {
+      return res.status(404).json({
+        error: 'Producto No Encontrado',
+      });
+    }
+
+    await product.update(req.body);
+    await product.save();
+
+    res.json({ data: product });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const updateAvailability = async (req: Request, res: Response) => {

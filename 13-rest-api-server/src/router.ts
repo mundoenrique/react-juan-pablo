@@ -37,7 +37,18 @@ router.post(
   createProduct
 );
 
-router.put('/:id', updateProduct);
+router.put(
+  '/:id',
+  body('name').notEmpty().withMessage('El nombre del producto no debe estar vacio'),
+  body('price')
+    .isNumeric()
+    .withMessage('El precio debe ser un número')
+    .custom((value) => value > 0)
+    .withMessage('EL precio debe ser mayor a 0'),
+  body('availability').isBoolean().withMessage('La disponibilidad debe ser booleano'),
+  handleInputErrors,
+  updateProduct
+);
 
 router.patch('/:id', updateAvailability);
 
