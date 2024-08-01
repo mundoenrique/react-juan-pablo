@@ -1,13 +1,11 @@
 import { Router } from 'express';
 import { body } from 'express-validator';
-import { createProduct } from './handlers/produt';
+import { createProduct, getProducts } from './handlers/produt';
 import { handleInputErrors } from './middleware';
 
 const router = Router();
 // Routing
-router.get('/', (req, res) => {
-  res.json('Desde Get');
-});
+router.get('/', getProducts);
 
 router.post(
   '/',
