@@ -54,3 +54,15 @@ export const createProduct = async (req: Request, res: Response) => {
     console.log(error);
   }
 };
+
+export const updateProduct = async (req: Request, res: Response) => {
+  res.json({ data: `response from ${req.method}` });
+};
+
+export const updateAvailability = async (req: Request, res: Response) => {
+  res.json({ data: `response from ${req.method}` });
+};
+
+export const deleteProduct = async (req: Request, res: Response) => {
+  res.json({ data: `response from ${req.method}` });
+};
