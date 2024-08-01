@@ -1,5 +1,6 @@
 import request from 'supertest';
-import server from '../server';
+import server, { connectDB } from '../server';
+import db from '../config/db';
 
 describe('Pirmera prueba', () => {
   it('Debe revisar que 1 + 1 sea 2', () => {
@@ -21,5 +22,19 @@ describe('GET /api', () => {
 
     expect(res.status).not.toBe(404);
     expect(res.body.msg).not.toBe('DESDE API');
+  });
+});
+
+jest.mock('../config/db');
+
+describe('connectDB', () => {
+  test('should database connection error', async () => {
+    jest.spyOn(db, 'authenticate').mockRejectedValueOnce(new Error('Unable to connect to the database'));
+
+    const consoleSpy = jest.spyOn(console, 'error');
+
+    await connectDB();
+
+    expect(consoleSpy).toHaveBeenCalledWith(expect.stringContaining('Unable to connect to the database'));
   });
 });

@@ -4,14 +4,16 @@ import router from './router';
 import db from './config/db';
 
 // Conectar a DB
-(async function connectDB() {
+export async function connectDB() {
   try {
     await db.authenticate();
     db.sync();
   } catch (error) {
-    console.error(colors.red.bold('Unable to connect to the database:'), error);
+    console.error(colors.red.bold('Unable to connect to the database'));
+    // console.error(colors.red.bold('Unable to connect to the database: '), error);
   }
-})();
+}
+connectDB();
 
 // Instancia de express
 const server = express();
