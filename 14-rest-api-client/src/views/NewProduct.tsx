@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { type ActionFunctionArgs, Form, Link, useActionData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
+import { addProdcut } from '../services/ProductService';
 
 export async function action({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
@@ -14,7 +15,9 @@ export async function action({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  return {};
+  addProdcut(data);
+
+  return null;
 }
 
 export default function NewProduct() {
