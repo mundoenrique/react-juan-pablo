@@ -1,7 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Form, Link, useActionData } from 'react-router-dom';
+import { type ActionFunctionArgs, Form, Link, useActionData } from 'react-router-dom';
+import ErrorMessage from '../components/ErrorMessage';
 
-export async function action({ request }) {
+export async function action({ request }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
   let error = '';
 
@@ -13,12 +14,12 @@ export async function action({ request }) {
     return error;
   }
 
-  return data;
+  return {};
 }
 
 export default function NewProduct() {
-  const error = useActionData();
-  console.log(error);
+  const error = useActionData() as string;
+
   return (
     <>
       <div className="flex justify-between">
@@ -30,7 +31,7 @@ export default function NewProduct() {
           Volver a productos
         </Link>
       </div>
-
+      {error && <ErrorMessage>{error}</ErrorMessage>}
       <Form className="mt-10" method="post">
         <div className="mb-4">
           <label className="text-gray-800" htmlFor="name">
