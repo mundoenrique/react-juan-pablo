@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { type ActionFunctionArgs, Form, Link, useActionData } from 'react-router-dom';
+import { type ActionFunctionArgs, Form, Link, redirect, useActionData } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import { addProdcut } from '../services/ProductService';
 
@@ -15,9 +15,9 @@ export async function action({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  addProdcut(data);
+  await addProdcut(data);
 
-  return null;
+  return redirect('/');
 }
 
 export default function NewProduct() {
