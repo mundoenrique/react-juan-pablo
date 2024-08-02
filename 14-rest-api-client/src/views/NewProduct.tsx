@@ -1,6 +1,24 @@
-import { Form, Link } from 'react-router-dom';
+/* eslint-disable react-refresh/only-export-components */
+import { Form, Link, useActionData } from 'react-router-dom';
+
+export async function action({ request }) {
+  const data = Object.fromEntries(await request.formData());
+  let error = '';
+
+  if (Object.values(data).includes('')) {
+    error = 'Todos los campos son obligatorios';
+  }
+
+  if (error) {
+    return error;
+  }
+
+  return data;
+}
 
 export default function NewProduct() {
+  const error = useActionData();
+  console.log(error);
   return (
     <>
       <div className="flex justify-between">
