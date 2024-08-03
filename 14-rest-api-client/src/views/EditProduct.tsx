@@ -8,7 +8,7 @@ import {
   type LoaderFunctionArgs,
 } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
-import { addProdcut, getProductsById } from '../services/ProductService';
+import { getProductsById, updateProduct } from '../services/ProductService';
 import { Product } from '../types';
 
 export async function Loader({ params }: LoaderFunctionArgs) {
@@ -25,8 +25,9 @@ export async function Loader({ params }: LoaderFunctionArgs) {
   }
 }
 
-export async function Action({ request }: ActionFunctionArgs) {
+export async function Action({ request, params }: ActionFunctionArgs) {
   const data = Object.fromEntries(await request.formData());
+  const { id } = params;
   let error = '';
 
   if (Object.values(data).includes('')) {
@@ -37,10 +38,16 @@ export async function Action({ request }: ActionFunctionArgs) {
     return error;
   }
 
-  await addProdcut(data);
-
-  return redirect('/');
+  if (id !== undefined) {
+    await updateProduct(data, +id);
+    return null; //redirect('/');
+  }
 }
+
+const availabilityOptions = [
+  { name: 'Disponible', value: true },
+  { name: 'No Disponible', value: false },
+];
 
 export default function EditProduct() {
   const product = useLoaderData() as Product;
@@ -84,6 +91,23 @@ export default function EditProduct() {
             name="price"
             defaultValue={product.price}
           />
+        </div>
+        <div className="mb-4">
+          <label className="text-gray-800" htmlFor="availability">
+            Disponibilidad:
+          </label>
+          <select
+            id="availability"
+            className="mt-2 block w-full p-3 bg-gray-50"
+            name="availability"
+            defaultValue={product.availability.toString()}
+          >
+            {availabilityOptions.map((option) => (
+              <option key={option.name} value={option.value.toString()}>
+                {option.name}
+              </option>
+            ))}
+          </select>
         </div>
         <input
           type="submit"
