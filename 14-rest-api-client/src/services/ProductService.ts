@@ -1,5 +1,5 @@
 import { safeParse } from 'valibot';
-import { DraftProductSchema, ProductsSchema } from '../types';
+import { DraftProductSchema, Product, ProductSchema, ProductsSchema } from '../types';
 import axios from 'axios';
 
 type ProductData = {
@@ -38,6 +38,25 @@ export async function getProducts() {
       return output;
     } else {
       throw new Error('Error prducts');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getProductsById(id: Product['id']) {
+  try {
+    const url = `${import.meta.env.VITE_API_URL}/api/products/${id}`;
+    const {
+      data: { data },
+    } = await axios.get(url);
+
+    const { success, output } = safeParse(ProductSchema, data);
+
+    if (success) {
+      return output;
+    } else {
+      throw new Error('Error products');
     }
   } catch (error) {
     console.log(error);
