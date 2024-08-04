@@ -40,7 +40,7 @@ export async function Action({ request, params }: ActionFunctionArgs) {
 
   if (id !== undefined) {
     await updateProduct(data, +id);
-    return null; //redirect('/');
+    return redirect('/');
   }
 }
 
