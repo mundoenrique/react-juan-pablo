@@ -13,7 +13,7 @@ export async function connectDB() {
     await db.authenticate();
     db.sync();
   } catch (error) {
-    console.error(colors.red.bold('Unable to connect to the database'));
+    console.error(colors.red.bold('Unable to connect to the database'), error);
     // console.error(colors.red.bold('Unable to connect to the database: '), error);
   }
 }
