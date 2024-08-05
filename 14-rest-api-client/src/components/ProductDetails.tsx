@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, Form, redirect, useNavigate } from 'react-router-dom';
 import { Product } from '../types';
 import { formatCurrency } from '../utils';
+import { deleteProducts } from '../services/ProductService';
 
 type ProductDetailsProps = {
   product: Product;
@@ -8,9 +9,11 @@ type ProductDetailsProps = {
 
 export async function Action({ params }: ActionFunctionArgs) {
   const { id } = params;
-  console.log(id);
 
-  return redirect('/');
+  if (id !== undefined) {
+    await deleteProducts(+id);
+    return redirect('/');
+  }
 }
 
 export default function ProductDetails({ product }: ProductDetailsProps) {
