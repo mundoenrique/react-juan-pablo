@@ -33,7 +33,16 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
           >
             Editar
           </button>
-          <Form className="w-full" method="post" action={`/products/${product.id}/delete`}>
+          <Form
+            className="w-full"
+            method="post"
+            action={`/products/${product.id}/delete`}
+            onSubmit={(e) => {
+              if (!confirm('¿Eliminar?')) {
+                e.preventDefault();
+              }
+            }}
+          >
             <input
               type="submit"
               value="Eliminar"
