@@ -8,7 +8,7 @@ export class ProjectController {
       // await project.save();
       await Project.create(req.body);
       const payload = req.body;
-      res.send('Poryecto creado exitosamente');
+      res.send('Poryecto creado');
     } catch (error) {
       console.log({ error });
     }
@@ -39,8 +39,30 @@ export class ProjectController {
     }
   };
 
+  static UpdateProject = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      const project = await Project.findByIdAndUpdate(id, req.body);
+
+      if (!project) {
+        const error = new Error('Poryecto no encontraos');
+        return res.status(400).json({ error: error.message });
+      }
+
+      res.send('Poryecto actulizado');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   static Project = async (req: Request, res: Response) => {
     const payload = req.body;
-    res.json({ data: `... Project by: ${req.method}`, payload });
+
+    try {
+      res.json({ data: `... Project by: ${req.method}`, payload });
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
