@@ -39,7 +39,7 @@ export class ProjectController {
     }
   };
 
-  static UpdateProject = async (req: Request, res: Response) => {
+  static updateProject = async (req: Request, res: Response) => {
     const { id } = req.params;
 
     try {
@@ -51,6 +51,26 @@ export class ProjectController {
       }
 
       res.send('Poryecto actulizado');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  static deleteProject = async (req: Request, res: Response) => {
+    const { id } = req.params;
+
+    try {
+      // const project = await Project.findByIdAndDelete(id);
+      const project = await Project.findById(id);
+
+      if (!project) {
+        const error = new Error('Poryecto no encontraos');
+        return res.status(400).json({ error: error.message });
+      }
+
+      await project.deleteOne();
+
+      res.send('Poryecto eliminado');
     } catch (error) {
       console.log(error);
     }

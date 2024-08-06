@@ -13,22 +13,31 @@ router.post(
   handleInputErrors,
   ProjectController.createProject
 );
+
 router.get('/', ProjectController.getAllProjects);
+
 router.get(
   '/:id',
-  param('id').isMongoId().withMessage('No es un dd válido'),
+  param('id').isMongoId().withMessage('No es un id válido'),
   handleInputErrors,
   ProjectController.getProjectById
 );
 
 router.put(
   '/:id',
-  param('id').isMongoId().withMessage('No es un dd válido'),
+  param('id').isMongoId().withMessage('No es un id válido'),
   body('projectName').notEmpty().withMessage('EL nombre del proyecto es obligatorio'),
   body('clientName').notEmpty().withMessage('EL nombre del cliente es obligatorio'),
   body('description').notEmpty().withMessage('La descripción del proyecto es obligatoria'),
   handleInputErrors,
-  ProjectController.UpdateProject
+  ProjectController.updateProject
+);
+
+router.delete(
+  '/:id',
+  param('id').isMongoId().withMessage('No es un id válido'),
+  handleInputErrors,
+  ProjectController.deleteProject
 );
 
 export default router;
