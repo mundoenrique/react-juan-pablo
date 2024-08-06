@@ -14,5 +14,11 @@ router.post(
   ProjectController.createProject
 );
 router.get('/', ProjectController.getAllProjects);
+router.get(
+  '/:id',
+  param('id').isMongoId().withMessage('No es un dd válido'),
+  handleInputErrors,
+  ProjectController.getProjectById
+);
 
 export default router;
