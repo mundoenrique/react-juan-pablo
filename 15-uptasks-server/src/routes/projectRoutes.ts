@@ -41,6 +41,11 @@ router.delete(
   ProjectController.deleteProject
 );
 
-router.post('/:projectId/tasks', TaskController.CreateTask);
+router.post(
+  '/:projectId/tasks',
+  param('projectId').isMongoId().withMessage('No es un id válido'),
+  handleInputErrors,
+  TaskController.CreateTask
+);
 
 export default router;

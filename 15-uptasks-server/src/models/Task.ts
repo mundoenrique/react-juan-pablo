@@ -28,7 +28,7 @@ const taskSchema: Schema = new Schema(
       require: true,
       trim: true,
     },
-    porject: {
+    project: {
       type: Types.ObjectId,
       ref: 'Project',
     },

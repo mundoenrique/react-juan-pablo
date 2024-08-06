@@ -77,10 +77,11 @@ export class ProjectController {
   };
 
   static Project = async (req: Request, res: Response) => {
-    const payload = req.body;
+    const {} = req.params;
+    const {} = req.body;
 
     try {
-      res.json({ data: `... Project by: ${req.method}`, payload });
+      res.json({ data: `...Task Method: ${req.method}`, body: req.body, params: req.params });
     } catch (error) {
       console.log(error);
     }
