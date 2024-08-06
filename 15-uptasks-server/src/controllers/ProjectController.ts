@@ -3,9 +3,10 @@ import Project from '../models/Project';
 
 export class ProjectController {
   static createProject = async (req: Request, res: Response) => {
-    const project = new Project(req.body);
+    // const project = new Project(req.body);
     try {
-      await project.save();
+      // await project.save();
+      await Project.create(req.body);
       const payload = req.body;
       res.json({ data: `createProject by: ${req.method}`, payload });
     } catch (error) {
