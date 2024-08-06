@@ -9,11 +9,11 @@ export class TaskController {
     try {
       const task = new Task(body);
       task.project = project.id;
-      await task.save();
       project.tasks.push(task.id);
-      await project.save();
 
-      res.json({ data: `CreateTask method: ${req.method}`, body, project, task });
+      await Promise.allSettled([task.save(), project.save()]);
+
+      res.send('Tarea creada');
     } catch (error) {
       console.log(error);
     }
