@@ -45,8 +45,10 @@ router.delete(
 router.post(
   '/:projectId/tasks',
   param('projectId').isMongoId().withMessage('No es un id válido'),
-  handleInputErrors,
+  body('name').notEmpty().withMessage('EL nombre de la tarea es obligatorio'),
+  body('description').notEmpty().withMessage('La descripción de la tarea es obligatoria'),
   projectExists,
+  handleInputErrors,
   TaskController.CreateTask
 );
 
