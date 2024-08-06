@@ -8,14 +8,19 @@ export class ProjectController {
       // await project.save();
       await Project.create(req.body);
       const payload = req.body;
-      res.json({ data: `createProject by: ${req.method}`, payload });
+      res.send('Poryecto creado exitosamente');
     } catch (error) {
       console.log({ error });
     }
   };
 
   static getAllProjects = async (req: Request, res: Response) => {
-    res.json({ data: `getAllProjects by: ${req.method}` });
+    try {
+      const projects = await Project.find({});
+      res.json(projects);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   static Project = async (req: Request, res: Response) => {
