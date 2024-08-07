@@ -43,18 +43,38 @@ export class TaskController {
         return res.status(400).json({ error: message });
       }
 
-      res.json({ data: `getTaskById Method: ${req.method}`, task });
+      res.json({ task });
+    } catch (error) {
+      res.status(500).json({ error: 'Hubo un error' });
+    }
+  };
+
+  static updateTask = async (req: Request, res: Response) => {
+    try {
+      const { params, body } = req;
+      const { taskId } = params;
+      const task = await Task.findByIdAndUpdate(taskId, body);
+
+      if (!task) {
+        const { message } = new Error('Tarea no encontrada');
+        return res.status(404).json({ error: message });
+      }
+
+      if (task.project.toString() !== req.project.id) {
+        const { message } = new Error('Tarea no pertece al proyecto');
+        return res.status(400).json({ error: message });
+      }
+
+      res.send('Tarea actualizada');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
   };
 
   static Task = async (req: Request, res: Response) => {
-    const {} = req.params;
-    const {} = req.body;
-
     try {
-      res.json({ data: `...Task Method: ${req.method}`, body: req.body, params: req.params });
+      const { params, body } = req;
+      res.json({ data: `${this.name} - ....: httpVerb= ${req.method}`, params, body });
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
