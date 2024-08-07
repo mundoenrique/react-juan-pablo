@@ -9,8 +9,8 @@ const router = Router();
 
 router.post(
   '/',
-  body('projectName').notEmpty().withMessage('EL nombre del proyecto es obligatorio'),
-  body('clientName').notEmpty().withMessage('EL nombre del cliente es obligatorio'),
+  body('projectName').notEmpty().withMessage('El nombre del proyecto es obligatorio'),
+  body('clientName').notEmpty().withMessage('El nombre del cliente es obligatorio'),
   body('description').notEmpty().withMessage('La descripción del proyecto es obligatoria'),
   handleInputErrors,
   ProjectController.createProject
@@ -20,40 +20,44 @@ router.get('/', ProjectController.getAllProjects);
 
 router.get(
   '/:id',
-  param('id').isMongoId().withMessage('No es un id válido'),
+  param('id').isMongoId().withMessage('ID no válido'),
   handleInputErrors,
   ProjectController.getProjectById
 );
 
 router.put(
   '/:id',
-  param('id').isMongoId().withMessage('No es un id válido'),
-  body('projectName').notEmpty().withMessage('EL nombre del proyecto es obligatorio'),
-  body('clientName').notEmpty().withMessage('EL nombre del cliente es obligatorio'),
-  body('description').notEmpty().withMessage('La descripción del proyecto es obligatoria'),
+  param('id').isMongoId().withMessage('ID no válido'),
+  body('projectName').notEmpty().withMessage('El nombre del proyecto es obligatorio'),
+  body('clientName').notEmpty().withMessage('El nombre del cliente es obligatorio'),
+  body('description').notEmpty().withMessage('La nescripción del proyecto es obligatoria'),
   handleInputErrors,
   ProjectController.updateProject
 );
 
 router.delete(
   '/:id',
-  param('id').isMongoId().withMessage('No es un id válido'),
+  param('id').isMongoId().withMessage('ID no válido'),
   handleInputErrors,
   ProjectController.deleteProject
 );
+
 router.param('projectId', projectExists);
+
 router.post(
   '/:projectId/tasks',
-  body('name').notEmpty().withMessage('EL nombre de la tarea es obligatorio'),
+  body('name').notEmpty().withMessage('El nombre de la tarea es obligatorio'),
   body('description').notEmpty().withMessage('La descripción de la tarea es obligatoria'),
   handleInputErrors,
-  TaskController.CreateTask
+  TaskController.createTask
 );
 
 router.get('/:projectId/tasks', TaskController.getProjectTasks);
+
 router.get(
   '/:projectId/tasks/:taskId',
   param('taskId').isMongoId().withMessage('ID no válido'),
+  handleInputErrors,
   TaskController.getTaskById
 );
 

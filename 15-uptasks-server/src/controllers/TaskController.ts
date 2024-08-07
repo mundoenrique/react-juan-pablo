@@ -1,9 +1,8 @@
 import type { Request, Response } from 'express';
-import Project from '../models/Project';
 import Task from '../models/Task';
 
 export class TaskController {
-  static CreateTask = async (req: Request, res: Response) => {
+  static createTask = async (req: Request, res: Response) => {
     const { body, project } = req;
 
     try {
