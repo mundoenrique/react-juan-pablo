@@ -52,4 +52,6 @@ router.post(
   TaskController.CreateTask
 );
 
+router.get('/:projectId/tasks', projectExists, TaskController.getProjectTasks);
+
 export default router;

@@ -15,7 +15,17 @@ export class TaskController {
 
       res.send('Tarea creada');
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ error: 'Hubo un error' });
+    }
+  };
+
+  static getProjectTasks = async (req: Request, res: Response) => {
+    const tasks = await Task.find({ project: req.project.id });
+
+    try {
+      res.json({ tasks });
+    } catch (error) {
+      res.status(500).json({ error: 'Hubo un error' });
     }
   };
 
@@ -26,7 +36,7 @@ export class TaskController {
     try {
       res.json({ data: `...Task Method: ${req.method}`, body: req.body, params: req.params });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ error: 'Hubo un error' });
     }
   };
 }
