@@ -53,7 +53,7 @@ export class TaskController {
     try {
       const { params, body } = req;
       const { taskId } = params;
-      const task = await Task.findByIdAndUpdate(taskId, body);
+      const task = await Task.findById(taskId);
 
       if (!task) {
         const { message } = new Error('Tarea no encontrada');
@@ -65,6 +65,9 @@ export class TaskController {
         return res.status(400).json({ error: message });
       }
 
+      task.name = body.name;
+      task.description = body.description;
+      await task.save();
       res.send('Tarea actualizada');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
