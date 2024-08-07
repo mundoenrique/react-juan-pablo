@@ -19,9 +19,9 @@ export class TaskController {
   };
 
   static getProjectTasks = async (req: Request, res: Response) => {
-    const tasks = await Task.find({ project: req.project.id }).populate('project');
-
     try {
+      const tasks = await Task.find({ project: req.project.id }).populate('project');
+
       res.json({ tasks });
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
@@ -29,45 +29,23 @@ export class TaskController {
   };
 
   static getTaskById = async (req: Request, res: Response) => {
+    const { task } = req;
+
     try {
-      const { taskId } = req.params;
-      const task = await Task.findById(taskId);
-
-      if (!task) {
-        const { message } = new Error('Tarea no encontrada');
-        return res.status(404).json({ error: message });
-      }
-
-      if (task.project.toString() !== req.project.id) {
-        const { message } = new Error('Tarea no pertece al proyecto');
-        return res.status(400).json({ error: message });
-      }
-
-      res.json({ task });
+      res.json(task);
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
   };
 
   static updateTask = async (req: Request, res: Response) => {
+    const { body, task } = req;
+
     try {
-      const { params, body } = req;
-      const { taskId } = params;
-      const task = await Task.findById(taskId);
-
-      if (!task) {
-        const { message } = new Error('Tarea no encontrada');
-        return res.status(404).json({ error: message });
-      }
-
-      if (task.project.toString() !== req.project.id) {
-        const { message } = new Error('Tarea no pertece al proyecto');
-        return res.status(400).json({ error: message });
-      }
-
       task.name = body.name;
       task.description = body.description;
       await task.save();
+
       res.send('Tarea actualizada');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
@@ -75,23 +53,11 @@ export class TaskController {
   };
 
   static deleteTask = async (req: Request, res: Response) => {
+    const { project, task } = req;
+
     try {
-      const { params, body } = req;
-      const { taskId } = params;
-      const task = await Task.findById(taskId);
-
-      if (!task) {
-        const { message } = new Error('Tarea no encontrada');
-        return res.status(404).json({ error: message });
-      }
-
-      if (task.project.toString() !== req.project.id) {
-        const { message } = new Error('Tarea no pertece al proyecto');
-        return res.status(400).json({ error: message });
-      }
-
-      req.project.tasks = req.project.tasks.filter((task) => task.toString() !== taskId);
-      await Promise.allSettled([task.deleteOne(), req.project.save()]);
+      project.tasks = project.tasks.filter((projectTask) => projectTask.toString() !== task.id.toString());
+      await Promise.allSettled([task.deleteOne(), project.save()]);
 
       res.send('Tarea eliminada');
     } catch (error) {
@@ -100,21 +66,10 @@ export class TaskController {
   };
 
   static updateStatus = async (req: Request, res: Response) => {
+    const { body, task } = req;
+    const { status } = body;
+
     try {
-      const { taskId } = req.params;
-      const { status } = req.body;
-      const task = await Task.findById(taskId);
-
-      if (!task) {
-        const { message } = new Error('Tarea no encontrada');
-        return res.status(404).json({ error: message });
-      }
-
-      if (task.project.toString() !== req.project.id) {
-        const { message } = new Error('Tarea no pertece al proyecto');
-        return res.status(400).json({ error: message });
-      }
-
       task.status = status;
       task.save();
 
@@ -125,9 +80,10 @@ export class TaskController {
   };
 
   static Task = async (req: Request, res: Response) => {
+    const { params, body } = req;
+
     try {
-      const { params, body } = req;
-      res.json({ data: `${this.name} - ....: httpVerb= ${req.method}`, params, body });
+      res.json({ data: `${this.name} - Task: httpVerb= ${req.method}`, params, body });
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
