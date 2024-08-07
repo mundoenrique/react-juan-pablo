@@ -71,6 +71,31 @@ export class TaskController {
     }
   };
 
+  static deleteTask = async (req: Request, res: Response) => {
+    try {
+      const { params, body } = req;
+      const { taskId } = params;
+      const task = await Task.findById(taskId);
+
+      if (!task) {
+        const { message } = new Error('Tarea no encontrada');
+        return res.status(404).json({ error: message });
+      }
+
+      if (task.project.toString() !== req.project.id) {
+        const { message } = new Error('Tarea no pertece al proyecto');
+        return res.status(400).json({ error: message });
+      }
+
+      req.project.tasks = req.project.tasks.filter((task) => task.toString() !== taskId);
+      await Promise.allSettled([task.deleteOne(), req.project.save()]);
+
+      res.send('Tarea eliminada');
+    } catch (error) {
+      res.status(500).json({ error: 'Hubo un error' });
+    }
+  };
+
   static Task = async (req: Request, res: Response) => {
     try {
       const { params, body } = req;
