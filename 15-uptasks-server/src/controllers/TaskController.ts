@@ -99,6 +99,31 @@ export class TaskController {
     }
   };
 
+  static updateStatus = async (req: Request, res: Response) => {
+    try {
+      const { taskId } = req.params;
+      const { status } = req.body;
+      const task = await Task.findById(taskId);
+
+      if (!task) {
+        const { message } = new Error('Tarea no encontrada');
+        return res.status(404).json({ error: message });
+      }
+
+      if (task.project.toString() !== req.project.id) {
+        const { message } = new Error('Tarea no pertece al proyecto');
+        return res.status(400).json({ error: message });
+      }
+
+      task.status = status;
+      task.save();
+
+      res.send('Estado la tarea actulizado');
+    } catch (error) {
+      res.status(500).json({ error: 'Hubo un error' });
+    }
+  };
+
   static Task = async (req: Request, res: Response) => {
     try {
       const { params, body } = req;
