@@ -1,0 +1,130 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "uptasks-server",
+    "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+    "dateExported": "2024-08-07T16:22:10.149Z",
+    "version": "1.2",
+    "folders": [
+        {
+            "_id": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "projects",
+            "containerId": "",
+            "created": "2024-08-06T00:06:22.346Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "d427a373-e131-4d0f-91af-95cae00fab30",
+            "name": "tasks",
+            "containerId": "",
+            "created": "2024-08-06T18:38:40.690Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "b0d0c8b6-01b5-429b-a861-9c1173d7848f",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "All projects",
+            "url": "/projects",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2024-08-06T00:08:07.206Z",
+            "modified": "2024-08-06T15:57:25.739Z",
+            "headers": []
+        },
+        {
+            "_id": "1deb9bb1-b59e-45bf-85ab-8e8258b738ec",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "Create project",
+            "url": "/projects",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-08-06T00:16:26.053Z",
+            "modified": "2024-08-07T00:54:08.562Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"projectName\": \"projectName2\",\n  \"clientName\": \"clientName2\",\n  \"description\": \"description2\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "1e38f039-d7fa-4ac2-92f4-b6f453714a5b",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "Update project",
+            "url": "/projects/66b27c0e77cb220655ee24c5",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-08-06T15:54:05.759Z",
+            "modified": "2024-08-07T00:50:39.350Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"projectName\": \"wallet\",\n  \"clientName\": \"Betsy c.a.\",\n  \"description\": \"Next, React\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "f3066d51-b3c9-4281-8065-14bf41879011",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "Project by id",
+            "url": "/projects/66b2c5a66b7777a54b2b011b",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-08-06T16:28:11.364Z",
+            "modified": "2024-08-07T01:28:10.770Z",
+            "headers": []
+        },
+        {
+            "_id": "3ca8d579-924e-4c2f-ab26-72dd11ba0d22",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "1ffb5aea-bcc3-4a77-ad89-e14018de6fe3",
+            "name": "Delete project",
+            "url": "/projects/66b27c1877cb220655ee24c7",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2024-08-06T16:46:41.152Z",
+            "modified": "2024-08-06T19:41:10.303Z",
+            "headers": []
+        },
+        {
+            "_id": "88c9befe-720d-45dd-917f-4fac6b4c04d6",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "d427a373-e131-4d0f-91af-95cae00fab30",
+            "name": "Create task",
+            "url": "/projects/66b2c5b06b7777a54b2b011d/tasks",
+            "method": "POST",
+            "sortNum": 60000,
+            "created": "2024-08-06T18:39:29.585Z",
+            "modified": "2024-08-07T00:55:15.521Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"TaskName5\",\n  \"description\": \"TaskDescription5\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "b60bc8bb-2047-49d8-a981-7e72d9e46c95",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "d427a373-e131-4d0f-91af-95cae00fab30",
+            "name": "Project tasks",
+            "url": "/projects/66b2c5b06b7777a54b2b011d/tasks",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2024-08-07T00:47:01.807Z",
+            "modified": "2024-08-07T01:08:48.472Z",
+            "headers": []
+        }
+    ],
+    "settings": {
+        "options": {
+            "baseUrl": "localhost:4001/api"
+        }
+    },
+    "ref": "OhRPFvp0jcZeYmt7LZM_J664-wykY2xAeUXbTwD99GmCafZQgW6zeOZYGUKtLaqCUEvMpzJbOSrXtb3yujq0yg"
+}
