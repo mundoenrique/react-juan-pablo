@@ -1,10 +1,10 @@
-import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import ProjectForm from '@/components/projects/ProjectForm';
 import { ProjectFormData } from '@/types/index';
 import { createProject } from '@/api/ProjectAPI';
-import ProjectForm from '@/components/projects/ProjectForm';
 
 export default function CreateProjectView() {
   const navigate = useNavigate();
@@ -50,6 +50,7 @@ export default function CreateProjectView() {
 
         <form className="mt-10 bg-white shadow-lg p-10 rounded-lg" onSubmit={handleSubmit(handleForm)} noValidate>
           <ProjectForm register={register} errors={errors} />
+
           <input
             type="submit"
             value="Crear Proyecto"
