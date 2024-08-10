@@ -1,8 +1,11 @@
 import { Fragment } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
+import { toast } from 'react-toastify';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { TaskFormData } from '@/types/index';
+import { createTask } from '@/api/TaskAPI';
 import TaskForm from './TaskForm';
 
 export default function AddTaskModal() {
@@ -16,17 +19,34 @@ export default function AddTaskModal() {
     name: '',
     description: '',
   };
-
+  /** Obtener projectId */
+  const params = useParams();
+  const projectId = params.projectId!;
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
-
+  const queryClient = useQueryClient();
+  const { mutate } = useMutation({
+    mutationFn: createTask,
+    onError: (error) => {
+      toast.error(error.message);
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['project', projectId] });
+      toast.success(data);
+      reset();
+      navigate(location.pathname, { replace: true });
+    },
+  });
   const handleCreateTask = (formData: TaskFormData) => {
-    console.log(formData);
-    reset();
+    const data = {
+      formData,
+      projectId,
+    };
+    mutate(data);
   };
 
   return (
