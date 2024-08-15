@@ -3,7 +3,6 @@ import TaskCard from './TaskCard';
 
 type TaskListProps = {
   tasks: Task[];
-  canEdit: boolean;
 };
 
 type GroupedTasks = {
