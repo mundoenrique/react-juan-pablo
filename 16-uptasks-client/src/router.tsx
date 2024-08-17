@@ -2,9 +2,10 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from '@/layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
 import DashboardView from '@/views/DashboardView';
-import LoginView from './views/auth/LoginView';
 import ConfirmAccountView from './views/auth/ConfirmAccountView';
 import RegisterView from './views/auth/RegisterView';
+import RequestNewCodeView from './views/auth/RequestNewCodeView';
+import LoginView from './views/auth/LoginView';
 import CreateProjectView from './views/projects/CreateProjectView';
 import EditProjectView from './views/projects/EditProjectView';
 import ProjectDetailsView from './views/projects/ProjectDetailsView';
@@ -23,6 +24,7 @@ export default function Router() {
           <Route path="/auth/login" element={<LoginView />} />
           <Route path="/auth/register" element={<RegisterView />} />
           <Route path="/auth/confirm-account" element={<ConfirmAccountView />} />
+          <Route path="/auth/request-code" element={<RequestNewCodeView />} />
         </Route>
       </Routes>
     </BrowserRouter>
