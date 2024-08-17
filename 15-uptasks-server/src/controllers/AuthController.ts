@@ -1,6 +1,9 @@
 import type { Request, Response } from 'express';
 import User from '../models/User';
 import { hashPassword } from '../utils/auth';
+import { generateToken } from '../utils/token';
+import Token from '../models/Token';
+import { AuthEmail } from '../emails/AuthEmail';
 
 export class AuthController {
   static createAccount = async (req: Request, res: Response) => {
@@ -18,7 +21,18 @@ export class AuthController {
       const user = new User(req.body);
       // Hash password
       user.password = await hashPassword(password);
-      await user.save();
+      // Generar el token
+      const token = new Token();
+      token.token = generateToken();
+      token.user = user.id;
+      // Enviar correo
+      AuthEmail.sendConfirmationEmail({
+        email: user.email,
+        name: user.name,
+        token: token.token,
+      });
+
+      await Promise.allSettled([user.save(), token.save()]);
 
       res.send('Cuenta creada, revisa tu correo para confirmarla');
     } catch (error) {
