@@ -83,7 +83,7 @@ export class TaskController {
     const { params, body } = req;
 
     try {
-      res.json({ data: `${this.name} - Task: httpVerb= ${req.method}`, params, body });
+      res.json({ data: `${this.name} - : httpVerb= ${req.method}`, params, body });
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }

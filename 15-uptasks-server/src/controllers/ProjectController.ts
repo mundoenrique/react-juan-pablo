@@ -83,13 +83,12 @@ export class ProjectController {
   };
 
   static Project = async (req: Request, res: Response) => {
-    const {} = req.params;
-    const {} = req.body;
+    const { params, body } = req;
 
     try {
-      res.json({ data: `...Task Method: ${req.method}`, body: req.body, params: req.params });
+      res.json({ data: `${this.name} - : httpVerb= ${req.method}`, params, body });
     } catch (error) {
-      console.log(error);
+      res.status(500).json({ error: 'Hubo un error' });
     }
   };
 }
