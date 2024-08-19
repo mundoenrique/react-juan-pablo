@@ -31,7 +31,12 @@ export default function LoginView() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleLogin)} className="space-y-8 p-10 bg-white" noValidate>
+      <h1 className="text-5xl font-black text-white">Iniciar Sesión</h1>
+      <p className="text-2xl font-light text-white mt-5">
+        Comienza a planear tus proyectos {''}
+        <span className=" text-fuchsia-500 font-bold"> iniciando sesión en este formulario</span>
+      </p>
+      <form onSubmit={handleSubmit(handleLogin)} className="space-y-8 p-10 mt-10 bg-white" noValidate>
         <div className="flex flex-col gap-5">
           <label className="font-normal text-2xl">Email</label>
 
