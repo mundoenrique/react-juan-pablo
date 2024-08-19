@@ -3,12 +3,13 @@ import Project from '../models/Project';
 
 export class ProjectController {
   static createProject = async (req: Request, res: Response) => {
-    // const project = new Project(req.body);
-    console.log(req.user);
+    const project = new Project(req.body);
+    // Asigna el manager
+    project.manager = req.user.id;
+
     try {
-      // await project.save();
-      await Project.create(req.body);
-      const payload = req.body;
+      await project.save();
+
       res.send('Poryecto creado');
     } catch (error) {
       console.log({ error });
