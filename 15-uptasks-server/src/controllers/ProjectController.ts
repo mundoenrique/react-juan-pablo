@@ -41,6 +41,12 @@ export class ProjectController {
         return res.status(400).json({ error: error.message });
       }
 
+      if (project.manager.toString() !== req.user.id.toString()) {
+        const error = new Error('Acción no válida');
+
+        return res.status(404).json({ error: error.message });
+      }
+
       res.json(project);
     } catch (error) {
       console.log(error);
@@ -57,6 +63,12 @@ export class ProjectController {
       if (!project) {
         const error = new Error('Poryecto no encontrado');
         return res.status(400).json({ error: error.message });
+      }
+
+      if (project.manager.toString() !== req.user.id.toString()) {
+        const error = new Error('Solo el manager puede actulizar un poryecto');
+
+        return res.status(404).json({ error: error.message });
       }
 
       project.projectName = body.projectName;
@@ -80,6 +92,12 @@ export class ProjectController {
       if (!project) {
         const error = new Error('Poryecto no encontraos');
         return res.status(400).json({ error: error.message });
+      }
+
+      if (project.manager.toString() !== req.user.id.toString()) {
+        const error = new Error('Solo el manager puede eliminar un poryecto');
+
+        return res.status(404).json({ error: error.message });
       }
 
       await project.deleteOne();
