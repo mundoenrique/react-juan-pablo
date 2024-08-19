@@ -20,6 +20,18 @@ export type UpdateCurrentUserPasswordForm = Pick<Auth, 'current_password' | 'pas
 export type ConfirmToken = Pick<Auth, 'token'>;
 export type CheckPasswordForm = Pick<Auth, 'password'>;
 
+/** Users */
+export const userSchema = authSchema
+  .pick({
+    name: true,
+    email: true,
+  })
+  .extend({
+    _id: z.string(),
+  });
+export type User = z.infer<typeof userSchema>;
+export type UserProfileForm = Pick<User, 'name' | 'email'>;
+
 /** Tasks */
 export const taskStatusSchema = z.enum(['pending', 'onHold', 'inProgress', 'underReview', 'completed']);
 export type TaskStatus = z.infer<typeof taskStatusSchema>;
