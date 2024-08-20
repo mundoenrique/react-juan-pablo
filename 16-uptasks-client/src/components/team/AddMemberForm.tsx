@@ -1,15 +1,17 @@
 import { useForm } from 'react-hook-form';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
 import ErrorMessage from '../ErrorMessage';
 import { TeamMemberForm } from '@/types/index';
+import { findUserByEmail } from '@/api/TeamAPI';
+import SearchResult from './SearchResult';
 
 export default function AddMemberForm() {
   const initialValues: TeamMemberForm = {
     email: '',
   };
-  // const params = useParams();
-  // const projectId = params.projectId!;
+  const params = useParams();
+  const projectId = params.projectId!;
 
   const {
     register,
@@ -18,9 +20,22 @@ export default function AddMemberForm() {
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
 
-  /* const mutation = */ useMutation({});
+  const mutation = useMutation({
+    mutationFn: findUserByEmail,
+  });
 
-  const handleSearchUser = async () => {};
+  const handleSearchUser = async (formData: TeamMemberForm) => {
+    const data = {
+      projectId,
+      formData,
+    };
+
+    mutation.mutate(data);
+  };
+
+  // const resetData = () => {
+  //   reset(), mutation.reset();
+  // };
 
   return (
     <>
@@ -51,6 +66,11 @@ export default function AddMemberForm() {
           value="Buscar Usuario"
         />
       </form>
+      <div className="mt-10">
+        {mutation.isPending && <p className="text-center">Cargando...</p>}
+        {mutation.error && <p className="text-center">{mutation.error.message}</p>}
+        {mutation.data && <SearchResult user={mutation.data} /* reset={resetData} */ />}
+      </div>
     </>
   );
 }
