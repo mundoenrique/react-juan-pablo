@@ -25,11 +25,7 @@ export default function AddMemberForm() {
   });
 
   const handleSearchUser = async (formData: TeamMemberForm) => {
-    const data = {
-      projectId,
-      formData,
-    };
-
+    const data = { projectId, formData };
     mutation.mutate(data);
   };
 
