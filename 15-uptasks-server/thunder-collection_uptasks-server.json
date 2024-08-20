@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-20T13:24:38.429Z",
+    "dateExported": "2024-08-20T13:37:37.890Z",
     "version": "1.2",
     "folders": [
         {
@@ -382,12 +382,24 @@
             "_id": "d81a8f33-cc7f-4b91-9aaf-607917f4b43d",
             "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
             "containerId": "b9701170-e28c-4608-984f-c9c2f0d933ff",
-            "name": "Add member by ID Copy",
-            "url": "/projects/66c3f2f779ebe454cf1ab71e/team/66c382a7fb54d580a4d20295",
+            "name": "Delete member by ID",
+            "url": "/projects/66c3f2f779ebe454cf1ab71e/team/66c382d6fb54d580a4d2029e",
             "method": "DELETE",
             "sortNum": 200000,
             "created": "2024-08-20T13:22:57.854Z",
-            "modified": "2024-08-20T13:23:44.548Z",
+            "modified": "2024-08-20T13:37:21.126Z",
+            "headers": []
+        },
+        {
+            "_id": "d95c0001-ad58-4f4b-8601-71caefa3bc70",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "b9701170-e28c-4608-984f-c9c2f0d933ff",
+            "name": "Project members",
+            "url": "/projects/66c3f2f779ebe454cf1ab71e/team",
+            "method": "GET",
+            "sortNum": 210000,
+            "created": "2024-08-20T13:27:21.308Z",
+            "modified": "2024-08-20T13:28:13.847Z",
             "headers": []
         }
     ],
@@ -396,5 +408,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_Jwy1KGcPEYjanf-KJ64J1wWmUHFx3jh6HsRRBK2H4SVFMQuem2FkT9b893ft0zcg4w"
+    "ref": "OhRPFvp0jcZeYmt7LZM_J28xIv6_y7TEWrYFu-XC4oQWao6Ux-SAtg4_jB7TcKaHhw134QrNJevImZSMGe4LTA"
 }
