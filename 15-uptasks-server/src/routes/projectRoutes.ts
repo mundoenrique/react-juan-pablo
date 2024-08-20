@@ -3,7 +3,7 @@ import { body, param } from 'express-validator';
 import { authenticate } from '../middleware/auth';
 import { projectExists } from '../middleware/project';
 import { handleInputErrors } from '../middleware/validation';
-import { taskBelongsToProject, taskExists } from '../middleware/task';
+import { hasAuthorization, taskBelongsToProject, taskExists } from '../middleware/task';
 import { ProjectController } from '../controllers/ProjectController';
 import { TaskController } from '../controllers/TaskController';
 import { TeamMemberController } from '../controllers/TeamMemberController';
@@ -13,7 +13,6 @@ router.use(authenticate);
 
 router.post(
   '/',
-
   body('projectName').notEmpty().withMessage('El nombre del proyecto es obligatorio'),
   body('clientName').notEmpty().withMessage('El nombre del cliente es obligatorio'),
   body('description').notEmpty().withMessage('La descripción del proyecto es obligatoria'),
@@ -51,6 +50,7 @@ router.param('projectId', projectExists);
 
 router.post(
   '/:projectId/tasks',
+  hasAuthorization,
   body('name').notEmpty().withMessage('El nombre de la tarea es obligatorio'),
   body('description').notEmpty().withMessage('La descripción de la tarea es obligatoria'),
   handleInputErrors,
@@ -71,6 +71,7 @@ router.get(
 
 router.put(
   '/:projectId/tasks/:taskId',
+  hasAuthorization,
   param('taskId').isMongoId().withMessage('ID no válido'),
   body('name').notEmpty().withMessage('El nombre de la tarea es obligatorio'),
   body('description').notEmpty().withMessage('La descripción de la tarea es obligatoria'),
@@ -80,6 +81,7 @@ router.put(
 
 router.delete(
   '/:projectId/tasks/:taskId',
+  hasAuthorization,
   param('taskId').isMongoId().withMessage('ID no válido'),
   handleInputErrors,
   TaskController.deleteTask
