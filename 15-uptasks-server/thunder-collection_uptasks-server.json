@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-19T18:55:06.967Z",
+    "dateExported": "2024-08-20T13:05:12.065Z",
     "version": "1.2",
     "folders": [
         {
@@ -31,6 +31,19 @@
             "containerId": "",
             "created": "2024-08-16T17:20:38.432Z",
             "sortNum": 30000
+        },
+        {
+            "_id": "b9701170-e28c-4608-984f-c9c2f0d933ff",
+            "name": "team",
+            "containerId": "",
+            "created": "2024-08-20T12:14:52.440Z",
+            "sortNum": 40000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmE3ZmI1NGQ1ODBhNGQyMDI5NSIsImlhdCI6MTcyNDE1NTcwMywiZXhwIjoxNzM5NzA3NzAzfQ.hv837Cna5rZkTKSxYvsVaTZ5ElJOrxZRkEjgidewzHI"
+                }
+            }
         }
     ],
     "requests": [
@@ -226,23 +239,6 @@
             }
         },
         {
-            "_id": "8b92d6bf-d77c-4526-a1b5-574519391cf2",
-            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-            "containerId": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
-            "name": "Update password",
-            "url": "/auth/update-password/128531",
-            "method": "POST",
-            "sortNum": 120000,
-            "created": "2024-08-19T14:21:21.376Z",
-            "modified": "2024-08-19T14:29:34.086Z",
-            "headers": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \n  \"password\": \"12345678\",\n  \"password_confirmation\": \"12345678\"\n  \n}",
-                "form": []
-            }
-        },
-        {
             "_id": "df41467a-14d1-46b3-97d8-91383465ca8c",
             "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
             "containerId": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
@@ -256,6 +252,23 @@
             "body": {
                 "type": "json",
                 "raw": "{\n  \"email\": \"mmx@mmx.com\",\n  \"password\": \"12345678\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "8b92d6bf-d77c-4526-a1b5-574519391cf2",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
+            "name": "Update password",
+            "url": "/auth/update-password/128531",
+            "method": "POST",
+            "sortNum": 135000,
+            "created": "2024-08-19T14:21:21.376Z",
+            "modified": "2024-08-19T14:29:34.086Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \n  \"password\": \"12345678\",\n  \"password_confirmation\": \"12345678\"\n  \n}",
                 "form": []
             }
         },
@@ -274,27 +287,6 @@
                 "type": "json",
                 "raw": "{\n  \"email\": \"mmx@mmx.com\"\n}",
                 "form": []
-            }
-        },
-        {
-            "_id": "b31889f0-a773-47e8-9ca6-b1335dd36a96",
-            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-            "containerId": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
-            "name": "User",
-            "url": "/auth/user",
-            "method": "GET",
-            "sortNum": 140000,
-            "created": "2024-08-19T18:49:52.653Z",
-            "modified": "2024-08-19T18:50:56.270Z",
-            "headers": [],
-            "body": {
-                "type": "json",
-                "raw": "{\n  \"email\": \"mmx@mmx.com\",\n  \"password\": \"12345678\"\n}",
-                "form": []
-            },
-            "auth": {
-                "type": "bearer",
-                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmE3ZmI1NGQ1ODBhNGQyMDI5NSIsImlhdCI6MTcyNDA5MzI0OSwiZXhwIjoxNzM5NjQ1MjQ5fQ.NNcp9Sfsf39GiMy-Bov1ySw8PazqnzR6aOSvtoa-p6M"
             }
         },
         {
@@ -330,6 +322,61 @@
                 "raw": "{\n  \"token\": \"128531\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "b31889f0-a773-47e8-9ca6-b1335dd36a96",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
+            "name": "User",
+            "url": "/auth/user",
+            "method": "GET",
+            "sortNum": 170000,
+            "created": "2024-08-19T18:49:52.653Z",
+            "modified": "2024-08-19T18:50:56.270Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"mmx@mmx.com\",\n  \"password\": \"12345678\"\n}",
+                "form": []
+            },
+            "auth": {
+                "type": "bearer",
+                "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmE3ZmI1NGQ1ODBhNGQyMDI5NSIsImlhdCI6MTcyNDA5MzI0OSwiZXhwIjoxNzM5NjQ1MjQ5fQ.NNcp9Sfsf39GiMy-Bov1ySw8PazqnzR6aOSvtoa-p6M"
+            }
+        },
+        {
+            "_id": "7644d5de-df4d-4a10-8ac9-7bd320d4f5ac",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "b9701170-e28c-4608-984f-c9c2f0d933ff",
+            "name": "Find member by email",
+            "url": "/projects/66c3f2f779ebe454cf1ab71e/team/find",
+            "method": "POST",
+            "sortNum": 180000,
+            "created": "2024-08-20T12:41:44.581Z",
+            "modified": "2024-08-20T12:56:27.015Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"mmx1@mmx.com\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "2c9698f7-d24d-4138-a88e-24f65ac69e37",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "b9701170-e28c-4608-984f-c9c2f0d933ff",
+            "name": "Add member by ID",
+            "url": "/projects/66c3f2f779ebe454cf1ab71e/team",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2024-08-20T12:55:44.084Z",
+            "modified": "2024-08-20T12:59:12.502Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"id\": \"66c382a7fb54d580a4d20295\"\n}",
+                "form": []
+            }
         }
     ],
     "settings": {
@@ -337,5 +384,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_J7RkSZQiIfW_hd5GkPATrGYHTOHPAYneDfcCCQ6Yz2KwkFJI_S6Siiux9t4wsTp1KQ"
+    "ref": "OhRPFvp0jcZeYmt7LZM_J1klEEDqbaYMmH1YOScn551q0A4rswXiAr2oDWwtod3N56R3PFiQSDsvJEfbySQ_sg"
 }
