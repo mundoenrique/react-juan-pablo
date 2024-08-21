@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-20T13:37:37.890Z",
+    "dateExported": "2024-08-21T16:34:19.704Z",
     "version": "1.2",
     "folders": [
         {
@@ -23,7 +23,13 @@
             "name": "tasks",
             "containerId": "",
             "created": "2024-08-06T18:38:40.690Z",
-            "sortNum": 20000
+            "sortNum": 20000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmQ2ZmI1NGQ1ODBhNGQyMDI5ZSIsImlhdCI6MTcyNDE5NzcxNSwiZXhwIjoxNzM5NzQ5NzE1fQ.gUedoSNRPO5AZKKpmb1iPBKgdEikzPWf0LNcR2A9SAQ"
+                }
+            }
         },
         {
             "_id": "0841dce3-841e-43ce-86f2-1842c5cc3bf6",
@@ -42,6 +48,19 @@
                 "auth": {
                     "type": "bearer",
                     "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmE3ZmI1NGQ1ODBhNGQyMDI5NSIsImlhdCI6MTcyNDE1NTcwMywiZXhwIjoxNzM5NzA3NzAzfQ.hv837Cna5rZkTKSxYvsVaTZ5ElJOrxZRkEjgidewzHI"
+                }
+            }
+        },
+        {
+            "_id": "0a025384-91b9-4870-85e0-f739bc31b145",
+            "name": "notes",
+            "containerId": "",
+            "created": "2024-08-21T15:31:41.946Z",
+            "sortNum": 50000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmQ2ZmI1NGQ1ODBhNGQyMDI5ZSIsImlhdCI6MTcyNDE5NzcxNSwiZXhwIjoxNzM5NzQ5NzE1fQ.gUedoSNRPO5AZKKpmb1iPBKgdEikzPWf0LNcR2A9SAQ"
                 }
             }
         }
@@ -168,11 +187,11 @@
             "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
             "containerId": "d427a373-e131-4d0f-91af-95cae00fab30",
             "name": "Tasks by id",
-            "url": "/projects/66b3db260cd827a2b2c9b0f4/tasks/66b3dc0d0cd827a2b2c9b104",
+            "url": "/projects/66c5187ef111357cdfd9a015/tasks/66c5fd02234d4d12c8d9a30e",
             "method": "GET",
             "sortNum": 80000,
             "created": "2024-08-07T17:56:14.977Z",
-            "modified": "2024-08-07T20:46:50.413Z",
+            "modified": "2024-08-21T16:17:31.663Z",
             "headers": []
         },
         {
@@ -401,6 +420,57 @@
             "created": "2024-08-20T13:27:21.308Z",
             "modified": "2024-08-20T13:28:13.847Z",
             "headers": []
+        },
+        {
+            "_id": "72115977-df86-4d5b-b6c7-13d1a62bf4d5",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "0a025384-91b9-4870-85e0-f739bc31b145",
+            "name": "Create note",
+            "url": "/projects/66c5187ef111357cdfd9a015/tasks/66c5fd02234d4d12c8d9a30e/notes",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2024-08-21T15:32:42.479Z",
+            "modified": "2024-08-21T16:14:43.662Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"content\": \"añadiendo 2do comentario\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "9424c709-4667-4bdb-9bd9-a52f56cad98f",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "0a025384-91b9-4870-85e0-f739bc31b145",
+            "name": "Notes by task",
+            "url": "/projects/66c5187ef111357cdfd9a015/tasks/66c5fd02234d4d12c8d9a30e/notes",
+            "method": "GET",
+            "sortNum": 230000,
+            "created": "2024-08-21T16:09:36.669Z",
+            "modified": "2024-08-21T16:10:20.740Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"content\": \"añadiendo comentario\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3f15f2a1-c5e3-4440-93a9-e0947284cd7e",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "0a025384-91b9-4870-85e0-f739bc31b145",
+            "name": "Delete note",
+            "url": "/projects/66c5187ef111357cdfd9a015/tasks/66c5fd02234d4d12c8d9a30e/notes/66c61273bf85f20c23008c0a",
+            "method": "DELETE",
+            "sortNum": 240000,
+            "created": "2024-08-21T16:30:40.502Z",
+            "modified": "2024-08-21T16:31:44.494Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"content\": \"añadiendo comentario\"\n}",
+                "form": []
+            }
         }
     ],
     "settings": {
@@ -408,5 +478,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_J28xIv6_y7TEWrYFu-XC4oQWao6Ux-SAtg4_jB7TcKaHhw134QrNJevImZSMGe4LTA"
+    "ref": "OhRPFvp0jcZeYmt7LZM_J8ppJ8OqzkCDxNWEk5T1GWkP7wmdeP09a_GHaNOSQSKdUR39NmfzSPr9Yr2A7s0lVw"
 }
