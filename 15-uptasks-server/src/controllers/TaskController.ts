@@ -66,11 +66,18 @@ export class TaskController {
   };
 
   static updateStatus = async (req: Request, res: Response) => {
-    const { body, task } = req;
+    const { body, task, user } = req;
     const { status } = body;
 
     try {
       task.status = status;
+
+      if (status === 'pending') {
+        task.completedBy = null;
+      } else {
+        task.completedBy = user.id;
+      }
+
       task.save();
 
       res.send('Estado la tarea actulizado');
