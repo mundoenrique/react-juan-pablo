@@ -71,12 +71,12 @@ export class TaskController {
 
     try {
       task.status = status;
+      const data = {
+        user: user.id,
+        status,
+      };
 
-      if (status === 'pending') {
-        task.completedBy = null;
-      } else {
-        task.completedBy = user.id;
-      }
+      task.completedBy.push(data);
 
       task.save();
 
