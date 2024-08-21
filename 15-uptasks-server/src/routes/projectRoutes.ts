@@ -128,9 +128,7 @@ router.post(
   NoteController.createNote
 );
 
-// router.get('/:projectId/tasks/:taskId/notes',
-//   NoteController.getTaskNotes
-// )
+router.get('/:projectId/tasks/:taskId/notes', NoteController.getTaskNotes);
 
 // router.delete('/:projectId/tasks/:taskId/notes/:noteId',
 //   param('noteId').isMongoId().withMessage('ID No Válido'),
