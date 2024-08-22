@@ -256,6 +256,7 @@ export class AuthController {
     try {
       user.password = await hashPassword(password);
       await user.save();
+
       res.send('El Password se modificó correctamente');
     } catch (error) {
       res.status(500).send('Hubo un error');
@@ -270,6 +271,7 @@ export class AuthController {
 
     if (!isPasswordCorrect) {
       const error = new Error('El Password es incorrecto');
+
       return res.status(401).json({ error: error.message });
     }
 

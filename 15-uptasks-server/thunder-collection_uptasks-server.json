@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-22T13:43:33.591Z",
+    "dateExported": "2024-08-22T14:01:36.631Z",
     "version": "1.2",
     "folders": [
         {
@@ -501,6 +501,23 @@
                 "raw": "{\n  \"name\": \"Roger Humberto\",\n  \"email\": \"mmx2@mmx.com\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "d8acd29f-a33d-459a-b0ff-d06bdfb09f95",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "df4ec2e4-f2d1-4535-9f0c-5c987c42a46f",
+            "name": "Update password",
+            "url": "/auth/update-password",
+            "method": "POST",
+            "sortNum": 260000,
+            "created": "2024-08-22T13:57:56.081Z",
+            "modified": "2024-08-22T14:00:57.990Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"current_password\": \"12345678\",\n  \"password\": \"12345678\",\n  \"password_confirmation\": \"12345678\"\n}",
+                "form": []
+            }
         }
     ],
     "settings": {
@@ -508,5 +525,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_J5ArgPeIgFTnNxPt7xBDCvhggvvBsX5NQ_AWBvxTbiae7wiPiFoBWkpPVKkY_abifA"
+    "ref": "OhRPFvp0jcZeYmt7LZM_JwTA5HqvQC-scCIxwma47xj3hxnxyGOEVjHT_EIVQNJlSd4KFNP4sKq3aI9hVhAwPA"
 }
