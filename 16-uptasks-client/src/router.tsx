@@ -1,17 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AppLayout from '@/layouts/AppLayout';
 import AuthLayout from './layouts/AuthLayout';
+import ProfileLayout from './layouts/ProfileLayout';
 import DashboardView from '@/views/DashboardView';
 import ConfirmAccountView from './views/auth/ConfirmAccountView';
-import RegisterView from './views/auth/RegisterView';
 import RequestNewCodeView from './views/auth/RequestNewCodeView';
-import LoginView from './views/auth/LoginView';
+import ForgotPasswordView from './views/auth/ForgotPasswordView';
+import ChangePasswordView from './views/profile/ChangePasswordView';
 import CreateProjectView from './views/projects/CreateProjectView';
 import EditProjectView from './views/projects/EditProjectView';
-import ProjectDetailsView from './views/projects/ProjectDetailsView';
-import ForgotPasswordView from './views/auth/ForgotPasswordView';
+import LoginView from './views/auth/LoginView';
 import NewPasswordView from './views/auth/NewPasswordView';
+import ProfileView from './views/profile/ProfileView';
+import ProjectDetailsView from './views/projects/ProjectDetailsView';
 import ProjectTeamView from './views/projects/ProjectTeamView';
+import RegisterView from './views/auth/RegisterView';
 
 export default function Router() {
   return (
@@ -23,6 +26,10 @@ export default function Router() {
           <Route path="/projects/:projectId" element={<ProjectDetailsView />} />
           <Route path="/projects/:projectId/edit" element={<EditProjectView />} />
           <Route path="/projects/:projectId/team" element={<ProjectTeamView />} />
+          <Route element={<ProfileLayout />}>
+            <Route path="/profile" element={<ProfileView />} />
+            <Route path="/profile/password" element={<ChangePasswordView />} />
+          </Route>
         </Route>
         <Route element={<AuthLayout />}>
           <Route path="/auth/login" element={<LoginView />} />
