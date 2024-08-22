@@ -57,23 +57,9 @@ export class ProjectController {
   };
 
   static updateProject = async (req: Request, res: Response) => {
-    const { params, body } = req;
-    const { id } = params;
+    const { body, project } = req;
 
     try {
-      const project = await Project.findById(id);
-
-      if (!project) {
-        const error = new Error('Poryecto no encontrado');
-        return res.status(400).json({ error: error.message });
-      }
-
-      if (project.manager.toString() !== req.user.id.toString()) {
-        const error = new Error('Solo el manager puede actulizar un poryecto');
-
-        return res.status(404).json({ error: error.message });
-      }
-
       project.projectName = body.projectName;
       project.clientName = body.clientName;
       project.description = body.description;
@@ -86,23 +72,9 @@ export class ProjectController {
   };
 
   static deleteProject = async (req: Request, res: Response) => {
-    const { id } = req.params;
+    const { project } = req;
 
     try {
-      // const project = await Project.findByIdAndDelete(id);
-      const project = await Project.findById(id);
-
-      if (!project) {
-        const error = new Error('Poryecto no encontraos');
-        return res.status(400).json({ error: error.message });
-      }
-
-      if (project.manager.toString() !== req.user.id.toString()) {
-        const error = new Error('Solo el manager puede eliminar un poryecto');
-
-        return res.status(404).json({ error: error.message });
-      }
-
       await project.deleteOne();
 
       res.send('Poryecto eliminado');
