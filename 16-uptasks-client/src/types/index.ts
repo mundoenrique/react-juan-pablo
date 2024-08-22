@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 /** Auth & Users */
-export const authSchema = z.object({
+const authSchema = z.object({
   name: z.string(),
   email: z.string().email(),
   current_password: z.string(),
@@ -69,8 +69,16 @@ export const taskSchema = z.object({
   updatedAt: z.string(),
 });
 
+export const taskProjectSchema = taskSchema.pick({
+  _id: true,
+  name: true,
+  description: true,
+  status: true,
+});
+
 export type Task = z.infer<typeof taskSchema>;
 export type TaskFormData = Pick<Task, 'name' | 'description'>;
+export type TaskProject = z.infer<typeof taskProjectSchema>;
 
 /** Projects */
 export const projectSchema = z.object({
