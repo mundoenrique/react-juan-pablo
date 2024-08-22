@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-22T14:01:36.631Z",
+    "dateExported": "2024-08-22T15:44:01.468Z",
     "version": "1.2",
     "folders": [
         {
@@ -518,6 +518,23 @@
                 "raw": "{\n  \"current_password\": \"12345678\",\n  \"password\": \"12345678\",\n  \"password_confirmation\": \"12345678\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "c12a2e3a-e4ea-4816-8558-c8a46409a3f8",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "df4ec2e4-f2d1-4535-9f0c-5c987c42a46f",
+            "name": "Chech password",
+            "url": "/auth/check-password",
+            "method": "POST",
+            "sortNum": 270000,
+            "created": "2024-08-22T15:41:34.292Z",
+            "modified": "2024-08-22T15:42:20.618Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"password\": \"12345678\"\n}",
+                "form": []
+            }
         }
     ],
     "settings": {
@@ -525,5 +542,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_JwTA5HqvQC-scCIxwma47xj3hxnxyGOEVjHT_EIVQNJlSd4KFNP4sKq3aI9hVhAwPA"
+    "ref": "OhRPFvp0jcZeYmt7LZM_JxV852-qsauHa7Uiv1yMIK8dCRcbuPRPlkslTali1w---nSLUd4BNKL3X86ef8eq7w"
 }
