@@ -1,33 +1,24 @@
 import { Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { deleteProject, getProjects } from '@/api/ProjectAPI';
-import { toast } from 'react-toastify';
+import { getProjects } from '@/api/ProjectAPI';
+import DeleteProjectModal from '@/components/projects/DeleteProjectModal';
 import { useAuth } from '@/hooks/useAuth';
 import { isManager } from '@/utils/policies';
 
 export default function DashboardView() {
-  const { data: user, isLoading: authLading } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const { data: user, isLoading: authLoading } = useAuth();
+
   const { data, isLoading } = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
   });
-  const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
-    mutationFn: deleteProject,
-    onError: (error) => {
-      toast.error(error.message);
-    },
-    onSuccess: (data) => {
-      toast.success(data);
-      queryClient.invalidateQueries({ queryKey: ['projects'] });
-    },
-  });
-
-  if (isLoading && authLading) return 'Cargando...';
+  if (isLoading && authLoading) return 'Cargando...';
 
   if (data && user)
     return (
@@ -43,6 +34,7 @@ export default function DashboardView() {
             Nuevo Proyecto
           </Link>
         </nav>
+
         {data.length ? (
           <ul role="list" className="divide-y divide-gray-100 border border-gray-100 mt-10 bg-white shadow-lg">
             {data.map((project) => (
@@ -94,6 +86,7 @@ export default function DashboardView() {
                             Ver Proyecto
                           </Link>
                         </MenuItem>
+
                         {isManager(project.manager, user._id) && (
                           <>
                             <MenuItem>
@@ -108,7 +101,7 @@ export default function DashboardView() {
                               <button
                                 type="button"
                                 className="block px-3 py-1 text-sm leading-6 text-red-500"
-                                onClick={() => mutate(project._id)}
+                                onClick={() => navigate(location.pathname + `?deleteProject=${project._id}`)}
                               >
                                 Eliminar Proyecto
                               </button>
@@ -130,6 +123,8 @@ export default function DashboardView() {
             </Link>
           </p>
         )}
+
+        <DeleteProjectModal />
       </>
     );
 }
