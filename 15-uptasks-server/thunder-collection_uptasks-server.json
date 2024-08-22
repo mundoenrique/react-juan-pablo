@@ -2,7 +2,7 @@
     "clientName": "Thunder Client",
     "collectionName": "uptasks-server",
     "collectionId": "0fd31a4a-6375-440d-a463-ed69db64232b",
-    "dateExported": "2024-08-21T16:34:19.704Z",
+    "dateExported": "2024-08-22T13:43:33.591Z",
     "version": "1.2",
     "folders": [
         {
@@ -57,6 +57,19 @@
             "containerId": "",
             "created": "2024-08-21T15:31:41.946Z",
             "sortNum": 50000,
+            "settings": {
+                "auth": {
+                    "type": "bearer",
+                    "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2YzM4MmQ2ZmI1NGQ1ODBhNGQyMDI5ZSIsImlhdCI6MTcyNDE5NzcxNSwiZXhwIjoxNzM5NzQ5NzE1fQ.gUedoSNRPO5AZKKpmb1iPBKgdEikzPWf0LNcR2A9SAQ"
+                }
+            }
+        },
+        {
+            "_id": "df4ec2e4-f2d1-4535-9f0c-5c987c42a46f",
+            "name": "profile",
+            "containerId": "",
+            "created": "2024-08-22T13:30:33.994Z",
+            "sortNum": 60000,
             "settings": {
                 "auth": {
                     "type": "bearer",
@@ -471,6 +484,23 @@
                 "raw": "{\n  \"content\": \"añadiendo comentario\"\n}",
                 "form": []
             }
+        },
+        {
+            "_id": "bbbe6cd8-6a88-4b6a-b4be-6f7049cca4ce",
+            "colId": "0fd31a4a-6375-440d-a463-ed69db64232b",
+            "containerId": "df4ec2e4-f2d1-4535-9f0c-5c987c42a46f",
+            "name": "Update profile",
+            "url": "/auth/profile",
+            "method": "PUT",
+            "sortNum": 250000,
+            "created": "2024-08-22T13:33:21.353Z",
+            "modified": "2024-08-22T13:37:24.633Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"Roger Humberto\",\n  \"email\": \"mmx2@mmx.com\"\n}",
+                "form": []
+            }
         }
     ],
     "settings": {
@@ -478,5 +508,5 @@
             "baseUrl": "localhost:4001/api"
         }
     },
-    "ref": "OhRPFvp0jcZeYmt7LZM_J8ppJ8OqzkCDxNWEk5T1GWkP7wmdeP09a_GHaNOSQSKdUR39NmfzSPr9Yr2A7s0lVw"
+    "ref": "OhRPFvp0jcZeYmt7LZM_J5ArgPeIgFTnNxPt7xBDCvhggvvBsX5NQ_AWBvxTbiae7wiPiFoBWkpPVKkY_abifA"
 }
