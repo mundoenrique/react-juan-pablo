@@ -5,11 +5,11 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import { toast } from 'react-toastify';
 import { useDraggable } from '@dnd-kit/core';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { Task } from '@/types/index';
+import { TaskProject } from '@/types/index';
 import { deleteTask } from '@/api/TaskAPI';
 
 type TaskCardProps = {
-  task: Task;
+  task: TaskProject;
   canEdit: boolean;
 };
 

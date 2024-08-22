@@ -1,5 +1,5 @@
 import { DndContext, DragEndEvent } from '@dnd-kit/core';
-import { Project, Task, TaskStatus } from '@/types/index';
+import { Project, TaskProject, TaskStatus } from '@/types/index';
 import { statusTranslations } from '@/locales/es';
 import TaskCard from './TaskCard';
 import DropTask from './DropTask';
@@ -9,12 +9,12 @@ import { updateStatus } from '@/api/TaskAPI';
 import { toast } from 'react-toastify';
 
 type TaskListProps = {
-  tasks: Task[];
+  tasks: TaskProject[];
   canEdit: boolean;
 };
 
 type GroupedTasks = {
-  [key: string]: Task[];
+  [key: string]: TaskProject[];
 };
 
 const initialStatusGroups: GroupedTasks = {
