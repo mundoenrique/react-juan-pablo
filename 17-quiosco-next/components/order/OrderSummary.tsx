@@ -1,21 +1,41 @@
 'use client';
+import { useMemo } from 'react';
+import { toast } from 'react-toastify';
 import { useStore } from '@/src/store';
 import ProductDetails from './ProductDetails';
 import { formatCurrency } from '@/src/utils';
-import { useMemo } from 'react';
+import { createOrder } from '@/actions/create-order-action';
+import { OrderSchema } from '@/src/schema';
 
 export default function OrderSummary() {
   const order = useStore((state) => state.order);
+  const clearOrder = useStore((state) => state.clearOrder);
   const total = useMemo(() => order.reduce((total, item) => total + item.quantity * item.price, 0), [order]);
 
   const handleCreateOrder = async (formData: FormData) => {
     const data = {
       name: formData.get('name'),
-      total,
+      total: 0,
       order,
     };
 
-    console.log(data);
+    const result = OrderSchema.safeParse(data);
+    if (!result.success) {
+      result.error.issues.forEach((issue) => {
+        toast.error(issue.message);
+      });
+      return;
+    }
+
+    const response = await createOrder(data);
+    if (response?.errors) {
+      response.errors.forEach((issue) => {
+        toast.error(issue.message);
+      });
+    }
+
+    toast.success('Pedido Realizado Correctamente');
+    clearOrder();
   };
 
   return (
