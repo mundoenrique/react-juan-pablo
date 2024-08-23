@@ -4,15 +4,12 @@ import Task from '../models/Task';
 export class TaskController {
   static createTask = async (req: Request, res: Response) => {
     const { body, project } = req;
-
     try {
       const task = new Task(body);
       task.project = project.id;
       project.tasks.push(task.id);
-
       await Promise.allSettled([task.save(), project.save()]);
-
-      res.send('Tarea creada');
+      res.send('Tarea creada correctamente');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
@@ -21,8 +18,7 @@ export class TaskController {
   static getProjectTasks = async (req: Request, res: Response) => {
     try {
       const tasks = await Task.find({ project: req.project.id }).populate('project');
-
-      res.json({ tasks });
+      res.json(tasks);
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
@@ -42,13 +38,12 @@ export class TaskController {
 
   static updateTask = async (req: Request, res: Response) => {
     const { body, task } = req;
-
     try {
       task.name = body.name;
       task.description = body.description;
       await task.save();
 
-      res.send('Tarea actualizada');
+      res.send('Tarea Actualizada Correctamente');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
@@ -56,12 +51,10 @@ export class TaskController {
 
   static deleteTask = async (req: Request, res: Response) => {
     const { project, task } = req;
-
     try {
-      project.tasks = project.tasks.filter((projectTask) => projectTask.toString() !== task.id.toString());
+      project.tasks = project.tasks.filter((task) => task.toString() !== task.id.toString());
       await Promise.allSettled([task.deleteOne(), project.save()]);
-
-      res.send('Tarea eliminada');
+      res.send('Tarea Eliminada Correctamente');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }
@@ -77,22 +70,9 @@ export class TaskController {
         user: user.id,
         status,
       };
-
       task.completedBy.push(data);
-
-      task.save();
-
-      res.send('Estado la tarea actulizado');
-    } catch (error) {
-      res.status(500).json({ error: 'Hubo un error' });
-    }
-  };
-
-  static Task = async (req: Request, res: Response) => {
-    const { params, body } = req;
-
-    try {
-      res.json({ data: `${this.name} - : httpVerb= ${req.method}`, params, body });
+      await task.save();
+      res.send('Tarea Actualizada');
     } catch (error) {
       res.status(500).json({ error: 'Hubo un error' });
     }

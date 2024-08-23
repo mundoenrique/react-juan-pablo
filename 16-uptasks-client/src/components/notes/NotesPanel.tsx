@@ -1,6 +1,6 @@
 import AddNoteForm from './AddNoteForm';
-import { Task } from '@/types/index';
 import NoteDetail from './NoteDetail';
+import { Task } from '@/types/index';
 
 type NotesPanelProps = {
   notes: Task['notes'];

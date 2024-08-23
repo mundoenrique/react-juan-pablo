@@ -1,4 +1,4 @@
-import { ChangeEvent, Fragment } from 'react';
+import { Fragment } from 'react';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Dialog, DialogPanel, DialogTitle, Transition, TransitionChild } from '@headlessui/react';
@@ -38,7 +38,7 @@ export default function TaskModalDetails() {
     },
   });
 
-  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const status = e.target.value as TaskStatus;
     const data = { projectId, taskId, status };
     mutate(data);
@@ -81,13 +81,17 @@ export default function TaskModalDetails() {
                   <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all p-16">
                     <p className="text-sm text-slate-400">Agregada el: {formatDate(data.createdAt)} </p>
                     <p className="text-sm text-slate-400">Última actualización: {formatDate(data.updatedAt)} </p>
+
                     <DialogTitle as="h3" className="font-black text-4xl text-slate-600 my-5">
-                      {data.name}
+                      {data.name}{' '}
                     </DialogTitle>
-                    <p className="text-lg text-slate-500 mb-2">Descripción: {data.description} </p>
+
+                    <p className="text-lg text-slate-500 mb-2">Descripción: {data.description}</p>
+
                     {data.completedBy.length ? (
                       <>
                         <p className="font-bold text-2xl text-slate-600 my-5">Historial de Cambios</p>
+
                         <ul className=" list-decimal">
                           {data.completedBy.map((activityLog) => (
                             <li key={activityLog._id}>
@@ -98,6 +102,7 @@ export default function TaskModalDetails() {
                         </ul>
                       </>
                     ) : null}
+
                     <div className="my-5 space-y-3">
                       <label className="font-bold">Estado Actual:</label>
                       <select
@@ -112,6 +117,7 @@ export default function TaskModalDetails() {
                         ))}
                       </select>
                     </div>
+
                     <NotesPanel notes={data.notes} />
                   </DialogPanel>
                 </TransitionChild>

@@ -24,6 +24,7 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
       description: data.description,
     },
   });
+
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: updateProject,
@@ -37,12 +38,12 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
       navigate('/');
     },
   });
+
   const handleForm = (formData: ProjectFormData) => {
     const data = {
       formData,
       projectId,
     };
-
     mutate(data);
   };
 
@@ -66,7 +67,7 @@ export default function EditProjectForm({ data, projectId }: EditProjectFormProp
 
           <input
             type="submit"
-            value="Guardar cambios"
+            value="Guardar Cambios"
             className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3 text-white uppercase font-bold cursor-pointer transition-colors"
           />
         </form>

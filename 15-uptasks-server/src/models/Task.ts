@@ -10,6 +10,7 @@ const taskStatus = {
 } as const;
 
 export type TaskStatus = (typeof taskStatus)[keyof typeof taskStatus];
+
 export interface ITask extends Document {
   name: string;
   description: string;
@@ -22,17 +23,17 @@ export interface ITask extends Document {
   notes: Types.ObjectId[];
 }
 
-const taskSchema: Schema = new Schema(
+export const TaskSchema: Schema = new Schema(
   {
     name: {
       type: String,
-      require: true,
       trim: true,
+      required: true,
     },
     description: {
       type: String,
-      require: true,
       trim: true,
+      required: true,
     },
     project: {
       type: Types.ObjectId,
@@ -67,7 +68,8 @@ const taskSchema: Schema = new Schema(
   { timestamps: true }
 );
 
-taskSchema.pre('deleteOne', { document: true }, async function () {
+// Middleware
+TaskSchema.pre('deleteOne', { document: true }, async function () {
   const taskId = this._id;
 
   if (!taskId) return;
@@ -75,5 +77,5 @@ taskSchema.pre('deleteOne', { document: true }, async function () {
   await Note.deleteMany({ task: taskId });
 });
 
-const Task = mongoose.model<ITask>('Task', taskSchema);
+const Task = mongoose.model<ITask>('Task', TaskSchema);
 export default Task;

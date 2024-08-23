@@ -4,15 +4,14 @@ import Project from '../models/Project';
 export class ProjectController {
   static createProject = async (req: Request, res: Response) => {
     const project = new Project(req.body);
-    // Asigna el manager
-    project.manager = req.user.id;
 
+    // Asigna un manager
+    project.manager = req.user.id;
     try {
       await project.save();
-
-      res.send('Poryecto creado');
+      res.send('Proyecto Creando Correctamente');
     } catch (error) {
-      console.log({ error });
+      console.log(error);
     }
   };
 
@@ -23,9 +22,7 @@ export class ProjectController {
           {
             manager: { $in: req.user.id },
           },
-          {
-            team: { $in: req.user.id },
-          },
+          { team: { $in: req.user.id } },
         ],
       });
       res.json(projects);
@@ -40,10 +37,10 @@ export class ProjectController {
       const project = await Project.findById(id).populate('tasks');
 
       if (!project) {
-        const error = new Error('Poryecto no encontraos');
-        return res.status(400).json({ error: error.message });
-      }
+        const error = new Error('Proyecto no encontrado');
 
+        return res.status(404).json({ error: error.message });
+      }
       if (project.manager.toString() !== req.user.id.toString() && !project.team.includes(req.user.id)) {
         const error = new Error('Acción no válida');
 
@@ -63,9 +60,9 @@ export class ProjectController {
       project.projectName = body.projectName;
       project.clientName = body.clientName;
       project.description = body.description;
-      project.save();
+      await project.save();
 
-      res.send('Poryecto actulizado');
+      res.send('Proyecto Actualizado');
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +74,7 @@ export class ProjectController {
     try {
       await project.deleteOne();
 
-      res.send('Poryecto eliminado');
+      res.send('Proyecto Eliminado');
     } catch (error) {
       console.log(error);
     }

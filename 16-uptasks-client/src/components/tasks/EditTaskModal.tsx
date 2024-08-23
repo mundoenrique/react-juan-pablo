@@ -15,9 +15,11 @@ type EditTaskModalProps = {
 
 export default function EditTaskModal({ data, taskId }: EditTaskModalProps) {
   const navigate = useNavigate();
+
   /** Obtener projectId */
   const params = useParams();
   const projectId = params.projectId!;
+
   const {
     register,
     handleSubmit,
@@ -87,7 +89,7 @@ export default function EditTaskModal({ data, taskId }: EditTaskModalProps) {
                 </p>
 
                 <form className="mt-10 space-y-3" onSubmit={handleSubmit(handleEditTask)} noValidate>
-                  <TaskForm errors={errors} register={register} />
+                  <TaskForm register={register} errors={errors} />
                   <input
                     type="submit"
                     className=" bg-fuchsia-600 hover:bg-fuchsia-700 w-full p-3  text-white font-black  text-xl cursor-pointer"

@@ -11,7 +11,7 @@ export default function AppLayout() {
   if (isLoading) return 'Cargando...';
 
   if (isError) {
-    return <Navigate to={'/auth/login'} />;
+    return <Navigate to="/auth/login" />;
   }
 
   if (data)
@@ -24,6 +24,7 @@ export default function AppLayout() {
                 <Logo />
               </Link>
             </div>
+
             <NavMenu name={data.name} />
           </div>
         </header>
@@ -35,6 +36,7 @@ export default function AppLayout() {
         <footer className="py-5">
           <p className="text-center">Todos los derechos reservados {new Date().getFullYear()}</p>
         </footer>
+
         <ToastContainer pauseOnHover={false} pauseOnFocusLoss={false} />
       </>
     );

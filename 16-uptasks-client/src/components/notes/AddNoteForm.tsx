@@ -15,6 +15,7 @@ export default function AddNoteForm() {
   const initialValues: NoteFormData = {
     content: '',
   };
+
   const {
     register,
     handleSubmit,
@@ -50,7 +51,7 @@ export default function AddNoteForm() {
           type="text"
           placeholder="Contenido de la nota"
           className="w-full p-3 border border-gray-300"
-          {...register('content', { required: 'El contenido de la ota es obligatorio' })}
+          {...register('content', { required: 'El Contenido de la nota es obligatorio' })}
         />
         {errors.content && <ErrorMessage>{errors.content.message}</ErrorMessage>}
       </div>

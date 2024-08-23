@@ -10,24 +10,28 @@ import TaskForm from './TaskForm';
 
 export default function AddTaskModal() {
   const navigate = useNavigate();
+
   /** Leer Si modal existe */
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const modalTask = queryParams.get('newTask');
   const show = modalTask ? true : false;
+
+  /** Obtener projectId */
+  const params = useParams();
+  const projectId = params.projectId!;
+
   const initialValues: TaskFormData = {
     name: '',
     description: '',
   };
-  /** Obtener projectId */
-  const params = useParams();
-  const projectId = params.projectId!;
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
   } = useForm({ defaultValues: initialValues });
+
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: createTask,
@@ -41,6 +45,7 @@ export default function AddTaskModal() {
       navigate(location.pathname, { replace: true });
     },
   });
+
   const handleCreateTask = (formData: TaskFormData) => {
     const data = {
       formData,

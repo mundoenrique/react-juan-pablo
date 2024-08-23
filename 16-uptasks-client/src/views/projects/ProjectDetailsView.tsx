@@ -31,6 +31,7 @@ export default function ProjectDetailsView() {
       <>
         <h1 className="text-5xl font-black">{data.projectName}</h1>
         <p className="text-2xl font-light text-gray-500 mt-5">{data.description}</p>
+
         {isManager(data.manager, user._id) && (
           <nav className="my-5 flex gap-3">
             <button
@@ -49,6 +50,7 @@ export default function ProjectDetailsView() {
             </Link>
           </nav>
         )}
+
         <TaskList tasks={data.tasks} canEdit={canEdit} />
         <AddTaskModal />
         <EditTaskData />

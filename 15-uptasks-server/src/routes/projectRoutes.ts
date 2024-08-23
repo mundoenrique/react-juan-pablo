@@ -6,7 +6,7 @@ import { handleInputErrors } from '../middleware/validation';
 import { hasAuthorization, taskBelongsToProject, taskExists } from '../middleware/task';
 import { ProjectController } from '../controllers/ProjectController';
 import { TaskController } from '../controllers/TaskController';
-import { TeamController } from '../controllers/TeamController';
+import { TeamMemberController } from '../controllers/TeamController';
 import { NoteController } from '../controllers/NoteController';
 
 const router = Router();
@@ -105,23 +105,23 @@ router.post(
   '/:projectId/team/find',
   body('email').isEmail().toLowerCase().withMessage('E-mail no válido'),
   handleInputErrors,
-  TeamController.findMemberByEmail
+  TeamMemberController.findMemberByEmail
 );
 
-router.get('/:projectId/team', TeamController.getProjecTeam);
+router.get('/:projectId/team', TeamMemberController.getProjecTeam);
 
 router.post(
   '/:projectId/team',
   body('id').isMongoId().withMessage('ID No válido'),
   handleInputErrors,
-  TeamController.addMemberById
+  TeamMemberController.addMemberById
 );
 
 router.delete(
   '/:projectId/team/:userId',
   param('userId').isMongoId().withMessage('ID No válido'),
   handleInputErrors,
-  TeamController.removeMemberById
+  TeamMemberController.removeMemberById
 );
 
 /** Routes for Notes */

@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { useNavigate, useParams, Link, Navigate } from 'react-router-dom';
+import { useNavigate, useParams, Navigate, Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
@@ -58,7 +58,7 @@ export default function ProjectTeamView() {
         <h2 className="text-5xl font-black my-10">Miembros actuales</h2>
         {data.length ? (
           <ul role="list" className="divide-y divide-gray-100 border border-gray-100 mt-10 bg-white shadow-lg">
-            {data?.map((member) => (
+            {data.map((member) => (
               <li key={member._id} className="flex justify-between gap-x-6 px-5 py-10">
                 <div className="flex min-w-0 gap-x-4">
                   <div className="min-w-0 flex-auto space-y-2">

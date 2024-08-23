@@ -14,10 +14,13 @@ type TaskCardProps = {
 };
 
 export default function TaskCard({ task, canEdit }: TaskCardProps) {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({ id: task._id });
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: task._id,
+  });
   const navigate = useNavigate();
   const params = useParams();
   const projectId = params.projectId!;
+
   const queryClient = useQueryClient();
   const { mutate } = useMutation({
     mutationFn: deleteTask,
@@ -44,10 +47,11 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
 
   return (
     <li className="p-5 bg-white border border-slate-300 flex justify-between gap-3">
-      <div {...listeners} {...attributes} ref={setNodeRef} style={style} className="min-w-0 flex flex-col gap-y-4">
+      <div {...listeners} {...attributes} ref={setNodeRef} style={style} className=" min-w-0 flex flex-col gap-y-4">
         <p className="text-xl font-bold text-slate-600 text-left">{task.name}</p>
         <p className="text-slate-500">{task.description}</p>
       </div>
+
       <div className="flex shrink-0  gap-x-6">
         <Menu as="div" className="relative flex-none">
           <MenuButton className="-m-2.5 block p-2.5 text-gray-500 hover:text-gray-900">
@@ -68,13 +72,12 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
                 <button
                   type="button"
                   className="block px-3 py-1 text-sm leading-6 text-gray-900"
-                  onClick={() => {
-                    navigate(location.pathname + `?viewTask=${task._id}`);
-                  }}
+                  onClick={() => navigate(location.pathname + `?viewTask=${task._id}`)}
                 >
                   Ver Tarea
                 </button>
               </MenuItem>
+
               {canEdit && (
                 <>
                   <MenuItem>
