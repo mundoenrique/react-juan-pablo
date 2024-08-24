@@ -1,5 +1,9 @@
-import React from 'react';
+import Heading from '@/components/ui/Heading';
 
 export default function OrdersPage() {
-  return <div>OrdersPage</div>;
+  return (
+    <>
+      <Heading>Administrar Ordenes</Heading>
+    </>
+  );
 }
