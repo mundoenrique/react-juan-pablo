@@ -37,6 +37,7 @@ export default async function ProductsPage({ searchParams }: { searchParams: { p
   return (
     <>
       <Heading>Administrar Productos</Heading>
+
       <div className="flex flex-col lg:flex-row lg:justify-between gap-5">
         <Link
           href={'/admin/products/new'}
@@ -47,7 +48,9 @@ export default async function ProductsPage({ searchParams }: { searchParams: { p
 
         <ProductSearchForm />
       </div>
+
       <ProductTable products={products} />
+
       <ProductsPagination page={page} totalPages={totalPages} />
     </>
   );

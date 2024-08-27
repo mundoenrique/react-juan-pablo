@@ -15,7 +15,7 @@ export default function OrderSummary() {
   const handleCreateOrder = async (formData: FormData) => {
     const data = {
       name: formData.get('name'),
-      total: 0,
+      total,
       order,
     };
 
@@ -49,6 +49,7 @@ export default function OrderSummary() {
           {order.map((item) => (
             <ProductDetails key={item.id} item={item} />
           ))}
+
           <p className="text-2xl mt-20 text-center">
             Total a pagar: {''}
             <span className="font-bold">{formatCurrency(total)}</span>
